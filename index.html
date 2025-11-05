@@ -8,188 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg:#ffffff; --fg:#0f172a; --muted:#475569; --link:#2563eb; --card:#f8fafc; --border:#e2e8f0;
-      --accent:#111827; --badge:#eef2ff;
-
-      /* link colors */
-      --pdf:#7c3aed; --pdf-hover:#6d28d9;
-      --doi:#059669; --doi-hover:#047857;
-      --arxiv:#dc2626; --arxiv-hover:#b91c1c;
-
-      /* tag look (light) */
-      --label-bg: rgba(15,23,42,0.04);
-      --pdf-border: #e9d5ff;
-      --doi-border: #bbf7d0;
-      --arxiv-border: #fecaca;
-
-      --news-pane-h: 180px;   /* News 面板高度 */
-      --pubs-pane-h: 360px;   /* Publications 面板高度 */
-      --pane: #e6ebf3;
-      --shadow-card: 0 1px 3px rgba(15,23,42,.12), 0 6px 12px rgba(15,23,42,.10);
-      --shadow-pane: 0 6px 20px rgba(15,23,42,.14);
-      --scroll-thumb: rgba(15,23,42,.45);
-      --scroll-thumb-hover: rgba(15,23,42,.65);
-      --scroll-track: rgba(15,23,42,.08);
-      --radius-pane: 12px;    /* 圆角统一变量 */
-    }
-    @media (prefers-color-scheme: dark){
-      :root{
-        --bg:#0b0f1a; --fg:#e5e7eb; --muted:#9ca3af; --link:#93c5fd; --card:#0f1626; --border:#1f2937; --accent:#f9fafb; --badge:#111827;
-
-        --pdf:#a78bfa; --pdf-hover:#c4b5fd;
-        --doi:#34d399; --doi-hover:#6ee7b7;
-        --arxiv:#f87171; --arxiv-hover:#fca5a5;
-
-        /* tag look (dark) */
-        --label-bg: rgba(255,255,255,0.06);
-        --pdf-border: rgba(167,139,250,0.35);
-        --doi-border: rgba(52,211,153,0.35);
-        --arxiv-border: rgba(248,113,113,0.35);
-        --pane: #0a0f1d;
-        --shadow-card: 0 1px 3px rgba(0,0,0,.55), 0 8px 24px rgba(0,0,0,.40);
-        --shadow-pane: 0 8px 28px rgba(0,0,0,.48);
-        --scroll-thumb: rgba(255,255,255,.35);
-        --scroll-thumb-hover: rgba(255,255,255,.55);
-        --scroll-track: rgba(255,255,255,.10);
-        --radius-pane: 12px;
-      }
-    }
-
-    /* News 滚动面板 */
-    #news .news{
-      max-height: var(--news-pane-h);
-      overflow: auto;
-      overflow-x: hidden;                 /* 防水平细线 */
-      padding: 12px 14px 12px 22px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-pane);
-    }
-    
-    /* Publications 滚动面板 */
-    #publications #pubs{
-      max-height: var(--pubs-pane-h);
-      overflow: auto;
-      overflow-x: hidden;                 /* 防水平细线 */
-      padding: 12px;
-      background: var(--pane);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-pane);
-    }
-
-    /* 触控滚动更顺滑 + 阴影 + 裁剪滚动条到圆角内 */
-    #news .news,
-    #publications #pubs{
-      -webkit-overflow-scrolling: touch;
-      box-shadow: var(--shadow-pane);
-      clip-path: inset(0 round var(--radius-pane));
-      -webkit-mask-image: -webkit-radial-gradient(white, black);
-      scrollbar-gutter: stable;           /* 滚动条出现不跳动 */
-    }
-    
-    /* 滚动条美化 */
-    /* WebKit */
-    #news .news::-webkit-scrollbar,
-    #publications #pubs::-webkit-scrollbar{
-      height: 10px; width: 10px;
-    }
-    #news .news::-webkit-scrollbar-track,
-    #publications #pubs::-webkit-scrollbar-track{
-      background: var(--scroll-track);
-      border-radius: 8px;
-    }
-    #news .news::-webkit-scrollbar-thumb,
-    #publications #pubs::-webkit-scrollbar-thumb{
-      background: var(--scroll-thumb);
-      border-radius: 8px;
-      border: 2px solid transparent;      /* 内边界更清晰 */
-      background-clip: padding-box;
-    }
-    #news .news::-webkit-scrollbar-thumb:hover,
-    #publications #pubs::-webkit-scrollbar-thumb:hover{
-      background: var(--scroll-thumb-hover);
-    }
-    
-    /* Firefox：颜色 + 更细滚动条；滚动时抗锯齿 */
-    #news .news,
-    #publications #pubs{
-      scrollbar-color: var(--scroll-thumb) var(--scroll-track);
-      scrollbar-width: thin;
-      will-change: transform;
-    }
-
-    /* 列表内间距稍紧凑一些以适应面板 */
-    #publications #pubs .pub{ margin: 10px 0; }
-
-    html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple Color Emoji','Segoe UI Emoji';}
-    .container{max-width:860px;margin:0 auto;padding:28px 20px 120px;}
-    header{display:flex;align-items:center;gap:22px;margin-bottom:18px;}
-    header img{width:84px;height:84px;border-radius:16px;object-fit:cover;border:1px solid var(--border);background:#fff}
-    h1{font-size:28px;margin:0 0 6px 0;letter-spacing:0.2px}
-    .subtitle{color:var(--muted);font-size:15px}
-    .contact a{color:var(--link);text-decoration:none;margin-right:14px}
-    .nav{display:flex;gap:14px;margin:18px 0 10px 0;flex-wrap:wrap}
-    .nav a{padding:8px 12px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--fg);font-size:14px;background:var(--card)}
-    section{margin-top:28px}
-    section h2{font-size:20px;margin:0 0 14px 0}
-    .news li{margin:6px 0;color:var(--muted)}
-    .pub{padding:14px;border:1px solid var(--border);border-radius:14px;background:var(--card);margin:12px 0;box-shadow: var(--shadow-card);}
-    .pub .title{font-weight:600}
-    .pub .venue{font-size:13px;color:var(--muted)}
-    .pub .authors{font-size:14px;color:var(--muted)}
-    .pub .links a{text-decoration:none}
-    .pub .links{
-      margin-top: 0.9em;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{background:var(--badge);color:var(--accent);border-radius:999px;padding:4px 10px;font-size:12px;border:1px solid var(--border)}
-    footer{margin-top:56px;color:var(--muted);font-size:13px}
-    .hr{height:1px;background:var(--border);margin:18px 0}
-    .misc ul{margin:0;padding-left:20px}
-    .misc li{margin:6px 0}
-    .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:var(--card);padding:2px 6px;border-radius:6px;border:1px solid var(--border);font-size:12px}
-
-    /* highlight self in author list */
-    .me{ text-decoration: underline; text-underline-offset: 3px; font-weight:700; }
-    /* more authors */
-    .more-authors{ text-decoration: underline dotted; cursor: pointer; }
-
-    /* link theming by type (order-independent) */
-    .links a{ color:var(--link); }
-
-    /* rounded pill tags */
-    .links a.pdf-link,
-    .links a.doi-link,
-    .links a.arxiv-link{
-      display:inline-block;
-      padding:1px 8px;
-      border-radius:10px;
-      background: var(--label-bg);
-      border:1px solid transparent;
-      line-height:1.3;
-      font-weight:600;
-    }
-    .links a.pdf-link   { color:var(--pdf);   border-color:var(--pdf-border); }
-    .links a.doi-link   { color:var(--doi);   border-color:var(--doi-border); }
-    .links a.arxiv-link { color:var(--arxiv); border-color:var(--arxiv-border); }
-
-    .links a.pdf-link:hover   { color:var(--pdf-hover);   background: rgba(124,58,237,0.10);  text-decoration:underline; }
-    .links a.doi-link:hover   { color:var(--doi-hover);   background: rgba(5,150,105,0.10);   text-decoration:underline; }
-    .links a.arxiv-link:hover { color:var(--arxiv-hover); background: rgba(220,38,38,0.10);   text-decoration:underline; }
-
-    .links a.pdf-link:focus,
-    .links a.doi-link:focus,
-    .links a.arxiv-link:focus{
-      outline:2px solid currentColor;
-      outline-offset:2px;
-      text-decoration:none;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="container">
@@ -208,37 +27,39 @@
         <div class="subtitle" id="affil">Department of Computer Science</div>
         <div class="contact" style="margin-top:8px">
           <a id="email" href="mailto:yz18b@fsu.edu">yz18b@fsu.edu</a>
-          <a id="scholar" href="https://scholar.google.com/citations?user=nAh7B5EAAAAJ&hl=en" target="_blank" rel="noopener">Google Scholar</a>
-          <a id="github" href="https://github.com/AnthonyZhangYan" target="_blank" rel="noopener">GitHub</a>
-          <a id="linkedin" href="https://www.linkedin.com/in/yourid" target="_blank" rel="noopener">LinkedIn</a>
+          <a id="scholar" href="#" target="_blank" rel="noopener">Google Scholar</a>
+          <a id="github" href="#" target="_blank" rel="noopener">GitHub</a>
+          <a id="linkedin" href="#" target="_blank" rel="noopener">LinkedIn</a>
         </div>
-        <div class="chips" style="margin-top:10px">
-          <span class="chip">Machine Learning</span>
-          <span class="chip">AI for Science</span>
-          <span class="chip">Bayesian Optimization</span>
-          <span class="chip">Large Language Models</span>
-        </div>
+        <div class="chips" style="margin-top:10px"></div>
       </div>
     </header>
 
     <section class="bio">
       <h2>Bio</h2>
-      <p>
-        I am a graduate student in the Department of Computer Science at Florida State University. My research interests include <b>machine learning</b>, <b>AI for science</b>, <b>Bayesian optimization</b> and <b>large language models</b>.
-      </p>
+      <p>I am a graduate student in the Department of Computer Science at Florida State University. My research interests include <b>machine learning</b>, <b>AI for science</b>, <b>Bayesian optimization</b> and <b>large language models</b>.</p>
     </section>
 
     <section id="news">
       <h2>News</h2>
-      <ul class="news" id="news-list">
+      <ul class="scrollbox" id="news-list">
         <li>2025-11：Homepage launched！🎉</li>
-        <li>2025-06：I am joining pml4sc lab to conduct research under Dr. Shibo Li's mentorship. </li>
+        <li>2025-06：I am joining pml4sc lab to conduct research under Dr. Shibo Li's mentorship.</li>
       </ul>
     </section>
 
     <section id="publications">
       <h2>Publications</h2>
-      <div id="pubs"></div>
+      <div class="controls">
+        <label for="sort-by">Sort by</label>
+        <select id="sort-by">
+          <option value="year_desc">Newest first (Year ↓)</option>
+          <option value="year_asc">Oldest first (Year ↑)</option>
+          <option value="venue_az">Venue A → Z</option>
+          <option value="venue_za">Venue Z → A</option>
+        </select>
+      </div>
+      <div class="scrollbox" id="pubs"></div>
     </section>
 
     <section id="misc" class="misc">
@@ -251,150 +72,9 @@
 
     <footer>
       <div class="hr"></div>
-      <div>© <span id="year"></span> Yan Zhang. Built with ❤️ and a dash of AI. </div>
+      <div>© <span id="year"></span> Yan Zhang. Built with ❤️ and a dash of AI.</div>
     </footer>
   </div>
-
-  <script>
-    // === 1) 快速自定义：改这里 ===
-    const PROFILE = {
-      name: 'Yan Zhang',
-      title: 'Ph.D. Student @ Florida State University',
-      affil: 'Department of Computer Science',
-      email: 'yz18b@fsu.edu',
-      scholar: 'https://scholar.google.com/citations?user=nAh7B5EAAAAJ&hl=en',
-      github: 'https://github.com/AnthonyZhangYan',
-      linkedin: 'https://www.linkedin.com/in/yourid',
-      interests: ['Machine Learning','AI for Science','Bayesian Optimization','Large Language Models']
-    };
-
-    const PUBLICATIONS = [
-      {
-        title: 'Beyond Heuristics: Globally Optimal Configuration of Implicit Neural Representations',
-        venue: 'arXiv',
-        authors: 'Sipeng Chen, Yan Zhang, Shibo Li',
-        links: [
-          { name: 'arXiv', url: 'https://arxiv.org/abs/2509.23139' },
-          { name: 'PDF',   url: 'assets/papers/2509.23139v1.pdf' }
-        ],
-        year: '2025',
-      },
-      {
-        title: 'Giant and Reversible Barocaloric Effect in Trinuclear Spin-Crossover Complex Fe₃(bntrz)₆(tcnset)₆',
-        venue: 'Advanced Materials 33(10): 2008076',
-        authors: 'M. Romanini, Y.X. Wang, K. Gürpinar, G. Ornelas, P. Lloveras, Y. Zhang',
-        moreAuthors: `Wenkai Zheng, Maria Barrio, Araceli Aznar, Adrià Gràcia-Condal, Baris Emre, Orhan Atakol,
-                      Catalin Popescu, Hu Zhang, Yi Long, Luis Balicas, Josep Lluís Tamarit, Antoni Planes, Michael Shatruk, Lluís Mañosa`,
-        links: [
-          { name: 'DOI', url: 'https://doi.org/10.1002/adma.202008076' },
-          { name: 'PDF', url: 'assets/papers/Advanced-Materials-2021.pdf' }
-        ],
-        year: '2021'
-      },
-      {
-        title: 'Enantioselective N-heterocyclic carbene-catalyzed synthesis of spirocyclic oxindole-benzofuroazepinones',
-        venue: 'The Journal of Organic Chemistry 83(24): 15225–15235',
-        authors: 'Z.H. Gao, K.Q. Chen, Y. Zhang, L.M. Kong, Y. Li, S. Ye',
-        links: [
-          { name: 'DOI', url: 'https://doi.org/10.1021/acs.joc.8b02497' },
-          { name: 'PDF', url: 'assets/papers/JOC-2018.pdf' }
-        ],
-        year: '2018'
-      },
-      {
-        title: 'N-Heterocyclic carbene-catalyzed [4+2] cyclization of α-chloroaldehydes and aurones: Highly enantioselective synthesis of benzofuran-fused dihydropyran-2-ones',
-        venue: 'Chinese Chemical Letters 29(8): 1209–1211',
-        authors: 'Y. Li, K. Chen, Y. Zhang, D. Sun, S. Ye',
-        links: [{ name: 'DOI', url: 'https://doi.org/10.1016/j.cclet.2018.03.003' }],
-        year: '2018'
-      },
-      {
-        title: 'Palladium-Catalyzed [4+2] and [5+2] Annulation for the Synthesis of Tetrahydroquinolines and 1,4-Benzoxazepines',
-        venue: 'European Journal of Organic Chemistry 2020(20): 3059–3062',
-        authors: 'Z.F. Zhang, Y. Zhang, C.L. Zhang, S. Ye',
-        links: [
-          { name: 'DOI', url: 'https://doi.org/10.1002/ejoc.202000262' },
-          { name: 'PDF', url: 'assets/papers/EuJOC-2020.pdf' }
-        ],
-        year: '2020'
-      }
-    ];
-
-    // highlight self in author list
-    const MY_NAMES = ['Yan Zhang','Y. Zhang','Y Zhang'];
-    function highlightAuthors(s){
-      let h = s || '';
-      MY_NAMES.forEach(n=>{
-        const re = new RegExp('\\b' + n.replace('.', '\\.') + '\\b', 'g');
-        h = h.replace(re, `<span class="me">${n}</span>`);
-      });
-      return h;
-    }
-
-    // 自动填充
-    document.getElementById('name').textContent = PROFILE.name;
-    document.getElementById('title').textContent = PROFILE.title;
-    document.getElementById('affil').textContent = PROFILE.affil;
-    document.getElementById('email').textContent = PROFILE.email;
-    document.getElementById('email').href = 'mailto:' + PROFILE.email;
-    document.getElementById('scholar').href = PROFILE.scholar;
-    document.getElementById('github').href = PROFILE.github;
-    document.getElementById('linkedin').href = PROFILE.linkedin;
-
-    // interests chips
-    const chipsWrap = document.querySelector('.chips');
-    chipsWrap.innerHTML = '';
-    PROFILE.interests.forEach(t=>{
-      const s = document.createElement('span'); s.className='chip'; s.textContent=t; chipsWrap.appendChild(s);
-    });
-
-    // pubs render
-    const mount = document.getElementById('pubs');
-    PUBLICATIONS.forEach(p=>{
-      const el = document.createElement('div'); el.className='pub';
-      const linksHTML = (p.links||[]).map(l=>{
-        const name = String(l.name||'');
-        const url  = String(l.url||'');
-        const isPDF   = /pdf/i.test(name);
-        const isDOI   = /doi/i.test(name) || /doi\.org/i.test(url);
-        const isArXiv = /arxiv/i.test(name) || /arxiv\.org/i.test(url);
-        const cls = isPDF ? 'pdf-link' : (isDOI ? 'doi-link' : (isArXiv ? 'arxiv-link' : ''));
-        const safeURL = url.replace(/\s/g, '%20');
-        const extra = isPDF ? 'download type="application/pdf"' : '';
-        return `<a class="${cls}" href="${safeURL}" target="_blank" rel="noopener noreferrer" ${extra}>${name}</a>`;
-      }).join('');
-
-      el.innerHTML = `
-        <div class="title">${p.title}</div>
-        <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}</div>
-        <div class="authors">${
-          p.moreAuthors
-            ? `${highlightAuthors(p.authors)}, <span class="more-authors" role="button" aria-expanded="false">…</span><span class="more-authors-text" style="display:none"> ${highlightAuthors(p.moreAuthors)}</span>`
-            : highlightAuthors(p.authors)
-        }</div>
-        <div class="links">${linksHTML}</div>
-      `;
-      mount.appendChild(el);
-    });
-
-    // 展开/收起更多作者
-    function bindMoreAuthors(){
-      document.querySelectorAll('.more-authors').forEach(btn=>{
-        const text = btn.nextElementSibling;
-        const show = ()=>{ btn.style.display='none'; text.style.display='inline'; };
-        const hide = ()=>{ text.style.display='none'; btn.style.display='inline'; };
-        btn.addEventListener('mouseenter', show);
-        text.addEventListener('mouseleave', hide);
-        btn.addEventListener('click', show);
-        text.addEventListener('click', hide);
-        btn.setAttribute('tabindex','0');
-        btn.addEventListener('focus', show);
-        text.addEventListener('blur', hide);
-      });
-    }
-    bindMoreAuthors();
-
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script src="main.js"></script>
 </body>
 </html>
