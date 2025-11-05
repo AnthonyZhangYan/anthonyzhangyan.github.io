@@ -11,10 +11,13 @@
   <style>
     :root{
       --bg:#ffffff; --fg:#0f172a; --muted:#475569; --link:#2563eb; --card:#f8fafc; --border:#e2e8f0;
-      --accent:#111827; --badge:#eef2ff;
+      --accent:#111827; --badge:#eef2ff; --pdf:#7c3aed; --pdf-hover:#6d28d9;
     }
     @media (prefers-color-scheme: dark){
-      :root{ --bg:#0b0f1a; --fg:#e5e7eb; --muted:#9ca3af; --link:#93c5fd; --card:#0f1626; --border:#1f2937; --accent:#f9fafb; --badge:#111827; }
+      :root{ 
+        --bg:#0b0f1a; --fg:#e5e7eb; --muted:#9ca3af; --link:#93c5fd; --card:#0f1626; --border:#1f2937; --accent:#f9fafb; --badge:#111827;
+        --pdf:#a78bfa; --pdf-hover:#c4b5fd;
+      }
     }
     html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple Color Emoji','Segoe UI Emoji';}
     .container{max-width:860px;margin:0 auto;padding:28px 20px 120px;}
@@ -46,7 +49,8 @@
     /* For more authors */
     .more-authors{ text-decoration: underline dotted; cursor: pointer; }
     /* For PDF Highlighting*/
-    .links a:nth-child(2) { font-weight:600; }
+    .links a:nth-child(2) { font-weight:600; color: var(--pdf); }
+    .links a:nth-child(2):hover{ color: var(--pdf-hover); text-decoration: underline; }
   </style>
 </head>
 <body>
@@ -218,12 +222,7 @@
             ? `${highlightAuthors(p.authors)}, <span class="more-authors" role="button" aria-expanded="false">…</span><span class="more-authors-text" style="display:none"> ${highlightAuthors(p.moreAuthors)}</span>`
             : highlightAuthors(p.authors)
         }</div>
-        <div class="links">${(p.links||[]).map(l=>{
-          const isPDF = /pdf/i.test(l.name);
-          const safeURL = typeof l.url === 'string' ? l.url.replace(/\s/g, '%20') : '';
-          // 只有同源/允许跨域下载的链接，download 才会真正触发保存；外站(如期刊)可能被浏览器忽略
-          return `<a href="${safeURL}" target="_blank" rel="noopener noreferrer" ${isPDF ? 'download' : ''} ${isPDF ? 'type="application/pdf"' : ''}>${l.name}</a>`;
-        }).join('')}</div>
+        <div class="links">${(p.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.name}</a>`).join('')}</div>
       `;
       mount.appendChild(el);
     });
