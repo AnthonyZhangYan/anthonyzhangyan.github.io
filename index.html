@@ -11,12 +11,15 @@
   <style>
     :root{
       --bg:#ffffff; --fg:#0f172a; --muted:#475569; --link:#2563eb; --card:#f8fafc; --border:#e2e8f0;
-      --accent:#111827; --badge:#eef2ff; --pdf:#7c3aed; --pdf-hover:#6d28d9;
+      --accent:#111827; --badge:#eef2ff;
+      --pdf:#7c3aed; --pdf-hover:#6d28d9;
+      --doi:#059669; --doi-hover:#047857;
     }
     @media (prefers-color-scheme: dark){
-      :root{ 
+      :root{
         --bg:#0b0f1a; --fg:#e5e7eb; --muted:#9ca3af; --link:#93c5fd; --card:#0f1626; --border:#1f2937; --accent:#f9fafb; --badge:#111827;
         --pdf:#a78bfa; --pdf-hover:#c4b5fd;
+        --doi:#34d399; --doi-hover:#6ee7b7;
       }
     }
     html,body{margin:0;padding:0;background:var(--bg);color:var(--fg);font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple Color Emoji','Segoe UI Emoji';}
@@ -35,7 +38,7 @@
     .pub .title{font-weight:600}
     .pub .venue{font-size:13px;color:var(--muted)}
     .pub .authors{font-size:14px;color:var(--muted)}
-    .pub .links a{margin-right:10px;color:var(--link);text-decoration:none}
+    .pub .links a{margin-right:10px;text-decoration:none}
     .chips{display:flex;gap:8px;flex-wrap:wrap}
     .chip{background:var(--badge);color:var(--accent);border-radius:999px;padding:4px 10px;font-size:12px;border:1px solid var(--border)}
     footer{margin-top:56px;color:var(--muted);font-size:13px}
@@ -44,13 +47,17 @@
     .misc li{margin:6px 0}
     .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:var(--card);padding:2px 6px;border-radius:6px;border:1px solid var(--border);font-size:12px}
 
-    /* NEW: highlight self in author list */
+    /* highlight self in author list */
     .me{ text-decoration: underline; text-underline-offset: 3px; font-weight:700; }
-    /* For more authors */
+    /* more authors */
     .more-authors{ text-decoration: underline dotted; cursor: pointer; }
-    /* For PDF Highlighting*/
-    .links a:nth-child(2) { font-weight:600; color: var(--pdf); }
-    .links a:nth-child(2):hover{ color: var(--pdf-hover); text-decoration: underline; }
+
+    /* Link theming by type (order-independent) */
+    .links a.pdf-link{ font-weight:600; color:var(--pdf); }
+    .links a.pdf-link:hover{ color:var(--pdf-hover); text-decoration:underline; }
+    .links a.doi-link{ font-weight:600; color:var(--doi); }
+    .links a.doi-link:hover{ color:var(--doi-hover); text-decoration:underline; }
+    .links a{ color:var(--link); } /* fallback for其他类型 */
   </style>
 </head>
 <body>
@@ -131,58 +138,58 @@
     };
 
     const PUBLICATIONS = [
-  {
-    title: 'Beyond Heuristics: Globally Optimal Configuration of Implicit Neural Representations',   // 改成论文标题
-    venue: 'arXiv',
-    authors: 'Sipeng Chen, Yan Zhang, Shibo Li',
-    links: [
-      { name: 'arXiv', url: 'https://arxiv.org/abs/2509.23139' },
-      { name: 'PDF', url: 'assets/papers/2509.23139v1.pdf' }
-    ],
-    year: '2025',
-  },
-  {
-    title: 'Giant and Reversible Barocaloric Effect in Trinuclear Spin-Crossover Complex Fe₃(bntrz)₆(tcnset)₆',
-    venue: 'Advanced Materials 33(10): 2008076',
-    authors: 'M. Romanini, Y.X. Wang, K. Gürpinar, G. Ornelas, P. Lloveras, Y. Zhang',
-    moreAuthors: `Wenkai Zheng, Maria Barrio, Araceli Aznar, Adrià Gràcia-Condal, Baris Emre, Orhan Atakol,
-                  Catalin Popescu, Hu Zhang, Yi Long, Luis Balicas, Josep Lluís Tamarit, Antoni Planes, Michael Shatruk, Lluís Mañosa`,
-    links: [
-      { name: 'DOI', url: 'https://doi.org/10.1002/adma.202008076' },
-      { name: 'PDF', url: 'assets/papers/Advanced-Materials-2021.pdf' }
-    ],
-    year: '2021'
-  },
-  {
-    title: 'Enantioselective N-heterocyclic carbene-catalyzed synthesis of spirocyclic oxindole-benzofuroazepinones',
-    venue: 'The Journal of Organic Chemistry 83(24): 15225–15235',
-    authors: 'Z.H. Gao, K.Q. Chen, Y. Zhang, L.M. Kong, Y. Li, S. Ye',
-    links: [
-      { name: 'DOI', url: 'https://doi.org/10.1021/acs.joc.8b02497' },
-      { name: 'PDF', url: 'assets/papers/JOC-2018.pdf' }
-    ],
-    year: '2018'
-  },
-  {
-    title: 'N-Heterocyclic carbene-catalyzed [4+2] cyclization of α-chloroaldehydes and aurones: Highly enantioselective synthesis of benzofuran-fused dihydropyran-2-ones',
-    venue: 'Chinese Chemical Letters 29(8): 1209–1211',
-    authors: 'Y. Li, K. Chen, Y. Zhang, D. Sun, S. Ye',
-    links: [{ name: 'DOI', url: 'https://doi.org/10.1016/j.cclet.2018.03.003' }],
-    year: '2018'
-  },
-  {
-    title: 'Palladium-Catalyzed [4+2] and [5+2] Annulation for the Synthesis of Tetrahydroquinolines and 1,4-Benzoxazepines',
-    venue: 'European Journal of Organic Chemistry 2020(20): 3059–3062',
-    authors: 'Z.F. Zhang, Y. Zhang, C.L. Zhang, S. Ye',
-    links: [
-      { name: 'DOI', url: 'https://doi.org/10.1002/ejoc.202000262' },
-      { name: 'PDF', url: 'assets/papers/EuJOC-2020.pdf' }
-    ],
-    year: '2020'
-  }
-];
+      {
+        title: 'Beyond Heuristics: Globally Optimal Configuration of Implicit Neural Representations',
+        venue: 'arXiv',
+        authors: 'Sipeng Chen, Yan Zhang, Shibo Li',
+        links: [
+          { name: 'arXiv', url: 'https://arxiv.org/abs/2509.23139' },
+          { name: 'PDF',   url: 'assets/papers/2509.23139v1.pdf' }
+        ],
+        year: '2025',
+      },
+      {
+        title: 'Giant and Reversible Barocaloric Effect in Trinuclear Spin-Crossover Complex Fe₃(bntrz)₆(tcnset)₆',
+        venue: 'Advanced Materials 33(10): 2008076',
+        authors: 'M. Romanini, Y.X. Wang, K. Gürpinar, G. Ornelas, P. Lloveras, Y. Zhang',
+        moreAuthors: `Wenkai Zheng, Maria Barrio, Araceli Aznar, Adrià Gràcia-Condal, Baris Emre, Orhan Atakol,
+                      Catalin Popescu, Hu Zhang, Yi Long, Luis Balicas, Josep Lluís Tamarit, Antoni Planes, Michael Shatruk, Lluís Mañosa`,
+        links: [
+          { name: 'DOI', url: 'https://doi.org/10.1002/adma.202008076' },
+          { name: 'PDF', url: 'assets/papers/Advanced-Materials-2021.pdf' }
+        ],
+        year: '2021'
+      },
+      {
+        title: 'Enantioselective N-heterocyclic carbene-catalyzed synthesis of spirocyclic oxindole-benzofuroazepinones',
+        venue: 'The Journal of Organic Chemistry 83(24): 15225–15235',
+        authors: 'Z.H. Gao, K.Q. Chen, Y. Zhang, L.M. Kong, Y. Li, S. Ye',
+        links: [
+          { name: 'DOI', url: 'https://doi.org/10.1021/acs.joc.8b02497' },
+          { name: 'PDF', url: 'assets/papers/JOC-2018.pdf' }
+        ],
+        year: '2018'
+      },
+      {
+        title: 'N-Heterocyclic carbene-catalyzed [4+2] cyclization of α-chloroaldehydes and aurones: Highly enantioselective synthesis of benzofuran-fused dihydropyran-2-ones',
+        venue: 'Chinese Chemical Letters 29(8): 1209–1211',
+        authors: 'Y. Li, K. Chen, Y. Zhang, D. Sun, S. Ye',
+        links: [{ name: 'DOI', url: 'https://doi.org/10.1016/j.cclet.2018.03.003' }],
+        year: '2018'
+      },
+      {
+        title: 'Palladium-Catalyzed [4+2] and [5+2] Annulation for the Synthesis of Tetrahydroquinolines and 1,4-Benzoxazepines',
+        venue: 'European Journal of Organic Chemistry 2020(20): 3059–3062',
+        authors: 'Z.F. Zhang, Y. Zhang, C.L. Zhang, S. Ye',
+        links: [
+          { name: 'DOI', url: 'https://doi.org/10.1002/ejoc.202000262' },
+          { name: 'PDF', url: 'assets/papers/EuJOC-2020.pdf' }
+        ],
+        year: '2020'
+      }
+    ];
 
-    // NEW: highlight self in author list
+    // highlight self in author list
     const MY_NAMES = ['Yan Zhang','Y. Zhang','Y Zhang'];
     function highlightAuthors(s){
       let h = s || '';
@@ -193,7 +200,7 @@
       return h;
     }
 
-    // === 2) 自动填充 ===
+    // 自动填充
     document.getElementById('name').textContent = PROFILE.name;
     document.getElementById('title').textContent = PROFILE.title;
     document.getElementById('affil').textContent = PROFILE.affil;
@@ -210,10 +217,20 @@
       const s = document.createElement('span'); s.className='chip'; s.textContent=t; chipsWrap.appendChild(s);
     });
 
-    // pubs render
+    // pubs render (order-independent styling for DOI/PDF)
     const mount = document.getElementById('pubs');
     PUBLICATIONS.forEach(p=>{
       const el = document.createElement('div'); el.className='pub';
+      const linksHTML = (p.links||[]).map(l=>{
+        const name = String(l.name||'');
+        const url  = String(l.url||'');
+        const isPDF = /pdf/i.test(name);
+        const isDOI = /doi/i.test(name) || /doi\.org/i.test(url);
+        const cls   = isPDF ? 'pdf-link' : (isDOI ? 'doi-link' : '');
+        const safeURL = url.replace(/\s/g, '%20');
+        const extra = isPDF ? 'download type="application/pdf"' : '';
+        return `<a class="${cls}" href="${safeURL}" target="_blank" rel="noopener noreferrer" ${extra}>${name}</a>`;
+      }).join('');
       el.innerHTML = `
         <div class="title">${p.title}</div>
         <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}</div>
@@ -222,37 +239,28 @@
             ? `${highlightAuthors(p.authors)}, <span class="more-authors" role="button" aria-expanded="false">…</span><span class="more-authors-text" style="display:none"> ${highlightAuthors(p.moreAuthors)}</span>`
             : highlightAuthors(p.authors)
         }</div>
-        <div class="links">${(p.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.name}</a>`).join('')}</div>
+        <div class="links">${linksHTML}</div>
       `;
       mount.appendChild(el);
     });
 
+    // 展开/收起更多作者
     function bindMoreAuthors(){
-        document.querySelectorAll('.more-authors').forEach(btn=>{
-          const text = btn.nextElementSibling; // .more-authors-text
-          const show = ()=>{
-            btn.style.display = 'none';
-            text.style.display = 'inline';
-          };
-          const hide = ()=>{
-            text.style.display = 'none';
-            btn.style.display = 'inline';
-          };
-          // 悬停展开 / 移开还原
-          btn.addEventListener('mouseenter', show);
-          text.addEventListener('mouseleave', hide);
-          // 点击切换（方便移动端/可访问性）
-          btn.addEventListener('click', ()=> show());
-          text.addEventListener('click', ()=> hide());
-          // 键盘可达
-          btn.setAttribute('tabindex','0');
-          btn.addEventListener('focus', show);
-          text.addEventListener('blur', hide);
-        });
-      }
-      // 在渲染完 publications 后调用一次
-      bindMoreAuthors();
-    
+      document.querySelectorAll('.more-authors').forEach(btn=>{
+        const text = btn.nextElementSibling;
+        const show = ()=>{ btn.style.display='none'; text.style.display='inline'; };
+        const hide = ()=>{ text.style.display='none'; btn.style.display='inline'; };
+        btn.addEventListener('mouseenter', show);
+        text.addEventListener('mouseleave', hide);
+        btn.addEventListener('click', show);
+        text.addEventListener('click', hide);
+        btn.setAttribute('tabindex','0');
+        btn.addEventListener('focus', show);
+        text.addEventListener('blur', hide);
+      });
+    }
+    bindMoreAuthors();
+
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
