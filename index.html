@@ -44,7 +44,7 @@
     /* NEW: highlight self in author list */
     .me{ text-decoration: underline; text-underline-offset: 3px; font-weight:700; }
     /* For more authors */
-    .more-authors { text-decoration: underline dotted; cursor: help; }
+    .more-authors{ text-decoration: underline dotted; cursor: pointer; }
   </style>
 </head>
 <body>
@@ -80,7 +80,7 @@
     <section class="bio">
       <h2>Bio</h2>
       <p>
-        I am a graduate student in the Department of Computer Science at Florida State University. My research interests include <b>machine learning</b>, <b>AI for science</b>, <b> Bayesian optimization</b> and <b>large language models</b>.
+        I am a graduate student in the Department of Computer Science at Florida State University. My research interests include <b>machine learning</b>, <b>AI for science</b>, <b>Bayesian optimization</b> and <b>large language models</b>.
       </p>
     </section>
 
@@ -135,7 +135,7 @@
   {
     title: 'Giant and Reversible Barocaloric Effect in Trinuclear Spin-Crossover Complex Fe₃(bntrz)₆(tcnset)₆',
     venue: 'Advanced Materials 33(10): 2008076',
-    authors: 'M. Romanini, Y.X. Wang, K. Gürpinar, G. Ornelas, P. Lloveras, Y. Zhang,',
+    authors: 'M. Romanini, Y.X. Wang, K. Gürpinar, G. Ornelas, P. Lloveras, Y. Zhang',
     moreAuthors: `Wenkai Zheng, Maria Barrio, Araceli Aznar, Adrià Gràcia-Condal, Baris Emre, Orhan Atakol,
                   Catalin Popescu, Hu Zhang, Yi Long, Luis Balicas, Josep Lluís Tamarit, Antoni Planes, Michael Shatruk, Lluís Mañosa`,
     links: [{ name: 'DOI', url: 'https://doi.org/10.1002/adma.202008076' }],
@@ -159,7 +159,7 @@
     title: 'Palladium-Catalyzed [4+2] and [5+2] Annulation for the Synthesis of Tetrahydroquinolines and 1,4-Benzoxazepines',
     venue: 'European Journal of Organic Chemistry 2020(20): 3059–3062',
     authors: 'Z.F. Zhang, Y. Zhang, C.L. Zhang, S. Ye',
-    links: [{ name: 'DOI', url: ' https://doi.org/10.1002/ejoc.202000262' }],
+    links: [{ name: 'DOI', url: 'https://doi.org/10.1002/ejoc.202000262' }],
     year: '2020'
   }
 ];
@@ -201,7 +201,7 @@
         <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}</div>
         <div class="authors">${
           p.moreAuthors
-            ? `${highlightAuthors(p.authors)}, <span class="more-authors" title="${[p.authors, p.moreAuthors].join(', ')}">…</span>`
+            ? `${highlightAuthors(p.authors)}, <span class="more-authors" role="button" aria-expanded="false">…</span><span class="more-authors-text" style="display:none"> ${highlightAuthors(p.moreAuthors)}</span>`
             : highlightAuthors(p.authors)
         }</div>
         <div class="links">${(p.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.name}</a>`).join('')}</div>
@@ -209,6 +209,32 @@
       mount.appendChild(el);
     });
 
+    function bindMoreAuthors(){
+        document.querySelectorAll('.more-authors').forEach(btn=>{
+          const text = btn.nextElementSibling; // .more-authors-text
+          const show = ()=>{
+            btn.style.display = 'none';
+            text.style.display = 'inline';
+          };
+          const hide = ()=>{
+            text.style.display = 'none';
+            btn.style.display = 'inline';
+          };
+          // 悬停展开 / 移开还原
+          btn.addEventListener('mouseenter', show);
+          text.addEventListener('mouseleave', hide);
+          // 点击切换（方便移动端/可访问性）
+          btn.addEventListener('click', ()=> show());
+          text.addEventListener('click', ()=> hide());
+          // 键盘可达
+          btn.setAttribute('tabindex','0');
+          btn.addEventListener('focus', show);
+          text.addEventListener('blur', hide);
+        });
+      }
+      // 在渲染完 publications 后调用一次
+      bindMoreAuthors();
+    
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
