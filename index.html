@@ -40,6 +40,9 @@
     .misc ul{margin:0;padding-left:20px}
     .misc li{margin:6px 0}
     .kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;background:var(--card);padding:2px 6px;border-radius:6px;border:1px solid var(--border);font-size:12px}
+
+    /* NEW: highlight self in author list */
+    .me{ text-decoration: underline; text-underline-offset: 3px; font-weight:700; }
   </style>
 </head>
 <body>
@@ -143,20 +146,31 @@
     year: '2018'
   },
   {
-    title: 'N‑Heterocyclic carbene‑catalyzed [4+2] cyclization of α‑chloroaldehydes and aurones: Highly enantioselective synthesis of benzofuran‑fused dihydropyran‑2‑ones',
+    title: 'N-Heterocyclic carbene-catalyzed [4+2] cyclization of α-chloroaldehydes and aurones: Highly enantioselective synthesis of benzofuran-fused dihydropyran-2-ones',
     venue: 'Chinese Chemical Letters 29(8): 1209–1211',
     authors: 'Y. Li, K. Chen, Y. Zhang, D. Sun, S. Ye',
     links: [{ name: 'DOI', url: 'https://doi.org/10.1016/j.cclet.2018.03.003' }],
     year: '2018'
   },
   {
-    title: 'Palladium‑Catalyzed [4+2] and [5+2] Annulation for the Synthesis of Tetrahydroquinolines and 1,4‑Benzoxazepines',
+    title: 'Palladium-Catalyzed [4+2] and [5+2] Annulation for the Synthesis of Tetrahydroquinolines and 1,4-Benzoxazepines',
     venue: 'European Journal of Organic Chemistry 2020(20): 3059–3062',
     authors: 'Z.F. Zhang, Y. Zhang, C.L. Zhang, S. Ye',
     links: [{ name: 'DOI', url: ' https://doi.org/10.1002/ejoc.202000262' }],
     year: '2020'
   }
 ];
+
+    // NEW: highlight self in author list
+    const MY_NAMES = ['Yan Zhang','Y. Zhang','Y Zhang'];
+    function highlightAuthors(s){
+      let h = s || '';
+      MY_NAMES.forEach(n=>{
+        const re = new RegExp('\\b' + n.replace('.', '\\.') + '\\b', 'g');
+        h = h.replace(re, `<span class="me">${n}</span>`);
+      });
+      return h;
+    }
 
     // === 2) 自动填充 ===
     document.getElementById('name').textContent = PROFILE.name;
@@ -182,7 +196,7 @@
       el.innerHTML = `
         <div class="title">${p.title}</div>
         <div class="venue">${p.venue}</div>
-        <div class="authors">${p.authors}</div>
+        <div class="authors">${highlightAuthors(p.authors)}</div>
         <div class="links">${(p.links||[]).map(l=>`<a href="${l.url}" target="_blank" rel="noopener">${l.name}</a>`).join('')}</div>
       `;
       mount.appendChild(el);
