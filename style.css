@@ -364,25 +364,34 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   .seal{ width:32px; height:32px; }
 }
 
-/* ==== Visitors Globe ==== */
-#visitors h2{ font-size:20px; margin:28px 0 14px; }
+/* ==== Visitors Globe (bare & responsive) ==== */
+#visitors h2{
+  font-size: 20px;
+  margin: 24px 0 12px;
+}
 
+/* 去掉卡片外观，只居中放地球 */
 .globe-card{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-pane);
-  box-shadow: var(--shadow-pane);
-  padding: 12px;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
   display: flex;
   justify-content: center;
 }
 
+/* 尺寸控制：在不同屏宽下自动 240–400px（可按需改上限/下限） */
 #clustrmaps-globe{
   width: 100%;
-  max-width: 560px;
+  max-width: clamp(240px, 30vw, 400px);
   aspect-ratio: 1 / 1;
+  margin: 0 auto;
 }
 
-@media (prefers-color-scheme: dark){
-  .globe-card{ border-color: #2a3a55; }
+/* 防止脚本把内部画布写成固定像素导致过大 */
+#clustrmaps-globe canvas,
+#clustrmaps-globe > div{
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
 }
