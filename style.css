@@ -329,25 +329,28 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
 }
 .logos a:hover img{ filter:none; opacity:1; transform: translateY(-1px); }
 /* 名字 + 校徽在同一行，基线对齐 */
+/* 名字 + 校徽在同一行，基线对齐 */
 .name-row{ display:flex; align-items:flex-end; gap:12px; flex-wrap:wrap; }
-.name-logos{ display:flex; gap:8px; padding-bottom:2px; } /* 细调与标题的基线，可在 0~3px 间调 */
+.name-logos{ display:flex; gap:8px; padding-bottom:1px; } /* 0–3px 可微调基线 */
 
+/* 校徽：圆形裁切、适度放大以吃掉白边 */
 .seal{
-  width:34px; height:34px; display:inline-block;
-  clip-path: circle(50%);               /* 仅保留中间圆形区域 */
+  width:40px; height:40px; display:inline-block;
+  clip-path: circle(50%);
   background-position:center;
   background-repeat:no-repeat;
-  background-size:120%;                 /* 放大一点吃掉原图白边；可在 110%~140% 微调 */
-  filter: grayscale(8%); opacity:.95;   /* 低饱和，贴合全站风格 */
+  background-size:110%;          /* 统一减少裁剪；越小露得越多 */
+  filter: grayscale(8%); opacity:.95;
   transition: transform .2s ease, filter .2s ease, opacity .2s ease;
 }
 .seal:hover{ transform: translateY(-1px); filter:none; opacity:1; }
 
-/* 指向资源（保持与现有 assets 目录一致） */
-.seal.fsu{ background-image:url('assets/fsu.png'); }
-.seal.nku{ background-image:url('assets/nku.png'); }
+/* 指向资源 + 分别微调裁剪比例 */
+.seal.fsu{ background-image:url('assets/fsu.png'); background-size:108%; }
+.seal.nku{ background-image:url('assets/nku.png'); background-size:112%; }
 
 /* 窄屏略缩小 */
 @media (max-width:480px){
-  .seal{ width:28px; height:28px; }
+  .seal{ width:32px; height:32px; }
 }
+
