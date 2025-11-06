@@ -364,3 +364,25 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   .seal{ width:32px; height:32px; }
 }
 
+/* ==== Visitors Globe ==== */
+#visitors h2{ font-size:20px; margin:28px 0 14px; }
+
+.globe-card{
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-pane);
+  box-shadow: var(--shadow-pane);
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+#clustrmaps-globe{
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 1 / 1;
+}
+
+@media (prefers-color-scheme: dark){
+  .globe-card{ border-color: #2a3a55; }
+}
