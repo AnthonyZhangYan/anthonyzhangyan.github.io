@@ -510,25 +510,31 @@ footer {
   .ed-grid .when{ justify-self:start; margin-top:2px; }
 }
 
-/* 右列整体右对齐 */
+/* 右列整体：两列对齐（Mon 列 + Year/文本 列） */
 .ed-grid .when{
   justify-self: end;
   text-align: right;
   white-space: nowrap;
   color: var(--muted);
+
+  display: inline-grid;
+  grid-auto-flow: column;
+  grid-template-columns: 3.2ch auto; /* 固定宽度的“月”列 + 自适应的“年/文本”列 */
+  column-gap: 6px;
+  align-items: baseline;
 }
 
-/* 月份固定宽度，形成“月”小列；用等宽字体避免 May/Jun/Dec 宽度差异 */
+/* 月份列：固定宽度，等宽字形避免 May/Jun/Dec 差异 */
 .when .mon{
   display: inline-block;
-  width: 3.2ch;           /* 3 个字符的列宽 */
+  width: 3.2ch;
   text-align: right;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-/* 年份使用等宽数字，形成“年”小列 */
+/* 年份/文本列：数字用等宽数字；非数字文本也能正常显示 */
 .when .yr{
-  margin-left: 6px;
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum" 1;
 }
+
