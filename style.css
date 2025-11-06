@@ -130,7 +130,7 @@ h1 { font-size: 28px; margin: 0 0 6px 0; letter-spacing: .2px; }
 .contact a:hover,
 .contact a:active{
   /* 轻微提亮感（可调 85%→80% 更明显） */
-  color: color-mix(in srgb, var(--link) 85%, var(--fg) 15%);
+  color: color-mix(in srgb, var(--link) 60%, var(--fg) 15%);
   text-decoration: none;
 }
 .contact a:focus-visible{
