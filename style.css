@@ -7,6 +7,9 @@ header img{width:84px;height:84px;border-radius:16px;object-fit:cover;border:1px
 h1{font-size:28px;margin:0 0 6px 0;letter-spacing:.2px}
 .subtitle{color:var(--muted);font-size:15px}
 .contact a{color:var(--link);text-decoration:none;margin-right:14px}
+/* 图标版联系链接 */
+.contact a.icon{display: inline-flex;align-items: center;gap: 10px;line-height: 1;padding: 2px 0;}
+.contact a.icon svg{width: 18px;height: 18px;flex: 0 0 18px;stroke: currentColor;}
 .nav{display:flex;gap:14px;margin:18px 0 10px 0;flex-wrap:wrap}
 .nav a{padding:8px 12px;border:1px solid var(--border);border-radius:999px;text-decoration:none;color:var(--fg);font-size:14px;background:var(--card)}
 section{margin-top:28px}
