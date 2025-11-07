@@ -122,45 +122,49 @@ loadPubs();
   if (!host) return;
 
   // 把 ClustrMaps 生成的 <canvas> 搬到 #globe-host，并清理内联尺寸
-  function moveCanvasIfReady(root){
-    // 1. 尝试在假设的原始容器 (root) 内查找 canvas
-    let cvs = root && root.querySelector && root.querySelector('canvas');
-    
-    // 2. 关键修复：如果找不到，直接在 body 中查找所有 canvas
+  function moveCanvasIfReady() {
+    const host = document.getElementById('globe-host');
+    if (!host) return false;
+  
+    // 1) 优先：第三方脚本插入的兄弟容器 / 你的备选容器
+    const holder =
+      document.querySelector('#clstr_globe + div') ||
+      document.getElementById('clustrmaps-globe');
+  
+    // 2) 在 holder 里找 canvas；找不到就只在 Visitors 区域兜底找
+    let cvs =
+      (holder && holder.querySelector && holder.querySelector('canvas')) || null;
+  
     if (!cvs) {
-      const allCanvas = document.body.querySelectorAll('canvas');
-      // 寻找一个不在目标 #globe-host 内部的 canvas
-      for (const c of allCanvas) {
-        if (!host.contains(c)) {
-          cvs = c;
-          // 找到后退出循环
-          break;
-        }
+      const all = document.querySelectorAll('#visitors canvas');
+      for (const c of all) {
+        if (!host.contains(c)) { cvs = c; break; }
       }
     }
-  
     if (!cvs) return false;
   
-    // 记录 canvas 的原始父元素，这个元素就是全屏的容器
-    const originalRoot = cvs.parentElement; 
-    
-    // 交给 CSS 控制 —— 去掉强制 pixel 尺寸
+    // 记录原父元素，等会把它隐藏（避免保留那只“巨型地球”）
+    const originalRoot = cvs.parentElement;
+  
+    // 交给 CSS 控制尺寸
     cvs.removeAttribute('width');
     cvs.removeAttribute('height');
-    cvs.style.width = '100%';
+    cvs.style.width  = '100%';
     cvs.style.height = '100%';
-    
-    // 避免多重挂载：先清空 host
+    cvs.style.maxWidth  = '100%';
+    cvs.style.maxHeight = '100%';
+  
+    // 只保留我们这只小画布
     host.innerHTML = '';
     host.appendChild(cvs);
   
-    // 关键：隐藏原始容器（全屏的那个）
     if (originalRoot && originalRoot !== host) originalRoot.style.display = 'none';
   
-    // 保险：把 #visitors 里除了 #globe-host 以外的所有 canvas 全部隐藏
-    document.querySelectorAll('#visitors canvas').forEach(x=>{
+    // 保险：Visitors 区域里，凡是不在 #globe-host 里的多余画布一律隐藏
+    document.querySelectorAll('#visitors canvas').forEach(x => {
       if (!host.contains(x)) x.style.display = 'none';
     });
+  
     return true;
   }
 
