@@ -134,6 +134,13 @@ loadPubs();
     // 避免多重挂载：先清空 host
     host.innerHTML = '';
     host.appendChild(cvs);
+
+    // 关键：把原容器（仍在全屏绘制的那一份）隐藏掉
+    if (root && root !== host) root.style.display = 'none';
+    // 保险：把 #visitors 里除了 #globe-host 以外的所有 canvas 全部隐藏
+    document.querySelectorAll('#visitors canvas').forEach(x=>{
+      if (!host.contains(x)) x.style.display = 'none';
+    });
     return true;
   }
 
