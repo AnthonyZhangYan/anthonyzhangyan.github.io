@@ -31,6 +31,7 @@
   --radius-pane: 12px;
   --news-pane-h: 180px;
   --pubs-pane-h: 360px;
+  --globe-max: 260px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -380,16 +381,30 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   justify-content: center;
 }
 
-/* 让脚本插入的容器居中；不改宽高以免覆盖 JS */
-#clstr_globe + div{
-  width: 100% !important;
-  max-width: 240px !important; /* 控制地球整体缩放 */
+.globe-wrap{
+  width: min(100%, var(--globe-max));
   aspect-ratio: 1 / 1;
   margin: 0 auto;
+  display: block;
+  /* 你喜欢的话也可以加个卡片外观：
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  box-shadow: var(--shadow-card);
+  padding: 10px;
+  */
 }
 
-/* 画布跟随容器填满 */
-#clstr_globe + div canvas{
+/* 让托管点内部的画布铺满容器 */
+#globe-host canvas{
   width: 100% !important;
   height: 100% !important;
+  display: block;
+}
+
+/* 标题与布局保持居中风格 */
+#visitors h2{
+  font-size: 20px;
+  margin: 24px 0 12px;
+  text-align: left; /* 需要居中就改成 center */
 }
