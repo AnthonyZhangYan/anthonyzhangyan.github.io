@@ -364,13 +364,13 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   .seal{ width:32px; height:32px; }
 }
 
-/* ==== Visitors Globe (bare & responsive, target injected node) ==== */
+/* ==== Visitors Globe (JS 控制尺寸) ==== */
 #visitors h2{
   font-size: 20px;
   margin: 24px 0 12px;
 }
 
-/* 去掉卡片外观，只居中放地球 */
+/* 只保留地球，居中摆放 */
 .globe-card{
   background: transparent;
   border: 0;
@@ -380,17 +380,14 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   justify-content: center;
 }
 
-/* 关键：widget 会把真正的容器插在 #clstr_globe 脚本之后 */
+/* 让脚本插入的容器居中；不改宽高以免覆盖 JS */
 #clstr_globe + div{
-  width: 100% !important;
-  max-width: clamp(240px, 30vw, 400px) !important;  /* 改这里就能整体变大/变小 */
-  aspect-ratio: 1 / 1;
+  display: block;
   margin: 0 auto;
 }
 
-/* 内部 canvas 也强制跟随容器宽度 */
+/* 画布跟随容器填满 */
 #clstr_globe + div canvas{
   width: 100% !important;
-  height: auto !important;
-  max-width: 100% !important;
+  height: 100% !important;
 }
