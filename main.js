@@ -123,20 +123,40 @@ loadPubs();
 
   // 把 ClustrMaps 生成的 <canvas> 搬到 #globe-host，并清理内联尺寸
   function moveCanvasIfReady(root){
-    const cvs = root && root.querySelector && root.querySelector('canvas');
+    // 1. 尝试在假设的原始容器 (root) 内查找 canvas
+    let cvs = root && root.querySelector && root.querySelector('canvas');
+    
+    // 2. 关键修复：如果找不到，直接在 body 中查找所有 canvas
+    if (!cvs) {
+      const allCanvas = document.body.querySelectorAll('canvas');
+      // 寻找一个不在目标 #globe-host 内部的 canvas
+      for (const c of allCanvas) {
+        if (!host.contains(c)) {
+          cvs = c;
+          // 找到后退出循环
+          break;
+        }
+      }
+    }
+  
     if (!cvs) return false;
-
+  
+    // 记录 canvas 的原始父元素，这个元素就是全屏的容器
+    const originalRoot = cvs.parentElement; 
+    
     // 交给 CSS 控制 —— 去掉强制 pixel 尺寸
     cvs.removeAttribute('width');
     cvs.removeAttribute('height');
     cvs.style.width = '100%';
     cvs.style.height = '100%';
+    
     // 避免多重挂载：先清空 host
     host.innerHTML = '';
     host.appendChild(cvs);
-
-    // 关键：把原容器（仍在全屏绘制的那一份）隐藏掉
-    if (root && root !== host) root.style.display = 'none';
+  
+    // 关键：隐藏原始容器（全屏的那个）
+    if (originalRoot && originalRoot !== host) originalRoot.style.display = 'none';
+  
     // 保险：把 #visitors 里除了 #globe-host 以外的所有 canvas 全部隐藏
     document.querySelectorAll('#visitors canvas').forEach(x=>{
       if (!host.contains(x)) x.style.display = 'none';
