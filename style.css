@@ -402,3 +402,15 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   height: 100% !important;
   display: block;
 }
+
+/* 保险：即使没搬运成功，也强制限制脚本注入容器的尺寸 */
+#clstr_globe + div{
+  width: min(100%, var(--globe-max));
+  aspect-ratio: 1 / 1;
+  margin: 0 auto;
+}
+#clstr_globe + div canvas{
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
