@@ -401,10 +401,3 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
   height: 100% !important;
   display: block;
 }
-
-/* 标题与布局保持居中风格 */
-#visitors h2{
-  font-size: 20px;
-  margin: 24px 0 12px;
-  text-align: left; /* 需要居中就改成 center */
-}
