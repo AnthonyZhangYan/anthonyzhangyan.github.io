@@ -117,7 +117,7 @@ loadPubs();
 // --- Mount & Resize ClustrMaps Globe (robust) ---
 (function mountClustrGlobe(){
   const script = document.getElementById('clstr_globe');
-  const srcHolder = document.getElementById('clustrmaps-globe'); // ClustrMaps 实际生成位置（已隐藏）
+  const srcHolder = document.querySelector('#clstr_globe + div');
   const host = document.getElementById('globe-host');            // 我们可控的展示位置
   if (!script || !srcHolder || !host) return;
 
@@ -142,13 +142,15 @@ loadPubs();
 
   // 2) 若未生成，监听 DOM 变化（库异步插入时触发）
   const mo = new MutationObserver(() => {
-    if (moveCanvasIfReady(srcHolder)) mo.disconnect();
+    const holder = document.querySelector('#clstr_globe + div');
+    if (moveCanvasIfReady(holder)) mo.disconnect();
   });
-  mo.observe(srcHolder, { childList: true, subtree: true });
+  mo.observe(document.body, { childList: true, subtree: true });
 
   // 3) 兜底：有些版本会插到父节点里，额外监听全局
   const mo2 = new MutationObserver(() => {
-    if (moveCanvasIfReady(srcHolder)) mo2.disconnect();
+    const holder = document.querySelector('#clstr_globe + div');
+    if (moveCanvasIfReady(holder)) mo2.disconnect();
   });
   mo2.observe(document.body, { childList: true, subtree: true });
 })();
