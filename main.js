@@ -114,39 +114,41 @@ loadPubs();
   });
 })();
 
-// --- Resize ClustrMaps Globe to a fixed pixel size (no cropping) ---
-(function resizeClustrGlobe(){
+// --- Mount & Resize ClustrMaps Globe (robust) ---
+(function mountClustrGlobe(){
   const script = document.getElementById('clstr_globe');
-  if (!script) return;
+  const srcHolder = document.getElementById('clustrmaps-globe'); // ClustrMaps 实际生成位置（已隐藏）
+  const host = document.getElementById('globe-host');            // 我们可控的展示位置
+  if (!script || !srcHolder || !host) return;
 
-  const TARGET = 120; // 想要的直径：改这里即可 (px)
+  // 把 ClustrMaps 生成的 <canvas> 搬到 #globe-host，并清理内联尺寸
+  function moveCanvasIfReady(root){
+    const cvs = root && root.querySelector && root.querySelector('canvas');
+    if (!cvs) return false;
 
-  function apply() {
-    const host = script.nextElementSibling; // 真实容器是脚本的下一个兄弟元素
-    if (!host) return false;
-
-    host.style.width = TARGET + 'px';
-    host.style.height = TARGET + 'px';
-    host.style.margin = '0 auto';
-    host.style.display = 'block';
-
-    const cvs = host.querySelector('canvas');
-    if (cvs) {
-      // 样式尺寸
-      cvs.style.width = '100%';
-      cvs.style.height = '100%';
-      // Canvas 内部像素尺寸（关键，否则只是拉伸/裁切）
-      cvs.width = TARGET;
-      cvs.height = TARGET;
-      return true;
-    }
-    return false;
+    // 交给 CSS 控制 —— 去掉强制 pixel 尺寸
+    cvs.removeAttribute('width');
+    cvs.removeAttribute('height');
+    cvs.style.width = '100%';
+    cvs.style.height = '100%';
+    // 避免多重挂载：先清空 host
+    host.innerHTML = '';
+    host.appendChild(cvs);
+    return true;
   }
 
-  // 立即尝试一次（有些情况下已插入）
-  if (apply()) return;
+  // 1) 页面上可能已经生成
+  if (moveCanvasIfReady(srcHolder)) return;
 
-  // 监听插入（脚本异步加载时使用）
-  const mo = new MutationObserver(() => { if (apply()) mo.disconnect(); });
-  mo.observe(script.parentNode, { childList: true });
+  // 2) 若未生成，监听 DOM 变化（库异步插入时触发）
+  const mo = new MutationObserver(() => {
+    if (moveCanvasIfReady(srcHolder)) mo.disconnect();
+  });
+  mo.observe(srcHolder, { childList: true, subtree: true });
+
+  // 3) 兜底：有些版本会插到父节点里，额外监听全局
+  const mo2 = new MutationObserver(() => {
+    if (moveCanvasIfReady(srcHolder)) mo2.disconnect();
+  });
+  mo2.observe(document.body, { childList: true, subtree: true });
 })();
