@@ -111,6 +111,27 @@ loadPubs();
   });
 })();
 
+// ---- Top-left dropdown menu toggle ----
+(function(){
+  const btn = document.getElementById('menu-toggle');
+  const list = document.getElementById('menu-list');
+  const root = btn && btn.closest('.menu');
+  if (!btn || !list || !root) return;
+
+  function openMenu(){ root.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  function closeMenu(){ root.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  function toggle(){ root.classList.contains('open') ? closeMenu() : openMenu(); }
+
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggle(); });
+  document.addEventListener('click', (e)=>{ if(!root.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+
+  // 点菜单项后自动收起
+  list.querySelectorAll('a').forEach(a=>{
+    a.addEventListener('click', ()=> closeMenu());
+  });
+})();
+
 // --- Mount & Resize ClustrMaps Globe (robust) ---
 (function mountClustrGlobe(){
   const host = document.getElementById('globe-host');
