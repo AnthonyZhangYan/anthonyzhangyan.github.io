@@ -34,12 +34,17 @@
 </head>
 <body>
   <div class="container">
-    <div class="nav">
-      <a href="#about">Homepage</a>
-      <a href="#news">News</a>
-      <a href="#publications">Publications</a>
-      <a href="#misc">Misc</a>
-    </div>
+    <nav class="menu" aria-label="Primary">
+      <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="menu-list">
+        ☰ Menu
+      </button>
+      <ul id="menu-list" class="menu-list" role="menu">
+        <li role="none"><a role="menuitem" href="#about">Homepage</a></li>
+        <li role="none"><a role="menuitem" href="#news">News</a></li>
+        <li role="none"><a role="menuitem" href="#publications">Publications</a></li>
+        <li role="none"><a role="menuitem" href="#misc">Misc</a></li>
+      </ul>
+    </nav>
 
     <header id="about">
       <img src="assets/avatar.jpg" alt="Avatar" onerror="this.style.display='none'"/>
