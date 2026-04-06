@@ -1,217 +1,212 @@
-// Basic profile (kept inline)
-const PROFILE={
-  name:'Yan Zhang (张岩)',
-  title:'Ph.D. Student @ Florida State University',
-  affil:'Department of Computer Science',
-  email:'yz18b@fsu.edu',
-  scholar:'https://scholar.google.com/citations?user=nAh7B5EAAAAJ&hl=en',
-  github:'https://github.com/AnthonyZhangYan',
-  linkedin:'https://www.linkedin.com/in/yourid',
-  interests:['Machine Learning','AI for Science','Bayesian Optimization','Large Language Models']
+/* ============================================================
+   DATA — edit these arrays / objects to update your page
+   ============================================================ */
+
+const PROFILE = {
+  name:      'Yan Zhang (张岩)',
+  title:     'Ph.D. Student @ Florida State University',
+  affil:     'Department of Computer Science',
+  bio:       'I am a graduate student in the Department of Computer Science at Florida State University. My research interests include <b>machine learning</b>, <b>AI for science</b>, <b>Bayesian optimization</b> and <b>large language models</b>.',
+  email:     'yz18b@fsu.edu',
+  scholar:   'https://scholar.google.com/citations?user=nAh7B5EAAAAJ&hl=en',
+  github:    'https://github.com/AnthonyZhangYan',
+  linkedin:  'https://www.linkedin.com/in/yourid',
+  interests: ['Machine Learning', 'AI for Science', 'Bayesian Optimization', 'Large Language Models'],
+  seals: [
+    { cls: 'fsu', href: 'https://www.fsu.edu',       label: 'Florida State University' },
+    { cls: 'nku', href: 'https://en.nankai.edu.cn',  label: 'Nankai University' },
+  ],
 };
 
-const MY_NAMES=['Yan Zhang','Y. Zhang','Y Zhang'];
-const byId=id=>document.getElementById(id);
-function highlightAuthors(s=''){
-  return MY_NAMES.reduce((h,n)=>h.replace(new RegExp('\\b'+n.replace('.','\\.')+'\\b','g'),`<span class="me">${n}</span>`),s);
+// Add entries here — newest first recommended
+const NEWS = [
+  { date: '2025-11', msg: 'Homepage launched！🎉' },
+  { date: '2025-06', msg: 'I am joining <a class="inline-link" href="https://pml4sc.github.io/" target="_blank" rel="noopener"><b>PML4SC</b></a> lab to conduct research under <a class="inline-link" href="https://imshibo.com/" target="_blank" rel="noopener"><b>Dr. Shibo Li</b></a>\'s mentorship.' },
+];
+
+// Add entries here — top → bottom = oldest → newest
+const EDUCATION = [
+  { degree: 'Ph.D. in Computer Science',             badge: 'Ph.D.', school: 'Florida State University — Tallahassee, FL', mon: '',    yr: 'In\u00a0Progress' },
+  { degree: 'Master of Science in Computer Science', badge: 'M.S.',  school: 'Florida State University — Tallahassee, FL', mon: 'May', yr: '2025' },
+  { degree: 'Master of Science in Chemistry',        badge: 'M.S.',  school: 'Florida State University — Tallahassee, FL', mon: 'Dec', yr: '2021' },
+  { degree: 'Bachelor of Science in Chemistry',      badge: 'B.S.',  school: 'Nankai University — Tianjin, China',          mon: 'Jun', yr: '2016' },
+];
+
+// HTML strings; use <a class="inline-link" ...> for links
+const MISC = [
+  'Hobbies: MOBA games, <a class="inline-link" href="https://boardgamebros.org/" target="_blank" rel="noopener">board games</a>, model painting.',
+  'Open to collaboration — feel free to reach out via email.',
+];
+
+/* ============================================================
+   SVG ICONS
+   ============================================================ */
+
+const ICONS = {
+  email:    `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M22 7L12.97 12.7a2 2 0 0 1-1.94 0L2 7"></path></svg>`,
+  scholar:  `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 2 2 10l10 6 10-6z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`,
+  github:   `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a5 5 0 0 0-2-4c4 0 7-3 7-6a5 5 0 0 0-.6-2.4 6 6 0 0 0-.1-2S17.9 2.9 15 4.7a12 12 0 0 0-6 0C6.1 2.9 5 3.2 5 3.2a6 6 0 0 0-.1 2A5 5 0 0 0 4 8c0 3 3 6 7 6a5 5 0 0 0-2 4v4"></path><path d="M9 18c-4 2-5-2-7-2"></path><path d="M15 18c4 2 5-2 7-2"></path></svg>`,
+  linkedin: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path></svg>`,
+};
+
+/* ============================================================
+   HELPERS
+   ============================================================ */
+
+const byId = id => document.getElementById(id);
+
+const MY_NAMES = ['Yan Zhang', 'Y. Zhang', 'Y Zhang'];
+function highlightAuthors(s = '') {
+  return MY_NAMES.reduce(
+    (h, n) => h.replace(new RegExp('\\b' + n.replace('.', '\\.') + '\\b', 'g'), `<span class="me">${n}</span>`),
+    s
+  );
 }
-function linkClass(name,url){
-  const n=(name||'').toLowerCase(),u=(url||'').toLowerCase();
-  if(n.includes('pdf')) return 'pdf-link';
-  if(n.includes('doi')||u.includes('doi.org')) return 'doi-link';
-  if(n.includes('arxiv')||u.includes('arxiv.org')) return 'arxiv-link';
+
+function linkClass(name, url) {
+  const n = (name || '').toLowerCase(), u = (url || '').toLowerCase();
+  if (n.includes('pdf'))                           return 'pdf-link';
+  if (n.includes('doi') || u.includes('doi.org')) return 'doi-link';
+  if (n.includes('arxiv') || u.includes('arxiv')) return 'arxiv-link';
   return '';
 }
 
-// mount profile
-byId('name').textContent=PROFILE.name;
-byId('title').textContent=PROFILE.title;
-byId('affil').textContent=PROFILE.affil;
-const email = byId('email'); email.href = 'mailto:' + PROFILE.email; email.querySelector('.label').textContent = PROFILE.email;
-byId('scholar').href=PROFILE.scholar; byId('github').href=PROFILE.github; byId('linkedin').href=PROFILE.linkedin;
-document.querySelector('.chips').innerHTML=PROFILE.interests.map(t=>`<span class="chip">${t}</span>`).join('');
-document.getElementById('year').textContent=new Date().getFullYear();
+/* ============================================================
+   RENDER FUNCTIONS
+   ============================================================ */
 
-// ---- Publications: dynamic fetch + sort ----
-let publications = [];
-const mount = document.getElementById('pubs');
-const selSort = document.getElementById('sort-by');
+function renderProfile() {
+  const seals = PROFILE.seals.map(s =>
+    `<a class="seal ${s.cls}" href="${s.href}" target="_blank" rel="noopener" aria-label="${s.label}"></a>`
+  ).join('');
 
-function normalizeYear(y){
-  const n = parseInt(y,10);
+  const contacts = [
+    { href: `mailto:${PROFILE.email}`, icon: ICONS.email,    text: PROFILE.email,    label: 'Email'         },
+    { href: PROFILE.scholar,           icon: ICONS.scholar,  text: 'Google Scholar', label: 'Google Scholar' },
+    { href: PROFILE.github,            icon: ICONS.github,   text: 'GitHub',         label: 'GitHub'        },
+    { href: PROFILE.linkedin,          icon: ICONS.linkedin, text: 'LinkedIn',       label: 'LinkedIn'      },
+  ].map(c =>
+    `<a class="icon" href="${c.href}" target="_blank" rel="noopener" aria-label="${c.label}">${c.icon}${c.text}</a>`
+  ).join('');
+
+  const chips = PROFILE.interests.map(t => `<span class="chip">${t}</span>`).join('');
+
+  byId('profile-info').innerHTML = `
+    <div class="name-row">
+      <h1>${PROFILE.name}</h1>
+      <div class="name-logos">${seals}</div>
+    </div>
+    <div class="subtitle">${PROFILE.title}</div>
+    <div class="subtitle">${PROFILE.affil}</div>
+    <div class="contact" style="margin-top:8px">${contacts}</div>
+    <div class="chips" style="margin-top:10px">${chips}</div>
+  `;
+
+  byId('bio').innerHTML = PROFILE.bio;
+  byId('year').textContent = new Date().getFullYear();
+}
+
+function renderEducation() {
+  byId('edu-list').innerHTML = EDUCATION.map(e => `
+    <li>
+      <div class="left">
+        <b>${e.degree}</b> <span class="degree">${e.badge}</span>
+        <div class="school">${e.school}</div>
+      </div>
+      <div class="when"><span class="mon">${e.mon}</span> <span class="yr">${e.yr}</span></div>
+    </li>
+  `).join('');
+}
+
+function renderNews() {
+  byId('news-list').innerHTML = NEWS.map(n =>
+    `<li><span class="pill">${n.date}</span><span class="msg">${n.msg}</span></li>`
+  ).join('');
+}
+
+function renderMisc() {
+  byId('misc-list').innerHTML = MISC.map(item => `<li>${item}</li>`).join('');
+}
+
+/* ============================================================
+   PUBLICATIONS
+   ============================================================ */
+
+function normalizeYear(y) {
+  const n = parseInt(y, 10);
   return Number.isFinite(n) ? n : -Infinity;
 }
 
-function sortPublications(list, mode){
+function sortPublications(list, mode) {
   const arr = list.slice();
-  switch(mode){
-    case 'year_asc':
-      arr.sort((a,b)=>normalizeYear(a.year)-normalizeYear(b.year)); break;
-    case 'venue_az':
-      arr.sort((a,b)=>String(a.venue||'').localeCompare(String(b.venue||''))); break;
-    case 'venue_za':
-      arr.sort((a,b)=>String(b.venue||'').localeCompare(String(a.venue||''))); break;
-    case 'year_desc':
-    default:
-      arr.sort((a,b)=>normalizeYear(b.year)-normalizeYear(a.year));
+  switch (mode) {
+    case 'year_asc':  arr.sort((a, b) => normalizeYear(a.year) - normalizeYear(b.year)); break;
+    case 'venue_az':  arr.sort((a, b) => String(a.venue || '').localeCompare(String(b.venue || ''))); break;
+    case 'venue_za':  arr.sort((a, b) => String(b.venue || '').localeCompare(String(a.venue || ''))); break;
+    default:          arr.sort((a, b) => normalizeYear(b.year) - normalizeYear(a.year));
   }
   return arr;
 }
 
-function renderPubs(list){
-  mount.innerHTML = list.map(p=>{
-    const links=(p.links||[]).map(l=>{
-      const safe=(l.url||'').replace(/\s/g,'%20');
-      const cls=linkClass(l.name,l.url);
-      return `<a class="${cls}" href="${safe}" target="_blank" rel="noopener noreferrer">${l.name}</a>`;
+function renderPubs(list) {
+  byId('pubs').innerHTML = list.map(p => {
+    const links = (p.links || []).map(l => {
+      const safe = (l.url || '').replace(/\s/g, '%20');
+      return `<a class="${linkClass(l.name, l.url)}" href="${safe}" target="_blank" rel="noopener noreferrer">${l.name}</a>`;
     }).join('');
     const authors = p.moreAuthors
       ? `<details><summary>${highlightAuthors(p.authors)} <span aria-label="more">…</span></summary><div>${highlightAuthors(p.moreAuthors)}</div></details>`
       : highlightAuthors(p.authors);
     return `<div class="pub">
       <div class="title">${p.title}</div>
-      <div class="venue">${[p.year,p.venue].filter(Boolean).join(' — ')}</div>
+      <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}</div>
       <div class="authors">${authors}</div>
       <div class="links">${links}</div>
     </div>`;
   }).join('');
 }
 
-async function loadPubs(){
-  try{
-    const res = await fetch('publications.json',{cache:'no-store'});
-    if(!res.ok) throw new Error('HTTP '+res.status);
+let publications = [];
+async function loadPubs() {
+  const selSort = byId('sort-by');
+  try {
+    const res = await fetch('publications.json', { cache: 'no-store' });
+    if (!res.ok) throw new Error('HTTP ' + res.status);
     publications = await res.json();
     renderPubs(sortPublications(publications, selSort.value || 'year_desc'));
-  }catch(err){
-    mount.innerHTML = `<div class="pub"><div class="title">Failed to load publications</div><div class="venue" style="color:#dc2626">Error: ${String(err)}</div></div>`;
+  } catch (err) {
+    byId('pubs').innerHTML = `<div class="pub"><div class="title">Failed to load publications</div><div class="venue" style="color:#dc2626">Error: ${String(err)}</div></div>`;
   }
+  selSort.addEventListener('change', () => renderPubs(sortPublications(publications, selSort.value)));
 }
 
-selSort.addEventListener('change', ()=>{
-  renderPubs(sortPublications(publications, selSort.value));
-});
-loadPubs();
+/* ============================================================
+   MENU TOGGLE
+   ============================================================ */
 
-// ---- News formatting ----
-(function formatNews(){
-  const ul = document.getElementById('news-list');
-  if (!ul) return;
-  ul.querySelectorAll('li').forEach(li=>{
-    const raw = li.textContent.trim();
-    const parts = raw.split(/[:：]\s*/);
-    if (parts.length >= 2) {
-      const date = parts[0];
-      let msg  = parts.slice(1).join(': ');
-      msg = msg
-        .replace(/PML4SC/gi, '<a href="https://pml4sc.github.io/" target="_blank" rel="noopener"><b>PML4SC</b></a>')
-        .replace(/Dr\.?\s+Shibo\s+Li/gi, '<a href="https://imshibo.com/" target="_blank" rel="noopener"><b>Dr. Shibo Li</b></a>');
-      li.innerHTML = `<span class="pill">${date}</span><span class="msg">${msg}</span>`;
-    }
-  });
-})();
-
-// ---- Top-left dropdown menu toggle ----
-(function(){
-  const btn = document.getElementById('menu-toggle');
-  const list = document.getElementById('menu-list');
+function initMenu() {
+  const btn  = byId('menu-toggle');
+  const list = byId('menu-list');
   const root = btn && btn.closest('.menu');
   if (!btn || !list || !root) return;
 
-  function openMenu(){ root.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
-  function closeMenu(){ root.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
-  function toggle(){ root.classList.contains('open') ? closeMenu() : openMenu(); }
+  const open   = () => { root.classList.add('open');    btn.setAttribute('aria-expanded', 'true');  };
+  const close  = () => { root.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); };
+  const toggle = () => root.classList.contains('open') ? close() : open();
 
-  btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggle(); });
-  document.addEventListener('click', (e)=>{ if(!root.contains(e.target)) closeMenu(); });
-  document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeMenu(); });
+  btn.addEventListener('click', e => { e.stopPropagation(); toggle(); });
+  document.addEventListener('click', e => { if (!root.contains(e.target)) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
+  list.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+}
 
-  // 点菜单项后自动收起
-  list.querySelectorAll('a').forEach(a=>{
-    a.addEventListener('click', ()=> closeMenu());
-  });
-})();
+/* ============================================================
+   BOOT
+   ============================================================ */
 
-// --- Mount & Resize ClustrMaps Globe (robust) ---
-(function mountClustrGlobe(){
-  const host = document.getElementById('globe-host');
-  if (!host) return;
-
-  // 1) 从 <script id="clstr_globe"> 的 src 提取 token（兜底使用）
-  function getClustrToken(){
-    const scriptEl =
-      document.getElementById('clstr_globe') ||
-      document.querySelector('script[src*="clustrmaps.com/globe.js"]');
-    try{
-      if (!scriptEl) return '';
-      const u = new URL(scriptEl.src, window.location.href);
-      return u.searchParams.get('d') || '';
-    }catch{ return ''; }
-  }
-
-  // 2) 优先在 ClustrMaps 注入的容器里查找真实统计页 <a href="https://clustrmaps.com/site/xxxxx">
-  function findStatsURL(holder){
-    const candidates = [
-      holder && holder.querySelector && holder.querySelector('a[href*="clustrmaps.com/site/"]'),
-      document.querySelector('#visitors a[href*="clustrmaps.com/site/"]'),
-      document.querySelector('a[href*="clustrmaps.com/site/"]'),
-    ].filter(Boolean);
-    if (candidates.length) return candidates[0].href;
-
-    const t = getClustrToken();
-    return t
-      ? `https://clustrmaps.com/visits/map?d=${encodeURIComponent(t)}`
-      : 'https://clustrmaps.com';
-  }
-
-  function moveCanvasIfReady() {
-    const holder =
-      document.querySelector('#clstr_globe + div') ||
-      document.getElementById('clustrmaps-globe');
-
-    let cvs = (holder && holder.querySelector && holder.querySelector('canvas')) || null;
-    if (!cvs) {
-      const all = document.querySelectorAll('#visitors canvas');
-      for (const c of all) { if (!host.contains(c)) { cvs = c; break; } }
-    }
-    if (!cvs) return false;
-
-    const originalRoot = cvs.parentElement;
-
-    // 交给 CSS 控制尺寸
-    cvs.removeAttribute('width');
-    cvs.removeAttribute('height');
-    cvs.style.width  = '100%';
-    cvs.style.height = '100%';
-    cvs.style.maxWidth  = '100%';
-    cvs.style.maxHeight = '100%';
-
-    host.innerHTML = '';
-    host.appendChild(cvs);
-
-    // 计算你的统计页链接（优先 /site/xxxx）
-    const CLM_TARGET = findStatsURL(holder);
-
-    // 覆盖第三方点击：直达个人统计页
-    cvs.style.cursor = 'pointer';
-    cvs.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      e.stopImmediatePropagation?.();
-      window.open(CLM_TARGET, '_blank', 'noopener');
-    }, { capture: true });
-
-    if (originalRoot && originalRoot !== host) originalRoot.style.display = 'none';
-    document.querySelectorAll('#visitors canvas').forEach(x => {
-      if (!host.contains(x)) x.style.display = 'none';
-    });
-    return true;
-  }
-
-  if (moveCanvasIfReady()) return;
-
-  const mo = new MutationObserver(() => {
-    if (moveCanvasIfReady()) mo.disconnect();
-  });
-  mo.observe(document.body, { childList: true, subtree: true });
-})();
+renderProfile();
+renderEducation();
+renderNews();
+renderMisc();
+loadPubs();
+initMenu();

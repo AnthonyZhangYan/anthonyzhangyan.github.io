@@ -243,11 +243,6 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
 
 .misc ul { margin: 0; padding-left: 20px; }
 .misc li { margin: 6px 0; }
-.misc a {
-  color: inherit; text-decoration: none;
-  border-bottom: 1px solid var(--border);
-}
-.misc a:hover { border-bottom-color: var(--muted); }
 
 .kbd {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace;
@@ -274,26 +269,11 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; }
 
 #news-list li .msg { color: var(--muted); overflow-wrap: anywhere; }
 
-/* News 文本中的链接：柔和色、轻微 visited 差异、可见性高亮 */
-#news .msg a{
-  color: color-mix(in srgb, var(--link) 70%, var(--fg) 30%);
-  font-weight: 700;
-  text-decoration: none;
-}
-#news .msg a:visited{
-  color: color-mix(in srgb, var(--link) 40%, var(--fg) 60%); /* 仅 5% 差异 */
-  text-decoration: none;
-}
-#news .msg a:hover,
-#news .msg a:active{
-  color: var(--link);
-  text-decoration: none;
-}
-#news .msg a:focus-visible{
-  outline: 2px solid color-mix(in srgb, var(--link) 60%, transparent);
-  outline-offset: 2px;
-  text-decoration: none;
-}
+/* 内联链接：柔和色、轻微 visited 差异、可见性高亮 */
+.inline-link { color: color-mix(in srgb, var(--link) 70%, var(--fg) 30%); font-weight: 700; text-decoration: none; }
+.inline-link:visited { color: color-mix(in srgb, var(--link) 40%, var(--fg) 60%); text-decoration: none; }
+.inline-link:hover, .inline-link:active { color: var(--link); text-decoration: none; }
+.inline-link:focus-visible { outline: 2px solid color-mix(in srgb, var(--link) 60%, transparent); outline-offset: 2px; }
 
 /* 窄屏：上下两行 */
 @media (max-width: 480px) {

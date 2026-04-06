@@ -34,6 +34,7 @@
 </head>
 <body>
   <div class="container">
+
     <nav class="menu" aria-label="Primary">
       <button id="menu-toggle" class="menu-toggle" aria-expanded="false" aria-controls="menu-list">
         ☰ Menu
@@ -48,103 +49,19 @@
 
     <header id="about">
       <img src="assets/avatar.jpg" alt="Avatar" onerror="this.style.display='none'"/>
-      <div>
-        <div class="name-row">
-          <h1 id="name">Yan Zhang (张岩)</h1>
-          <div class="name-logos">
-            <a class="seal fsu" href="https://www.fsu.edu" target="_blank" rel="noopener" aria-label="Florida State University"></a>
-            <a class="seal nku" href="https://en.nankai.edu.cn" target="_blank" rel="noopener" aria-label="Nankai University"></a>
-          </div>
-        </div>
-        <div class="subtitle" id="title">Ph.D. Student @ Florida State University</div>
-        <div class="subtitle" id="affil">Department of Computer Science</div>
-        <div class="contact" style="margin-top:8px">
-          <a id="email" class="icon" href="mailto:yz18b@fsu.edu" aria-label="Email">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="4" width="20" height="16" rx="2"></rect>
-              <path d="M22 7L12.97 12.7a2 2 0 0 1-1.94 0L2 7"></path>
-            </svg>
-            <span class="label"></span>
-          </a>
-          <a id="scholar" class="icon" href="https://scholar.google.com/citations?hl=en&user=nAh7B5EAAAAJ" target="_blank" rel="noopener" aria-label="Google Scholar">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <!-- graduation-cap -->
-              <path d="M22 10L12 2 2 10l10 6 10-6z"></path>
-              <path d="M6 12v5c3 3 9 3 12 0v-5"></path>
-            </svg>
-            Google Scholar
-          </a>
-          <a id="github" class="icon" href="https://github.com/AnthonyZhangYan" target="_blank" rel="noopener" aria-label="GitHub">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <!-- github mark (stroke 版) -->
-              <path d="M15 22v-4a5 5 0 0 0-2-4c4 0 7-3 7-6a5 5 0 0 0-.6-2.4 6 6 0 0 0-.1-2S17.9 2.9 15 4.7a12 12 0 0 0-6 0C6.1 2.9 5 3.2 5 3.2a6 6 0 0 0-.1 2A5 5 0 0 0 4 8c0 3 3 6 7 6a5 5 0 0 0-2 4v4"></path>
-              <path d="M9 18c-4 2-5-2-7-2"></path>
-              <path d="M15 18c4 2 5-2 7-2"></path>
-            </svg>
-            GitHub
-          </a>
-          <a id="linkedin" class="icon" href="https://www.linkedin.com/in/yourid" target="_blank" rel="noopener" aria-label="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
-                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="9" width="4" height="12"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-            </svg>
-            LinkedIn
-          </a>
-        </div>
-        <div class="chips" style="margin-top:10px"></div>
-      </div>
+      <div id="profile-info"></div>
     </header>
 
-    <section class="bio">
-      <h2>Bio</h2>
-      <p>I am a graduate student in the Department of Computer Science at Florida State University. My research interests include <b>machine learning</b>, <b>AI for science</b>, <b>Bayesian optimization</b> and <b>large language models</b>.</p>
-    </section>
+    <section class="bio"><h2>Bio</h2><p id="bio"></p></section>
 
     <section id="education">
       <h2>Education</h2>
-      <ul class="ed-grid edu-grid">
-        <li>
-          <div class="left">
-            <b>Ph.D. in Computer Science</b> <span class="degree">Ph.D.</span>
-            <div class="school">Florida State University — Tallahassee, FL</div>
-          </div>
-          <div class="when"><span class="mon"></span> <span class="yr">In&nbsp;Progress</span></div>
-        </li>
-        <li>
-          <div class="left">
-            <b>Master of Science in Computer Science</b> <span class="degree">M.S.</span>
-            <div class="school">Florida State University — Tallahassee, FL</div>
-          </div>
-          <div class="when"><span class="mon">May</span> <span class="yr">2025</span></div>
-        </li>
-        <li>
-          <div class="left">
-            <b>Master of Science in Chemistry</b> <span class="degree">M.S.</span>
-            <div class="school">Florida State University — Tallahassee, FL</div>
-          </div>
-          <div class="when"><span class="mon">Dec</span> <span class="yr">2021</span></div>
-        </li>
-        <li>
-          <div class="left">
-            <b>Bachelor of Science in Chemistry</b> <span class="degree">B.S.</span>
-            <div class="school">Nankai University — Tianjin, China</div>
-          </div>
-          <div class="when"><span class="mon">Jun</span> <span class="yr">2016</span></div>
-        </li>
-      </ul>
+      <ul class="ed-grid edu-grid" id="edu-list"></ul>
     </section>
 
     <section id="news">
       <h2>News</h2>
-      <ul class="scrollbox" id="news-list">
-        <li>2025-11：Homepage launched！🎉</li>
-        <li>2025-06：I am joining PML4SC lab to conduct research under Dr. Shibo Li's mentorship.</li>
-      </ul>
+      <ul class="scrollbox" id="news-list"></ul>
     </section>
 
     <section id="publications">
@@ -163,33 +80,14 @@
 
     <section id="misc" class="misc">
       <h2>Misc</h2>
-      <ul>
-        <li>Hobbies: MOBA games, <a href="https://boardgamebros.org/" target="_blank" rel="noopener">board games</a>, model painting.</li>
-        <li>Open to collaboration — feel free to reach out via email.</li>
-      </ul>
+      <ul id="misc-list"></ul>
     </section>
-
-    <!-- Visitors (ClustrMaps Globe)
-    <section id="visitors">
-      <h2>Visitors</h2>
-      <div class="globe-wrap">
-        <div id="globe-host" aria-label="Visitors globe"></div>
-      </div>
-      <div id="clustrmaps-globe" style="display:none"></div>
-      <script
-        type="text/javascript"
-        id="clstr_globe"
-        src="//clustrmaps.com/globe.js?d=jmYBVa5aBISv54K1XCkCeTHvHYHqpY12_TQO_Zzrc0"
-        async>
-      </script>
-      <noscript>Enable JavaScript to see the visitor globe.</noscript>
-    </section>
-    -->
 
     <footer>
       <div class="hr"></div>
       <div>© <span id="year"></span> Yan Zhang. Built with ❤️ and a dash of AI.</div>
     </footer>
+
   </div>
   <script src="main.js"></script>
 </body>
