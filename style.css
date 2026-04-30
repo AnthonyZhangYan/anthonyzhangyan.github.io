@@ -294,29 +294,30 @@ select:focus-visible { border-color: var(--link); box-shadow: 0 0 0 2px color-mi
   display: grid;
   grid-template-columns: 110px 1fr;
   gap: 14px;
+  align-items: stretch;
 }
 .pub-has-img .pub-body-row .pub-thumb {
   border-radius: 0 0 0 13px;
 }
 .pub-has-img .pub-body-row .pub-body {
-  padding-left: 0;
+  padding: 14px 14px 16px 0;
 }
 .pub.pub-accepted {
   border-color: var(--pub-accepted-border);
   box-shadow: var(--shadow-card), 0 0 0 1px rgba(5, 150, 105, .12);
 }
-.pub .title { font-weight: 600; }
+.pub .title { font-weight: 600; margin-bottom: 6px; }
 .pub-title-link { color: inherit; text-decoration: none; }
 .pub-title-link:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
-.pub .venue { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
-.pub .authors { font-size: 14px; color: var(--muted); }
+.pub .venue { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
+.pub .authors { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
 .pub-badge {
   display: inline-block; padding: 1px 8px; border-radius: 9999px; font-size: 11px; font-weight: 700;
   color: var(--doi); background: var(--pub-badge-bg); border: 1px solid var(--doi-border);
   letter-spacing: .02em;
 }
 
-.links { margin-top: .9em; display: flex; flex-wrap: wrap; gap: 8px; }
+.links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
 .links a { color: var(--link); text-decoration: none; }
 .links a.pdf-link, .links a.doi-link, .links a.arxiv-link {
   display: inline-block; padding: 1px 8px; border-radius: 10px;
