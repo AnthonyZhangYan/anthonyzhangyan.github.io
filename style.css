@@ -270,7 +270,13 @@ select:focus-visible { border-color: var(--link); box-shadow: 0 0 0 2px color-mi
 .pub-thumb-img {
   width: 100%; height: 100%; object-fit: cover; display: block;
 }
-.pub-has-thumb .pub-body { padding: 12px 14px; }
+.pub-has-thumb .pub-body {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+  padding: 12px 14px 16px;
+}
 
 .pub-thumb.is-arxiv {
   background: #b31b1b;
@@ -302,6 +308,9 @@ select:focus-visible { border-color: var(--link); box-shadow: 0 0 0 2px color-mi
   border-radius: 0 0 0 13px;
 }
 .pub-has-img .pub-body-row .pub-body {
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
   padding: 14px 14px 16px 0;
 }
 .pub.pub-accepted {
