@@ -1,55 +1,23 @@
-/* ============================================================
-   DATA — edit these arrays / objects to update your page
-   ============================================================ */
+const SITE_CONFIG = window.SITE_CONFIG || {};
+const SITE_DATA = window.SITE_DATA || {};
+const ICONS = SITE_CONFIG.icons || {};
+const MY_NAMES = SITE_CONFIG.myNames || [];
+const THEME_KEY = SITE_CONFIG.themeKey || 'theme';
+const DEFAULT_PUBLICATION_SORT = SITE_CONFIG.defaultPublicationSort || 'year_desc';
+const PRIMARY_PUBLICATION_LINKS = SITE_CONFIG.primaryPublicationLinks || ['arXiv', 'DOI'];
+const EXTERNAL_LINK_ATTRS = SITE_CONFIG.externalLinkAttrs || 'target="_blank" rel="noopener"';
+const SAFE_EXTERNAL_LINK_ATTRS = SITE_CONFIG.safeExternalLinkAttrs || 'target="_blank" rel="noopener noreferrer"';
+const PROFILE_CONTACTS = SITE_CONFIG.profileContacts || [];
+const PROFILE = SITE_DATA.profile || {};
+const NEWS = SITE_DATA.news || [];
+const EDUCATION = SITE_DATA.education || [];
+const MISC = SITE_DATA.misc || [];
 
-const PROFILE = {
-  name:      'Yan Zhang (张岩)',
-  title:     'Ph.D. Student @ Florida State University',
-  affil:     'Department of Computer Science',
-  bio:       'I am a graduate student in the Department of Computer Science at Florida State University. My research interests include <b>machine learning</b>, <b>AI for science</b>, <b>Bayesian optimization</b> and <b>large language models</b>.',
-  email:     'yz18b@fsu.edu',
-  scholar:   'https://scholar.google.com/citations?user=nAh7B5EAAAAJ&hl=en',
-  github:    'https://github.com/AnthonyZhangYan',
-  linkedin:  'https://www.linkedin.com/in/yourid',
-  interests: ['Machine Learning', 'AI for Science', 'Bayesian Optimization', 'Large Language Models'],
-  seals: [
-    { cls: 'fsu', href: 'https://www.fsu.edu',       label: 'Florida State University' },
-    { cls: 'nku', href: 'https://en.nankai.edu.cn',  label: 'Nankai University' },
-  ],
-};
-
-// Add entries here — newest first recommended
-const NEWS = [
-  { date: '2026-04-30', msg: 'My first-author paper <a class="inline-link" href="https://arxiv.org/abs/2601.20043" target="_blank" rel="noopener"><b>RAMBO</b></a> was accepted at <b>ICML 2026</b> (regular)! RAMBO replaces the standard GP surrogate with a Dirichlet Process Mixture of GPs that automatically discovers latent regimes during optimization — each modeled by an independent GP with locally-tuned hyperparameters — enabling principled Bayesian optimization over multi-regime landscapes such as molecular conformation, drug discovery, and fusion reactor design.' },
-  { date: '2025-11', msg: 'Homepage launched！🎉' },
-  { date: '2025-06', msg: 'I am joining <a class="inline-link" href="https://pml4sc.github.io/" target="_blank" rel="noopener"><b>PML4SC</b></a> lab to conduct research under <a class="inline-link" href="https://imshibo.com/" target="_blank" rel="noopener"><b>Dr. Shibo Li</b></a>\'s mentorship.' },
-];
-
-// Add entries here — top → bottom = oldest → newest
-const EDUCATION = [
-  { degree: 'Ph.D. in Computer Science',             badge: 'Ph.D.', school: 'Florida State University — Tallahassee, FL', mon: '',    yr: 'In\u00a0Progress' },
-  { degree: 'Master of Science in Computer Science', badge: 'M.S.',  school: 'Florida State University — Tallahassee, FL', mon: 'May', yr: '2025' },
-  { degree: 'Master of Science in Chemistry',        badge: 'M.S.',  school: 'Florida State University — Tallahassee, FL', mon: 'Dec', yr: '2021' },
-  { degree: 'Bachelor of Science in Chemistry',      badge: 'B.S.',  school: 'Nankai University — Tianjin, China',          mon: 'Jun', yr: '2016' },
-];
-
-// HTML strings; use <a class="inline-link" ...> for links
-const MISC = [
-  'Hobbies: MOBA games, <a class="inline-link" href="https://boardgamebros.org/" target="_blank" rel="noopener">board games</a>, model painting.',
-  'Open to collaboration — feel free to reach out via email.',
-];
-
-/* ============================================================
-   SVG ICONS
-   ============================================================ */
-
-const ICONS = {
-  email:    `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M22 7L12.97 12.7a2 2 0 0 1-1.94 0L2 7"></path></svg>`,
-  scholar:  `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10L12 2 2 10l10 6 10-6z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`,
-  github:   `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a5 5 0 0 0-2-4c4 0 7-3 7-6a5 5 0 0 0-.6-2.4 6 6 0 0 0-.1-2S17.9 2.9 15 4.7a12 12 0 0 0-6 0C6.1 2.9 5 3.2 5 3.2a6 6 0 0 0-.1 2A5 5 0 0 0 4 8c0 3 3 6 7 6a5 5 0 0 0-2 4v4"></path><path d="M9 18c-4 2-5-2-7-2"></path><path d="M15 18c4 2 5-2 7-2"></path></svg>`,
-  linkedin: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path></svg>`,
-  sun:      `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>`,
-  moon:     `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
+const PUBLICATION_SORTERS = {
+  year_desc: (a, b) => normalizeYear(b.year) - normalizeYear(a.year),
+  year_asc:  (a, b) => normalizeYear(a.year) - normalizeYear(b.year),
+  venue_az:  (a, b) => String(a.venue || '').localeCompare(String(b.venue || '')),
+  venue_za:  (a, b) => String(b.venue || '').localeCompare(String(a.venue || '')),
 };
 
 /* ============================================================
@@ -58,219 +26,396 @@ const ICONS = {
 
 const byId = id => document.getElementById(id);
 
-const MY_NAMES = ['Yan Zhang', 'Y. Zhang', 'Y Zhang'];
-function highlightAuthors(s = '') {
+function setHTML(id, html) {
+  const element = byId(id);
+  if (element) element.innerHTML = html;
+}
+
+function setText(id, text) {
+  const element = byId(id);
+  if (element) element.textContent = text;
+}
+
+function renderItems(items, renderItem) {
+  return items.map(renderItem).join('');
+}
+
+function renderList(id, items, renderItem) {
+  setHTML(id, renderItems(items, renderItem));
+}
+
+function normalizeYear(year) {
+  const parsed = parseInt(year, 10);
+  return Number.isFinite(parsed) ? parsed : -Infinity;
+}
+
+function encodeUrl(url) {
+  return String(url || '').replace(/\s/g, '%20');
+}
+
+function renderExternalLink({ className = '', href, label, body, safe = false }) {
+  const attrs = safe ? SAFE_EXTERNAL_LINK_ATTRS : EXTERNAL_LINK_ATTRS;
+  const classes = className ? ` class="${className}"` : '';
+  const aria = label ? ` aria-label="${label}"` : '';
+  return `<a${classes} href="${href}" ${attrs}${aria}>${body}</a>`;
+}
+
+function renderImage({ wrapperClass, imageClass, src, alt }) {
+  return `<div class="${wrapperClass}"><img class="${imageClass}" src="${src}" alt="${alt}" loading="lazy"></div>`;
+}
+
+function highlightAuthors(text = '') {
   return MY_NAMES.reduce(
-    (h, n) => h.replace(new RegExp('\\b' + n.replace('.', '\\.') + '\\b', 'g'), `<span class="me">${n}</span>`),
-    s
+    (html, name) => html.replace(new RegExp(`\\b${name.replace('.', '\\.')}\\b`, 'g'), `<span class="me">${name}</span>`),
+    text
   );
 }
 
 function linkClass(name, url) {
-  const n = (name || '').toLowerCase(), u = (url || '').toLowerCase();
-  if (n.includes('pdf'))                           return 'pdf-link';
-  if (n.includes('doi') || u.includes('doi.org')) return 'doi-link';
-  if (n.includes('arxiv') || u.includes('arxiv')) return 'arxiv-link';
+  const lowerName = String(name || '').toLowerCase();
+  const lowerUrl = String(url || '').toLowerCase();
+
+  if (lowerName.includes('pdf')) return 'pdf-link';
+  if (lowerName.includes('doi') || lowerUrl.includes('doi.org')) return 'doi-link';
+  if (lowerName.includes('arxiv') || lowerUrl.includes('arxiv')) return 'arxiv-link';
   return '';
 }
 
 /* ============================================================
-   RENDER FUNCTIONS
+   PROFILE / SECTIONS
    ============================================================ */
 
+function renderSeal(seal) {
+  return renderExternalLink({
+    className: `seal ${seal.cls}`,
+    href: seal.href,
+    label: seal.label,
+    body: '',
+  });
+}
+
+function renderContact(profile, contact) {
+  return renderExternalLink({
+    className: 'icon',
+    href: contact.getHref(profile),
+    label: contact.label,
+    body: `${ICONS[contact.key]}${contact.getText ? contact.getText(profile) : contact.text}`,
+  });
+}
+
+function renderChip(label) {
+  return `<span class="chip">${label}</span>`;
+}
+
 function renderProfile() {
-  const seals = PROFILE.seals.map(s =>
-    `<a class="seal ${s.cls}" href="${s.href}" target="_blank" rel="noopener" aria-label="${s.label}"></a>`
-  ).join('');
-
-  const contacts = [
-    { href: `mailto:${PROFILE.email}`, icon: ICONS.email,    text: PROFILE.email,    label: 'Email'         },
-    { href: PROFILE.scholar,           icon: ICONS.scholar,  text: 'Google Scholar', label: 'Google Scholar' },
-    { href: PROFILE.github,            icon: ICONS.github,   text: 'GitHub',         label: 'GitHub'        },
-    { href: PROFILE.linkedin,          icon: ICONS.linkedin, text: 'LinkedIn',       label: 'LinkedIn'      },
-  ].map(c =>
-    `<a class="icon" href="${c.href}" target="_blank" rel="noopener" aria-label="${c.label}">${c.icon}${c.text}</a>`
-  ).join('');
-
-  const chips = PROFILE.interests.map(t => `<span class="chip">${t}</span>`).join('');
-
-  byId('profile-info').innerHTML = `
+  setHTML('profile-info', `
     <div class="name-row">
       <h1>${PROFILE.name}</h1>
-      <div class="name-logos">${seals}</div>
+      <div class="name-logos">${renderItems(PROFILE.seals, renderSeal)}</div>
     </div>
     <div class="subtitle">${PROFILE.title}</div>
     <div class="subtitle">${PROFILE.affil}</div>
-    <div class="contact" style="margin-top:8px">${contacts}</div>
-    <div class="chips" style="margin-top:10px">${chips}</div>
-  `;
+    <div class="contact profile-contact">${renderItems(PROFILE_CONTACTS, contact => renderContact(PROFILE, contact))}</div>
+    <div class="chips profile-chips">${renderItems(PROFILE.interests, renderChip)}</div>
+  `);
+  setHTML('bio', PROFILE.bio);
+  setText('year', new Date().getFullYear());
+}
 
-  byId('bio').innerHTML = PROFILE.bio;
-  byId('year').textContent = new Date().getFullYear();
+function renderEducationItem(item) {
+  return `
+    <li>
+      <div class="left">
+        <b>${item.degree}</b> <span class="degree">${item.badge}</span>
+        <div class="school">${item.school}</div>
+      </div>
+      <div class="when"><span class="mon">${item.mon}</span> <span class="yr">${item.yr}</span></div>
+    </li>
+  `;
+}
+
+function renderNewsItem(item) {
+  return `<li><span class="pill">${item.date}</span><span class="msg">${item.msg}</span></li>`;
+}
+
+function renderMiscItem(item) {
+  return `<li>${item}</li>`;
+}
+
+function renderStaticSections() {
+  renderEducation();
+  renderNews();
+  renderMisc();
 }
 
 function renderEducation() {
-  byId('edu-list').innerHTML = EDUCATION.map(e => `
-    <li>
-      <div class="left">
-        <b>${e.degree}</b> <span class="degree">${e.badge}</span>
-        <div class="school">${e.school}</div>
-      </div>
-      <div class="when"><span class="mon">${e.mon}</span> <span class="yr">${e.yr}</span></div>
-    </li>
-  `).join('');
+  renderList('edu-list', EDUCATION, renderEducationItem);
 }
 
 function renderNews() {
-  byId('news-list').innerHTML = NEWS.map(n =>
-    `<li><span class="pill">${n.date}</span><span class="msg">${n.msg}</span></li>`
-  ).join('');
+  renderList('news-list', NEWS, renderNewsItem);
 }
 
 function renderMisc() {
-  byId('misc-list').innerHTML = MISC.map(item => `<li>${item}</li>`).join('');
+  renderList('misc-list', MISC, renderMiscItem);
 }
 
 /* ============================================================
    PUBLICATIONS
    ============================================================ */
 
-function normalizeYear(y) {
-  const n = parseInt(y, 10);
-  return Number.isFinite(n) ? n : -Infinity;
-}
+const publicationState = {
+  items: [],
+};
 
 function sortPublications(list, mode) {
-  const arr = list.slice();
-  switch (mode) {
-    case 'year_asc':  arr.sort((a, b) => normalizeYear(a.year) - normalizeYear(b.year)); break;
-    case 'venue_az':  arr.sort((a, b) => String(a.venue || '').localeCompare(String(b.venue || ''))); break;
-    case 'venue_za':  arr.sort((a, b) => String(b.venue || '').localeCompare(String(a.venue || ''))); break;
-    default:          arr.sort((a, b) => normalizeYear(b.year) - normalizeYear(a.year));
+  const sorter = PUBLICATION_SORTERS[mode] || PUBLICATION_SORTERS[DEFAULT_PUBLICATION_SORT];
+  return list.slice().sort(sorter);
+}
+
+function getPublicationSortMode() {
+  return byId('sort-by')?.value || DEFAULT_PUBLICATION_SORT;
+}
+
+function renderPublicationLinks(links = []) {
+  return renderItems(links, link => renderExternalLink({
+    className: linkClass(link.name, link.url),
+    href: encodeUrl(link.url),
+    body: link.name,
+    safe: true,
+  }));
+}
+
+function renderPublicationAuthors(publication) {
+  if (!publication.moreAuthors) return highlightAuthors(publication.authors);
+
+  return `
+    <details>
+      <summary>${highlightAuthors(publication.authors)} <span aria-label="more">…</span></summary>
+      <div>${highlightAuthors(publication.moreAuthors)}</div>
+    </details>
+  `;
+}
+
+function getPrimaryPublicationUrl(publication) {
+  return (publication.links || []).find(link => PRIMARY_PUBLICATION_LINKS.includes(link.name))?.url || '';
+}
+
+function renderPublicationTitle(publication) {
+  const primaryUrl = getPrimaryPublicationUrl(publication);
+
+  if (!primaryUrl) return publication.title;
+
+  return renderExternalLink({
+    className: 'pub-title-link',
+    href: primaryUrl,
+    body: publication.title,
+    safe: true,
+  });
+}
+
+function renderPublicationBadge(publication) {
+  return publication.badge ? `<span class="pub-badge">${publication.badge}</span>` : '';
+}
+
+function getPublicationImageType(image = '') {
+  if (image.includes('arxiv-logo')) return 'arxiv';
+  if (image.includes('icml-logo')) return 'icml';
+  return '';
+}
+
+function getPublicationMedia(publication) {
+  const image = publication.image || '';
+  if (!image) return { html: '', extraClass: '', hasBanner: false };
+
+  const imageType = getPublicationImageType(image);
+
+  if (publication.imageLayout === 'banner') {
+    return {
+      html: renderImage({
+        wrapperClass: `pub-img-wrap${imageType ? ' is-logo' : ''}`,
+        imageClass: 'pub-img',
+        src: image,
+        alt: publication.title,
+      }),
+      extraClass: ' pub-has-img',
+      hasBanner: true,
+    };
   }
-  return arr;
+
+  const wrapperClass = imageType ? `pub-thumb is-${imageType}` : 'pub-thumb';
+  return {
+    html: renderImage({
+      wrapperClass,
+      imageClass: 'pub-thumb-img',
+      src: image,
+      alt: publication.title,
+    }),
+    extraClass: ' pub-has-thumb',
+    hasBanner: false,
+  };
 }
 
-function renderPubs(list) {
-  byId('pubs').innerHTML = list.map(p => {
-    const logoUrl = p.logo ? String(p.logo).replace(/\s/g, '%20') : '';
-    const links = (p.links || []).map(l => {
-      const safe = (l.url || '').replace(/\s/g, '%20');
-      return `<a class="${linkClass(l.name, l.url)}" href="${safe}" target="_blank" rel="noopener noreferrer">${l.name}</a>`;
-    }).join('');
-    const authors = p.moreAuthors
-      ? `<details><summary>${highlightAuthors(p.authors)} <span aria-label="more">…</span></summary><div>${highlightAuthors(p.moreAuthors)}</div></details>`
-      : highlightAuthors(p.authors);
-    const primaryUrl = (p.links || []).find(l => l.name === 'arXiv' || l.name === 'DOI')?.url || '';
-    const title = primaryUrl
-      ? `<a class="pub-title-link" href="${primaryUrl}" target="_blank" rel="noopener noreferrer">${p.title}</a>`
-      : p.title;
-    const badge = p.badge ? `<span class="pub-badge">${p.badge}</span>` : '';
-    const isBanner = p.imageLayout === 'banner';
-    const isArxiv = p.image && p.image.includes('arxiv-logo');
-    const isIcml  = p.image && p.image.includes('icml-logo');
-    const isLogo  = isArxiv || isIcml;
-
-    let imgHTML = '';
-    let extraClass = '';
-    if (p.image && isBanner) {
-      imgHTML = `<div class="pub-img-wrap${isLogo ? ' is-logo' : ''}"><img class="pub-img" src="${p.image}" alt="${p.title}" loading="lazy"></div>`;
-      extraClass = ' pub-has-img';
-    } else if (p.image) {
-      const logoClass = isArxiv ? ' is-arxiv' : isIcml ? ' is-icml' : '';
-      imgHTML = `<div class="pub-thumb${logoClass}"><img class="pub-thumb-img" src="${p.image}" alt="${p.title}" loading="lazy"></div>`;
-      extraClass = ' pub-has-thumb';
-    }
-
-    const bodyInnerHTML = `<div class="pub-body">
-        <div class="title">${title}</div>
-        <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}${badge}</div>
-        <div class="authors">${authors}</div>
-        <div class="links">${links}</div>
-      </div>`;
-
-    const bodyHTML = logoUrl
-      ? `<div class="pub-body-row">
-          <div class="pub-thumb is-icml"><img class="pub-thumb-img" src="${logoUrl}" alt="${p.venue || p.title}" loading="lazy"></div>
-          ${bodyInnerHTML}
-        </div>`
-      : bodyInnerHTML;
-
-    return `<div class="pub${p.badge ? ' pub-accepted' : ''}${extraClass}">
-      ${isBanner ? imgHTML + bodyHTML : (imgHTML ? imgHTML + bodyHTML : bodyHTML)}
-    </div>`;
-  }).join('');
+function renderPublicationMeta(publication) {
+  return `
+    <div class="venue">${[publication.year, publication.venue].filter(Boolean).join(' — ')}${renderPublicationBadge(publication)}</div>
+    <div class="authors">${renderPublicationAuthors(publication)}</div>
+    <div class="links">${renderPublicationLinks(publication.links)}</div>
+  `;
 }
 
-let publications = [];
-async function loadPubs() {
-  const selSort = byId('sort-by');
+function renderPublicationBody(publication) {
+  const content = `
+    <div class="pub-body">
+      <div class="title">${renderPublicationTitle(publication)}</div>
+      ${renderPublicationMeta(publication)}
+    </div>
+  `;
+
+  if (!publication.logo) return content;
+
+  return `
+    <div class="pub-body-row">
+      ${renderImage({
+        wrapperClass: 'pub-thumb is-icml',
+        imageClass: 'pub-thumb-img',
+        src: encodeUrl(publication.logo),
+        alt: publication.venue || publication.title,
+      })}
+      ${content}
+    </div>
+  `;
+}
+
+function renderPublicationCard(publication) {
+  const media = getPublicationMedia(publication);
+  const body = renderPublicationBody(publication);
+  const cardClass = `pub${publication.badge ? ' pub-accepted' : ''}${media.extraClass}`;
+  const content = media.hasBanner ? media.html + body : (media.html ? media.html + body : body);
+
+  return `<div class="${cardClass}">${content}</div>`;
+}
+
+function renderPublicationError(error) {
+  setHTML('pubs', `
+    <div class="pub">
+      <div class="title">Failed to load publications</div>
+      <div class="venue pub-error">Error: ${String(error)}</div>
+    </div>
+  `);
+}
+
+function renderPublications() {
+  const sorted = sortPublications(publicationState.items, getPublicationSortMode());
+  setHTML('pubs', renderItems(sorted, renderPublicationCard));
+}
+
+async function loadPublications() {
   try {
-    const res = await fetch('publications.json', { cache: 'no-store' });
-    if (!res.ok) throw new Error('HTTP ' + res.status);
-    publications = await res.json();
-    renderPubs(sortPublications(publications, selSort.value || 'year_desc'));
-  } catch (err) {
-    byId('pubs').innerHTML = `<div class="pub"><div class="title">Failed to load publications</div><div class="venue" style="color:#dc2626">Error: ${String(err)}</div></div>`;
+    const response = await fetch('publications.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+    publicationState.items = await response.json();
+    renderPublications();
+  } catch (error) {
+    renderPublicationError(error);
   }
-  selSort.addEventListener('change', () => renderPubs(sortPublications(publications, selSort.value)));
+}
+
+function initPublicationControls() {
+  const sortSelect = byId('sort-by');
+  if (!sortSelect) return;
+  sortSelect.addEventListener('change', renderPublications);
 }
 
 /* ============================================================
-   MENU TOGGLE
+   MENU
    ============================================================ */
 
 function initMenu() {
-  const btn  = byId('menu-toggle');
+  const button = byId('menu-toggle');
   const list = byId('menu-list');
-  const root = btn && btn.closest('.menu');
-  if (!btn || !list || !root) return;
+  const root = button?.closest('.menu');
+  if (!button || !list || !root) return;
 
-  const open   = () => { root.classList.add('open');    btn.setAttribute('aria-expanded', 'true');  };
-  const close  = () => { root.classList.remove('open'); btn.setAttribute('aria-expanded', 'false'); };
-  const toggle = () => root.classList.contains('open') ? close() : open();
+  const openMenu = () => {
+    root.classList.add('open');
+    button.setAttribute('aria-expanded', 'true');
+  };
 
-  btn.addEventListener('click', e => { e.stopPropagation(); toggle(); });
-  document.addEventListener('click', e => { if (!root.contains(e.target)) close(); });
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
-  list.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  const closeMenu = () => {
+    root.classList.remove('open');
+    button.setAttribute('aria-expanded', 'false');
+  };
+
+  const toggleMenu = () => {
+    if (root.classList.contains('open')) {
+      closeMenu();
+      return;
+    }
+    openMenu();
+  };
+
+  button.addEventListener('click', event => {
+    event.stopPropagation();
+    toggleMenu();
+  });
+
+  document.addEventListener('click', event => {
+    if (!root.contains(event.target)) closeMenu();
+  });
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') closeMenu();
+  });
+
+  list.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
 }
 
 /* ============================================================
-   THEME TOGGLE
+   THEME
    ============================================================ */
 
+function getStoredTheme() {
+  return localStorage.getItem(THEME_KEY);
+}
+
+function setDocumentTheme(theme) {
+  document.documentElement.setAttribute('data-theme', theme);
+}
+
+function resolveDarkMode(mediaQuery) {
+  const theme = document.documentElement.getAttribute('data-theme');
+  if (theme === 'dark') return true;
+  if (theme === 'light') return false;
+  return mediaQuery.matches;
+}
+
+function updateThemeButton(button, mediaQuery) {
+  const isDark = resolveDarkMode(mediaQuery);
+  button.innerHTML = isDark ? ICONS.sun : ICONS.moon;
+  button.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+}
+
 function initTheme() {
-  const saved = localStorage.getItem('theme');
-  if (saved) document.documentElement.setAttribute('data-theme', saved);
+  const storedTheme = getStoredTheme();
+  if (storedTheme) setDocumentTheme(storedTheme);
 
-  const btn = byId('theme-toggle');
-  if (!btn) return;
+  const button = byId('theme-toggle');
+  if (!button) return;
 
-  const mq = window.matchMedia('(prefers-color-scheme: dark)');
+  const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 
-  function isDark() {
-    const t = document.documentElement.getAttribute('data-theme');
-    if (t === 'dark') return true;
-    if (t === 'light') return false;
-    return mq.matches;
-  }
-
-  function updateBtn() {
-    btn.innerHTML = isDark() ? ICONS.sun : ICONS.moon;
-    btn.setAttribute('aria-label', isDark() ? 'Switch to light mode' : 'Switch to dark mode');
-  }
-
-  btn.addEventListener('click', () => {
-    const next = isDark() ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
-    updateBtn();
+  button.addEventListener('click', () => {
+    const nextTheme = resolveDarkMode(mediaQuery) ? 'light' : 'dark';
+    setDocumentTheme(nextTheme);
+    localStorage.setItem(THEME_KEY, nextTheme);
+    updateThemeButton(button, mediaQuery);
   });
 
-  updateBtn();
-  mq.addEventListener('change', () => {
-    if (!localStorage.getItem('theme')) updateBtn();
+  updateThemeButton(button, mediaQuery);
+  mediaQuery.addEventListener('change', () => {
+    if (!getStoredTheme()) updateThemeButton(button, mediaQuery);
   });
 }
 
@@ -278,10 +423,13 @@ function initTheme() {
    BOOT
    ============================================================ */
 
-initTheme();
-renderProfile();
-renderEducation();
-renderNews();
-renderMisc();
-loadPubs();
-initMenu();
+function init() {
+  initTheme();
+  renderProfile();
+  renderStaticSections();
+  initPublicationControls();
+  loadPublications();
+  initMenu();
+}
+
+init();

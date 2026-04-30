@@ -206,6 +206,8 @@ h1 { font-size: 28px; margin: 0 0 6px 0; letter-spacing: .2px; }
 .contact a:focus-visible { outline: 2px solid color-mix(in srgb, var(--link) 60%, transparent); outline-offset: 2px; text-decoration: none; }
 .contact a.icon { display: inline-flex; align-items: center; gap: 3px; line-height: 1; padding: 2px 0; }
 .contact a.icon svg { width: 18px; height: 18px; flex: 0 0 18px; stroke: currentColor; }
+.profile-contact { margin-top: 8px; }
+.profile-chips { margin-top: 10px; }
 
 .nav { display: none !important; }
 
@@ -311,6 +313,7 @@ select:focus-visible { border-color: var(--link); box-shadow: 0 0 0 2px color-mi
 .pub-title-link:hover { color: var(--link); text-decoration: underline; text-underline-offset: 3px; }
 .pub .venue { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; flex-wrap: wrap; margin-bottom: 4px; }
 .pub .authors { font-size: 14px; color: var(--muted); margin-bottom: 10px; }
+.pub-error { color: #dc2626; }
 .pub-badge {
   display: inline-block; padding: 1px 8px; border-radius: 9999px; font-size: 11px; font-weight: 700;
   color: var(--doi); background: var(--pub-badge-bg); border: 1px solid var(--doi-border);
