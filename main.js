@@ -165,17 +165,28 @@ function renderPubs(list) {
       ? `<a class="pub-title-link" href="${primaryUrl}" target="_blank" rel="noopener noreferrer">${p.title}</a>`
       : p.title;
     const badge = p.badge ? `<span class="pub-badge">${p.badge}</span>` : '';
-    const imgHTML = p.image
-      ? `<div class="pub-img-wrap"><img class="pub-img" src="${p.image}" alt="${p.title}" loading="lazy"></div>`
-      : '';
-    return `<div class="pub${p.badge ? ' pub-accepted' : ''}${p.image ? ' pub-has-img' : ''}">
-      ${imgHTML}
-      <div class="pub-body">
+    const isBanner = p.imageLayout === 'banner';
+    const isLogo = p.image && p.image.endsWith('.svg');
+
+    let imgHTML = '';
+    let extraClass = '';
+    if (p.image && isBanner) {
+      imgHTML = `<div class="pub-img-wrap${isLogo ? ' is-logo' : ''}"><img class="pub-img" src="${p.image}" alt="${p.title}" loading="lazy"></div>`;
+      extraClass = ' pub-has-img';
+    } else if (p.image) {
+      imgHTML = `<div class="pub-thumb${isLogo ? ' is-logo' : ''}"><img class="pub-thumb-img" src="${p.image}" alt="${p.title}" loading="lazy"></div>`;
+      extraClass = ' pub-has-thumb';
+    }
+
+    const bodyHTML = `<div class="pub-body">
         <div class="title">${title}</div>
         <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}${badge}</div>
         <div class="authors">${authors}</div>
         <div class="links">${links}</div>
-      </div>
+      </div>`;
+
+    return `<div class="pub${p.badge ? ' pub-accepted' : ''}${extraClass}">
+      ${isBanner ? imgHTML + bodyHTML : (imgHTML ? imgHTML + bodyHTML : bodyHTML)}
     </div>`;
   }).join('');
 }

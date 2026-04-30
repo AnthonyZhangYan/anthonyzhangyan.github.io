@@ -244,6 +244,39 @@ select:focus-visible { border-color: var(--link); box-shadow: 0 0 0 2px color-mi
 .pub-has-img { padding: 0; }
 .pub-img-wrap { position: relative; width: 100%; border-radius: 13px 13px 0 0; overflow: hidden; }
 .pub-img { width: 100%; height: auto; display: block; }
+.pub-img-wrap.is-logo {
+  background: #b31b1b;
+  display: flex; align-items: center; justify-content: center;
+  padding: 20px 40px; height: 90px;
+}
+.pub-img-wrap.is-logo .pub-img {
+  width: auto; max-width: 180px; height: 40px; object-fit: contain;
+}
+
+/* ── Side thumbnail layout ── */
+.pub-has-thumb {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  padding: 0;
+}
+.pub-thumb {
+  border-radius: 13px 0 0 13px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.pub-thumb-img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.pub-has-thumb .pub-body { padding: 12px 14px; }
+
+.pub-thumb.is-logo {
+  background: #b31b1b;
+  display: flex; align-items: center; justify-content: center;
+  padding: 12px;
+}
+.pub-thumb.is-logo .pub-thumb-img {
+  width: 70px; height: auto; object-fit: contain;
+}
 .pub-img-wrap::after {
   content: ''; position: absolute; inset: auto 0 0 0; height: 56px;
   background: linear-gradient(to bottom, transparent, var(--card));
