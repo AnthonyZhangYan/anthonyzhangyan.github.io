@@ -258,6 +258,7 @@ select:focus-visible { border-color: var(--link); box-shadow: 0 0 0 2px color-mi
   display: grid;
   grid-template-columns: 110px 1fr;
   padding: 0;
+  gap: 14px;
 }
 .pub-thumb {
   border-radius: 13px 0 0 13px;
