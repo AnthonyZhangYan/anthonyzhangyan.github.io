@@ -153,6 +153,7 @@ function sortPublications(list, mode) {
 
 function renderPubs(list) {
   byId('pubs').innerHTML = list.map(p => {
+    const logoUrl = p.logo ? String(p.logo).replace(/\s/g, '%20') : '';
     const links = (p.links || []).map(l => {
       const safe = (l.url || '').replace(/\s/g, '%20');
       return `<a class="${linkClass(l.name, l.url)}" href="${safe}" target="_blank" rel="noopener noreferrer">${l.name}</a>`;
@@ -181,12 +182,19 @@ function renderPubs(list) {
       extraClass = ' pub-has-thumb';
     }
 
-    const bodyHTML = `<div class="pub-body">
+    const bodyInnerHTML = `<div class="pub-body">
         <div class="title">${title}</div>
         <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}${badge}</div>
         <div class="authors">${authors}</div>
         <div class="links">${links}</div>
       </div>`;
+
+    const bodyHTML = logoUrl
+      ? `<div class="pub-body-row">
+          <div class="pub-thumb is-icml"><img class="pub-thumb-img" src="${logoUrl}" alt="${p.venue || p.title}" loading="lazy"></div>
+          ${bodyInnerHTML}
+        </div>`
+      : bodyInnerHTML;
 
     return `<div class="pub${p.badge ? ' pub-accepted' : ''}${extraClass}">
       ${isBanner ? imgHTML + bodyHTML : (imgHTML ? imgHTML + bodyHTML : bodyHTML)}
