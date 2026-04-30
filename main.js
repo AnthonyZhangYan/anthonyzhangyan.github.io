@@ -20,6 +20,7 @@ const PROFILE = {
 
 // Add entries here — newest first recommended
 const NEWS = [
+  { date: '2026-04-30', msg: 'Our paper <a class="inline-link" href="https://arxiv.org/abs/2601.20043" target="_blank" rel="noopener"><b>RAMBO</b></a> was accepted at <b>ICML 2026</b> (regular)! RAMBO replaces the standard GP surrogate with a Dirichlet Process Mixture of GPs that automatically discovers latent regimes during optimization — each modeled by an independent GP with locally-tuned hyperparameters — enabling principled Bayesian optimization over multi-regime landscapes such as molecular conformation, drug discovery, and fusion reactor design.' },
   { date: '2025-11', msg: 'Homepage launched！🎉' },
   { date: '2025-06', msg: 'I am joining <a class="inline-link" href="https://pml4sc.github.io/" target="_blank" rel="noopener"><b>PML4SC</b></a> lab to conduct research under <a class="inline-link" href="https://imshibo.com/" target="_blank" rel="noopener"><b>Dr. Shibo Li</b></a>\'s mentorship.' },
 ];
@@ -157,11 +158,22 @@ function renderPubs(list) {
     const authors = p.moreAuthors
       ? `<details><summary>${highlightAuthors(p.authors)} <span aria-label="more">…</span></summary><div>${highlightAuthors(p.moreAuthors)}</div></details>`
       : highlightAuthors(p.authors);
-    return `<div class="pub">
-      <div class="title">${p.title}</div>
-      <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}</div>
-      <div class="authors">${authors}</div>
-      <div class="links">${links}</div>
+    const primaryUrl = (p.links || []).find(l => l.name === 'arXiv' || l.name === 'DOI')?.url || '';
+    const title = primaryUrl
+      ? `<a class="pub-title-link" href="${primaryUrl}" target="_blank" rel="noopener noreferrer">${p.title}</a>`
+      : p.title;
+    const badge = p.badge ? `<span class="pub-badge">${p.badge}</span>` : '';
+    const imgHTML = p.image
+      ? `<div class="pub-img-wrap"><img class="pub-img" src="${p.image}" alt="${p.title}" loading="lazy"></div>`
+      : '';
+    return `<div class="pub${p.badge ? ' pub-accepted' : ''}${p.image ? ' pub-has-img' : ''}">
+      ${imgHTML}
+      <div class="pub-body">
+        <div class="title">${title}</div>
+        <div class="venue">${[p.year, p.venue].filter(Boolean).join(' — ')}${badge}</div>
+        <div class="authors">${authors}</div>
+        <div class="links">${links}</div>
+      </div>
     </div>`;
   }).join('');
 }
