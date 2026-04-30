@@ -20,7 +20,7 @@ const PROFILE = {
 
 // Add entries here — newest first recommended
 const NEWS = [
-  { date: '2026-04-30', msg: 'Our paper <a class="inline-link" href="https://arxiv.org/abs/2601.20043" target="_blank" rel="noopener"><b>RAMBO</b></a> was accepted at <b>ICML 2026</b> (regular)! RAMBO replaces the standard GP surrogate with a Dirichlet Process Mixture of GPs that automatically discovers latent regimes during optimization — each modeled by an independent GP with locally-tuned hyperparameters — enabling principled Bayesian optimization over multi-regime landscapes such as molecular conformation, drug discovery, and fusion reactor design.' },
+  { date: '2026-04-30', msg: 'My first-author paper <a class="inline-link" href="https://arxiv.org/abs/2601.20043" target="_blank" rel="noopener"><b>RAMBO</b></a> was accepted at <b>ICML 2026</b> (regular)! RAMBO replaces the standard GP surrogate with a Dirichlet Process Mixture of GPs that automatically discovers latent regimes during optimization — each modeled by an independent GP with locally-tuned hyperparameters — enabling principled Bayesian optimization over multi-regime landscapes such as molecular conformation, drug discovery, and fusion reactor design.' },
   { date: '2025-11', msg: 'Homepage launched！🎉' },
   { date: '2025-06', msg: 'I am joining <a class="inline-link" href="https://pml4sc.github.io/" target="_blank" rel="noopener"><b>PML4SC</b></a> lab to conduct research under <a class="inline-link" href="https://imshibo.com/" target="_blank" rel="noopener"><b>Dr. Shibo Li</b></a>\'s mentorship.' },
 ];

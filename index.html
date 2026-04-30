@@ -68,12 +68,14 @@
       <h2>Publications</h2>
       <div class="controls">
         <label for="sort-by">Preference</label>
-        <select id="sort-by">
-          <option value="year_desc">Newest first (Year ↓)</option>
-          <option value="year_asc">Oldest first (Year ↑)</option>
-          <option value="venue_az">Venue A → Z</option>
-          <option value="venue_za">Venue Z → A</option>
-        </select>
+        <div class="select-wrap">
+          <select id="sort-by">
+            <option value="year_desc">Newest first (Year ↓)</option>
+            <option value="year_asc">Oldest first (Year ↑)</option>
+            <option value="venue_az">Venue A → Z</option>
+            <option value="venue_za">Venue Z → A</option>
+          </select>
+        </div>
       </div>
       <div class="scrollbox" id="pubs"></div>
     </section>
