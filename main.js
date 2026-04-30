@@ -166,7 +166,9 @@ function renderPubs(list) {
       : p.title;
     const badge = p.badge ? `<span class="pub-badge">${p.badge}</span>` : '';
     const isBanner = p.imageLayout === 'banner';
-    const isLogo = p.image && p.image.endsWith('.svg');
+    const isArxiv = p.image && p.image.includes('arxiv-logo');
+    const isIcml  = p.image && p.image.includes('icml-logo');
+    const isLogo  = isArxiv || isIcml;
 
     let imgHTML = '';
     let extraClass = '';
@@ -174,7 +176,8 @@ function renderPubs(list) {
       imgHTML = `<div class="pub-img-wrap${isLogo ? ' is-logo' : ''}"><img class="pub-img" src="${p.image}" alt="${p.title}" loading="lazy"></div>`;
       extraClass = ' pub-has-img';
     } else if (p.image) {
-      imgHTML = `<div class="pub-thumb${isLogo ? ' is-logo' : ''}"><img class="pub-thumb-img" src="${p.image}" alt="${p.title}" loading="lazy"></div>`;
+      const logoClass = isArxiv ? ' is-arxiv' : isIcml ? ' is-icml' : '';
+      imgHTML = `<div class="pub-thumb${logoClass}"><img class="pub-thumb-img" src="${p.image}" alt="${p.title}" loading="lazy"></div>`;
       extraClass = ' pub-has-thumb';
     }
 
