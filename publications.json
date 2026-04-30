@@ -3,7 +3,9 @@
     "title": "Regime-Adaptive Bayesian Optimization via Dirichlet Process Mixtures of Gaussian Processes",
     "venue": "Proceedings of the 43rd International Conference on Machine Learning (ICML 2026)",
     "badge": "Accepted",
-    "image": "assets/publications/icml-logo.svg",
+    "image": "assets/publications/RAMBO.png",
+    "imageLayout": "banner",
+    "logo": "assets/publications/icml-logo.svg",
     "authors": "Yan Zhang, Xuefeng Liu, Sipeng Chen, Sascha Ranftl, Chong Liu, Shibo Li",
     "links": [
       {"name": "arXiv", "url": "https://arxiv.org/abs/2601.20043"},
