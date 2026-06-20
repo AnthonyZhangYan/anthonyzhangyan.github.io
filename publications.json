@@ -1,19 +1,5 @@
 [
   {
-    "title": "Regime-Adaptive Bayesian Optimization via Dirichlet Process Mixtures of Gaussian Processes",
-    "venue": "Proceedings of the 43rd International Conference on Machine Learning (ICML 2026)",
-    "badge": "Accepted",
-    "image": "assets/publications/RAMBO.png",
-    "imageLayout": "banner",
-    "logo": "assets/publications/icml-logo.svg",
-    "authors": "Yan Zhang, Xuefeng Liu, Sipeng Chen, Sascha Ranftl, Chong Liu, Shibo Li",
-    "links": [
-      {"name": "arXiv", "url": "https://arxiv.org/abs/2601.20043"},
-      {"name": "PDF", "url": "assets/papers/2601.20043v1.pdf"}
-    ],
-    "year": 2026
-  },
-  {
     "title": "Closing the Capacity-Convergence Gap: Globally Optimal Configuration of Implicit Neural Representations",
     "venue": "European Conference on Computer Vision (ECCV 2026)",
     "badge": "Accepted",
@@ -24,6 +10,20 @@
     "links": [
       {"name": "arXiv", "url": "https://arxiv.org/abs/2509.23139"},
       {"name": "PDF", "url": "assets/papers/2509.23139v1.pdf"}
+    ],
+    "year": 2026
+  },
+  {
+    "title": "Regime-Adaptive Bayesian Optimization via Dirichlet Process Mixtures of Gaussian Processes",
+    "venue": "Proceedings of the 43rd International Conference on Machine Learning (ICML 2026)",
+    "badge": "Accepted",
+    "image": "assets/publications/RAMBO.png",
+    "imageLayout": "banner",
+    "logo": "assets/publications/icml-logo.svg",
+    "authors": "Yan Zhang, Xuefeng Liu, Sipeng Chen, Sascha Ranftl, Chong Liu, Shibo Li",
+    "links": [
+      {"name": "arXiv", "url": "https://arxiv.org/abs/2601.20043"},
+      {"name": "PDF", "url": "assets/papers/2601.20043v1.pdf"}
     ],
     "year": 2026
   },
