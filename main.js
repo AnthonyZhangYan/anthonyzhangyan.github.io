@@ -221,6 +221,7 @@ function renderPublicationBadge(publication) {
 function getPublicationImageType(image = '') {
   if (image.includes('arxiv-logo')) return 'arxiv';
   if (image.includes('icml-logo')) return 'icml';
+  if (image.includes('eccv')) return 'eccv';
   return '';
 }
 
@@ -265,6 +266,7 @@ function renderPublicationMeta(publication) {
 }
 
 function renderPublicationBody(publication) {
+  const logoType = getPublicationImageType(publication.logo || '');
   const content = `
     <div class="pub-body">
       <div class="title">${renderPublicationTitle(publication)}</div>
@@ -277,7 +279,7 @@ function renderPublicationBody(publication) {
   return `
     <div class="pub-body-row">
       ${renderImage({
-        wrapperClass: 'pub-thumb is-icml',
+        wrapperClass: `pub-thumb${logoType ? ` is-${logoType}` : ''}`,
         imageClass: 'pub-thumb-img',
         src: encodeUrl(publication.logo),
         alt: publication.venue || publication.title,

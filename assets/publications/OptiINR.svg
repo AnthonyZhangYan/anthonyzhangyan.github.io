@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 441" role="img" aria-labelledby="title desc">
+  <title id="title">OptiINR preview</title>
+  <desc id="desc">A scientific preview graphic showing Bayesian optimization for globally configuring implicit neural representations.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07111f"/>
+      <stop offset="0.55" stop-color="#10243a"/>
+      <stop offset="1" stop-color="#141827"/>
+    </linearGradient>
+    <linearGradient id="field" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24c6dc" stop-opacity="0.95"/>
+      <stop offset="0.52" stop-color="#5ade8b" stop-opacity="0.92"/>
+      <stop offset="1" stop-color="#f59e0b" stop-opacity="0.95"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#132033"/>
+      <stop offset="1" stop-color="#0e1728"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#29425f" stroke-width="1" opacity="0.28"/>
+    </pattern>
+    <filter id="shadow" x="-12%" y="-18%" width="124%" height="140%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#000000" flood-opacity="0.32"/>
+    </filter>
+    <style>
+      .label { font: 600 18px Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #d8e7f3; }
+      .small { font: 500 14px Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #9fb5d1; }
+      .tiny { font: 700 12px Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #d8e7f3; }
+      .mono { font: 600 15px ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace; fill: #cfe4f8; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="441" fill="url(#bg)"/>
+  <rect width="1400" height="441" fill="url(#grid)"/>
+  <path d="M0 375C190 318 295 347 453 295C609 244 699 139 880 174C1067 210 1133 330 1400 254V441H0Z" fill="#0a1627" opacity="0.62"/>
+
+  <g transform="translate(60 38)">
+    <text x="0" y="0" dominant-baseline="hanging" font-family="Inter, system-ui, sans-serif" font-size="46" font-weight="800" fill="#f8fbff">OptiINR</text>
+    <text x="0" y="58" class="label" fill="#9fb5d1">Bayesian global configuration for implicit neural representations</text>
+  </g>
+
+  <g transform="translate(1115 40)" filter="url(#shadow)">
+    <rect width="222" height="52" rx="16" fill="#f8fafc"/>
+    <path d="M18 38V14h28l9 12-9 12Z" fill="#111827"/>
+    <text x="70" y="33" font-family="Inter, system-ui, sans-serif" font-size="21" font-weight="800" fill="#111827">ECCV 2026</text>
+  </g>
+
+  <g transform="translate(60 128)" filter="url(#shadow)">
+    <rect width="360" height="245" rx="24" fill="url(#card)" stroke="#2a4162"/>
+    <text x="28" y="39" class="label">Capacity-convergence gap</text>
+    <line x1="58" y1="194" x2="315" y2="194" stroke="#6683a7" stroke-width="2"/>
+    <line x1="58" y1="194" x2="58" y2="70" stroke="#6683a7" stroke-width="2"/>
+    <path d="M58 186C104 174 128 159 160 146C192 133 222 132 259 116C285 105 303 88 319 75" fill="none" stroke="#34d399" stroke-width="5" stroke-linecap="round"/>
+    <path d="M62 170C112 154 151 159 190 166C235 174 273 177 312 154" fill="none" stroke="#60a5fa" stroke-width="4" stroke-dasharray="9 9" stroke-linecap="round"/>
+    <path d="M60 138C91 88 124 84 154 121C188 162 225 83 263 101C292 114 303 130 318 92" fill="none" stroke="#f59e0b" stroke-width="4" stroke-linecap="round"/>
+    <path d="M286 72l9 18 20 3-15 14 4 20-18-10-18 10 4-20-15-14 20-3Z" fill="#5ade8b" stroke="#dcfce7" stroke-width="2"/>
+    <text x="69" y="220" class="small">stable</text>
+    <text x="245" y="220" class="small">expressive</text>
+    <text x="23" y="128" class="small" transform="rotate(-90 23 128)">PSNR</text>
+    <text x="173" y="91" class="tiny" fill="#fbbf24">heuristic</text>
+    <text x="225" y="147" class="tiny" fill="#93c5fd">underfit</text>
+    <text x="243" y="62" class="tiny" fill="#bbf7d0">global optimum</text>
+  </g>
+
+  <g transform="translate(470 128)" filter="url(#shadow)">
+    <rect width="410" height="245" rx="24" fill="url(#card)" stroke="#2a4162"/>
+    <text x="28" y="39" class="label">Mixed-variable Bayesian search</text>
+    <g transform="translate(28 62)">
+      <rect x="0" y="0" width="76" height="30" rx="15" fill="#1f4d65" stroke="#5eead4"/>
+      <rect x="86" y="0" width="70" height="30" rx="15" fill="#49325d" stroke="#c084fc"/>
+      <rect x="166" y="0" width="82" height="30" rx="15" fill="#4d3b1d" stroke="#fbbf24"/>
+      <rect x="258" y="0" width="76" height="30" rx="15" fill="#21472e" stroke="#86efac"/>
+      <text x="17" y="20" class="tiny">SIREN</text>
+      <text x="104" y="20" class="tiny">WIRE</text>
+      <text x="183" y="20" class="tiny">FINER</text>
+      <text x="276" y="20" class="tiny">Gauss</text>
+    </g>
+    <g transform="translate(42 108)">
+      <path d="M0 65C28 29 61 15 94 41C124 64 153 79 187 42C214 13 244 15 274 57C296 88 318 82 337 61" fill="none" stroke="#6ee7b7" stroke-width="3"/>
+      <path d="M0 98C31 77 58 84 88 92C131 104 166 55 207 61C249 67 281 105 337 84" fill="none" stroke="#93c5fd" stroke-width="2" opacity="0.95"/>
+      <path d="M0 25C38 42 66 51 102 33C139 16 163 25 195 38C242 57 288 24 337 32" fill="none" stroke="#f8d06a" stroke-width="2" opacity="0.9"/>
+      <g fill="#f8fafc" stroke="#0f172a" stroke-width="2">
+        <circle cx="35" cy="77" r="7"/>
+        <circle cx="89" cy="45" r="7"/>
+        <circle cx="140" cy="86" r="7"/>
+        <circle cx="214" cy="55" r="7"/>
+        <circle cx="285" cy="31" r="7"/>
+      </g>
+      <circle cx="312" cy="69" r="10" fill="#34d399" stroke="#dcfce7" stroke-width="3"/>
+      <line x1="40" y1="112" x2="317" y2="112" stroke="#6683a7" stroke-width="2"/>
+      <line x1="40" y1="112" x2="40" y2="14" stroke="#6683a7" stroke-width="2"/>
+    </g>
+    <text x="42" y="226" class="small">surrogate model + acquisition selects the next configuration</text>
+  </g>
+
+  <g transform="translate(930 128)" filter="url(#shadow)">
+    <rect width="410" height="245" rx="24" fill="url(#card)" stroke="#2a4162"/>
+    <text x="28" y="39" class="label">Layer-wise configuration</text>
+    <g transform="translate(38 68)">
+      <rect x="0" y="54" width="50" height="80" rx="14" fill="#17394a" stroke="#5eead4"/>
+      <rect x="70" y="32" width="50" height="124" rx="14" fill="#2d2545" stroke="#c084fc"/>
+      <rect x="140" y="46" width="50" height="96" rx="14" fill="#3b311c" stroke="#fbbf24"/>
+      <rect x="210" y="22" width="50" height="144" rx="14" fill="#1d3d2a" stroke="#86efac"/>
+      <path d="M50 95H70M120 95H140M190 95H210" stroke="#91a9c7" stroke-width="3"/>
+      <text x="13" y="100" class="tiny" transform="rotate(-90 13 100)">init</text>
+      <text x="84" y="100" class="tiny" transform="rotate(-90 84 100)">omega</text>
+      <text x="153" y="100" class="tiny" transform="rotate(-90 153 100)">scale</text>
+      <text x="224" y="100" class="tiny" transform="rotate(-90 224 100)">family</text>
+    </g>
+    <g transform="translate(312 70)">
+      <rect x="0" y="0" width="64" height="46" rx="10" fill="#172554" stroke="#60a5fa"/>
+      <path d="M8 38L22 20l11 12 9-14 15 20Z" fill="url(#field)" opacity="0.94"/>
+      <rect x="0" y="62" width="64" height="46" rx="10" fill="#3b1d32" stroke="#f472b6"/>
+      <path d="M8 33C17 11 26 11 35 33S53 55 60 33" fill="none" stroke="#f9a8d4" stroke-width="4"/>
+      <rect x="0" y="124" width="64" height="46" rx="10" fill="#1f2937" stroke="#a7f3d0"/>
+      <path d="M31 9L52 22v25L31 59L10 47V22Z" fill="#34d399" opacity="0.82"/>
+    </g>
+    <text x="38" y="214" class="small">activation family + initialization scales</text>
+  </g>
+</svg>

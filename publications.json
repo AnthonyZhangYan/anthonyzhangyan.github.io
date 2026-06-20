@@ -14,6 +14,20 @@
     "year": 2026
   },
   {
+    "title": "Closing the Capacity-Convergence Gap: Globally Optimal Configuration of Implicit Neural Representations",
+    "venue": "European Conference on Computer Vision (ECCV 2026)",
+    "badge": "Accepted",
+    "image": "assets/publications/OptiINR.svg",
+    "imageLayout": "banner",
+    "logo": "assets/publications/eccv-navbar-logo.svg",
+    "authors": "Sipeng Chen, Yan Zhang, Shibo Li",
+    "links": [
+      {"name": "arXiv", "url": "https://arxiv.org/abs/2509.23139"},
+      {"name": "PDF", "url": "assets/papers/2509.23139v1.pdf"}
+    ],
+    "year": 2026
+  },
+  {
     "title": "Dynamic Bayesian Optimization Framework for Instruction Tuning in Partial Differential Equation Discovery",
     "venue": "arXiv",
     "image": "assets/publications/arxiv-logo.svg",
@@ -23,17 +37,6 @@
       {"name": "PDF", "url": "assets/papers/2601.00088v1.pdf"}
     ],
     "year": 2026
-  },
-  {
-    "title": "Beyond Heuristics: Globally Optimal Configuration of Implicit Neural Representations",
-    "venue": "arXiv",
-    "image": "assets/publications/arxiv-logo.svg",
-    "authors": "Sipeng Chen, Yan Zhang, Shibo Li",
-    "links": [
-      {"name": "arXiv", "url": "https://arxiv.org/abs/2509.23139"},
-      {"name": "PDF", "url": "assets/papers/2509.23139v1.pdf"}
-    ],
-    "year": 2025
   },
   {
     "title": "Giant and Reversible Barocaloric Effect in Trinuclear Spin-Crossover Complex Fe₃(bntrz)₆(tcnset)₆",
