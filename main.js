@@ -16,8 +16,6 @@ const MISC = SITE_DATA.misc || [];
 const PUBLICATION_SORTERS = {
   year_desc: (a, b) => normalizeYear(b.year) - normalizeYear(a.year),
   year_asc:  (a, b) => normalizeYear(a.year) - normalizeYear(b.year),
-  venue_az:  (a, b) => String(a.venue || '').localeCompare(String(b.venue || '')),
-  venue_za:  (a, b) => String(b.venue || '').localeCompare(String(a.venue || '')),
 };
 
 /* ============================================================
