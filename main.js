@@ -331,47 +331,54 @@ function initPublicationControls() {
 }
 
 /* ============================================================
-   MENU
+   SIDE NAV
    ============================================================ */
 
-function initMenu() {
-  const button = byId('menu-toggle');
-  const list = byId('menu-list');
-  const root = button?.closest('.menu');
-  if (!button || !list || !root) return;
+function initSideNav() {
+  const root = byId('side-nav');
+  if (!root) return;
 
-  const openMenu = () => {
-    root.classList.add('open');
-    button.setAttribute('aria-expanded', 'true');
+  const links = Array.from(root.querySelectorAll('a[href^="#"]'));
+  const sections = links
+    .map(link => ({
+      link,
+      target: byId(link.getAttribute('href').slice(1)),
+    }))
+    .filter(item => item.target);
+
+  if (!sections.length) return;
+
+  const setActiveLink = activeLink => {
+    links.forEach(link => link.classList.toggle('active', link === activeLink));
   };
 
-  const closeMenu = () => {
-    root.classList.remove('open');
-    button.setAttribute('aria-expanded', 'false');
+  const updateActiveLink = () => {
+    const anchorLine = window.innerHeight * 0.35;
+    let active = sections[0];
+
+    sections.forEach(section => {
+      if (section.target.getBoundingClientRect().top <= anchorLine) {
+        active = section;
+      }
+    });
+
+    setActiveLink(active.link);
   };
 
-  const toggleMenu = () => {
-    if (root.classList.contains('open')) {
-      closeMenu();
-      return;
-    }
-    openMenu();
-  };
+  links.forEach(link => {
+    link.addEventListener('click', event => {
+      const target = byId(link.getAttribute('href').slice(1));
+      if (!target) return;
 
-  button.addEventListener('click', event => {
-    event.stopPropagation();
-    toggleMenu();
+      event.preventDefault();
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActiveLink(link);
+    });
   });
 
-  document.addEventListener('click', event => {
-    if (!root.contains(event.target)) closeMenu();
-  });
-
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape') closeMenu();
-  });
-
-  list.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  window.addEventListener('scroll', updateActiveLink, { passive: true });
+  window.addEventListener('resize', updateActiveLink);
+  updateActiveLink();
 }
 
 /* ============================================================
@@ -431,7 +438,7 @@ function init() {
   renderStaticSections();
   initPublicationControls();
   loadPublications();
-  initMenu();
+  initSideNav();
 }
 
 init();
