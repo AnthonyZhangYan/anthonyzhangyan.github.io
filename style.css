@@ -636,19 +636,24 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 .misc li {
   position: relative;
   margin: 6px 0 10px;
-  padding: 10px 0 12px 16px;
+  padding: 10px 12px 12px 38px;
   line-height: 1.5;
+  background: color-mix(in srgb, var(--surface) 86%, var(--link) 4%);
+  border: 1px solid color-mix(in srgb, var(--border) 82%, var(--link) 18%);
+  border-radius: 12px;
 }
 .misc li::before {
   content: "";
   position: absolute;
-  left: 0;
-  top: 8px;
-  bottom: 8px;
-  width: 4px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, var(--link), transparent 80%);
-  opacity: .55;
+  left: 13px;
+  top: 14px;
+  width: 17px;
+  height: 17px;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--link) 80%, var(--surface)) 0 3px, transparent 3.5px),
+    color-mix(in srgb, var(--link) 12%, var(--surface));
+  border: 1px solid color-mix(in srgb, var(--link) 28%, var(--border));
 }
 
 .kbd {
@@ -694,14 +699,20 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 .inline-link:focus-visible { outline: 2px solid color-mix(in srgb, var(--link) 60%, transparent); outline-offset: 2px; }
 
 /* ── Education ── */
-.edu-grid { list-style: none; padding-left: 0; margin: 0; }
+.edu-grid { list-style: none; padding-left: 0; margin: 0; position: relative; }
+.edu-grid::before {
+  content: ""; position: absolute; left: 7px; top: 14px; bottom: 16px; width: 1px;
+  background: linear-gradient(180deg, transparent, color-mix(in srgb, var(--link) 55%, transparent) 10%, color-mix(in srgb, var(--link) 28%, transparent) 86%, transparent);
+}
 .edu-grid li {
-  position: relative; padding: 10px 0 12px 16px; margin: 6px 0 10px;
+  position: relative; padding: 10px 0 12px 26px; margin: 6px 0 10px;
   display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: baseline; line-height: 1.5;
 }
 .edu-grid li::before {
-  content: ""; position: absolute; left: 0; top: 8px; bottom: 8px; width: 4px; border-radius: 4px;
-  background: linear-gradient(180deg, var(--link), transparent 80%); opacity: .55;
+  content: ""; position: absolute; left: 2px; top: 17px; width: 11px; height: 11px; border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid color-mix(in srgb, var(--link) 72%, var(--surface));
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--link) 16%, transparent), 0 6px 12px color-mix(in srgb, var(--link) 20%, transparent);
 }
 .degree {
   display: inline-block; margin-left: 8px; padding: 2px 8px; font-size: 12px; font-weight: 600; vertical-align: middle;
