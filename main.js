@@ -351,6 +351,10 @@ function initSideNav() {
     links.forEach(link => link.classList.toggle('active', link === activeLink));
   };
 
+  const updateNavVisibility = () => {
+    root.classList.toggle('is-visible', sections[0].target.getBoundingClientRect().bottom <= 0);
+  };
+
   const updateActiveLink = () => {
     const anchorLine = window.innerHeight * 0.35;
     let active = sections[0];
@@ -362,6 +366,7 @@ function initSideNav() {
     });
 
     setActiveLink(active.link);
+    updateNavVisibility();
   };
 
   links.forEach(link => {
@@ -372,6 +377,7 @@ function initSideNav() {
       event.preventDefault();
       target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       setActiveLink(link);
+      updateNavVisibility();
     });
   });
 

@@ -3,7 +3,7 @@ window.SITE_DATA = {
     name:      'Yan Zhang (张岩)',
     title:     'Ph.D. Student @ Florida State University',
     affil:     'Department of Computer Science',
-    bio:       'I am a graduate student in the Department of Computer Science at Florida State University. My research interests include <b>machine learning</b>, <b>AI for science</b>, <b>Bayesian optimization</b>, <b>large language models</b>, and <b>AI agents</b>.',
+    bio:       'I am a graduate student in the Department of Computer Science at Florida State University, working in the <a class="inline-link" href="https://pml4sc.github.io/" target="_blank" rel="noopener">PML4SC Lab</a> under the supervision of <a class="inline-link" href="https://imshibo.com/" target="_blank" rel="noopener">Dr. Shibo Li</a>. My research interests include <b>machine learning</b>, <b>AI for science</b>, <b>Bayesian optimization</b>, <b>large language models</b>, and <b>AI agents</b>.',
     email:     'yz18b@fsu.edu',
     scholar:   'https://scholar.google.com/citations?user=nAh7B5EAAAAJ&hl=en',
     github:    'https://github.com/AnthonyZhangYan',
