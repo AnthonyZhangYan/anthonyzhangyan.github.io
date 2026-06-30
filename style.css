@@ -288,8 +288,8 @@ img, video, iframe { max-width: 100%; height: auto; }
 header {
   position: relative;
   display: flex; flex-direction: column; align-items: center; gap: 0;
-  margin: 58px 0 22px;
-  padding: 68px 32px 30px;
+  margin: 66px 0 22px;
+  padding: 78px 32px 30px;
   background: var(--surface);
   border: 1px solid var(--surface-border);
   border-radius: var(--section-radius);
@@ -309,7 +309,7 @@ header img {
   top: 0;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 98px; height: 98px; border-radius: 50%; object-fit: cover;
+  width: 116px; height: 116px; border-radius: 50%; object-fit: cover;
   border: 4px solid color-mix(in srgb, var(--surface) 82%, var(--link) 18%);
   background: #fff;
   box-shadow: 0 8px 26px rgba(15, 23, 42, .12);
@@ -340,6 +340,50 @@ h1 { font-size: 28px; margin: 0 0 6px 0; letter-spacing: .2px; }
 .profile-contact a { margin-right: 0; }
 .profile-chips { justify-content: center; margin-top: 12px; }
 .name-row { justify-content: center; align-items: center; }
+.profile-affiliations {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  flex-wrap: wrap;
+  margin-top: 18px;
+}
+.profile-affiliations .affiliation + .affiliation {
+  position: relative;
+}
+.profile-affiliations .affiliation + .affiliation::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 50%;
+  width: 1px;
+  height: 18px;
+  transform: translateY(-50%);
+  background: color-mix(in srgb, var(--muted) 34%, transparent);
+}
+.affiliation {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  color: var(--muted);
+  text-decoration: none;
+  font-weight: 650;
+  font-size: 14px;
+  transition: color .18s ease, transform .18s ease;
+}
+.affiliation:hover,
+.affiliation:focus-visible {
+  color: var(--link);
+  transform: translateY(-1px);
+  outline: none;
+}
+.affiliation-logo {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 30px;
+  background-color: #fff;
+  box-shadow: 0 6px 14px rgba(15, 23, 42, .14);
+}
 .profile-divider {
   width: 100%;
   height: 1px;
@@ -827,7 +871,6 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 
 /* ── Seals ── */
 .name-row { display: flex; align-items: flex-end; gap: 12px; flex-wrap: wrap; }
-.name-logos { display: flex; gap: 8px; padding-bottom: 3px; }
 .seal {
   width: 40px; height: 40px; display: inline-block;
   clip-path: circle(50%);
@@ -838,7 +881,13 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 .seal:hover { transform: translateY(-1px); filter: none; opacity: 1; }
 .seal.nku { background-image: url('assets/nku.png'); background-size: 100%; }
 .seal.fsu { background-image: url('assets/fsu.png'); background-size: 140%; background-position: 50% 50%; }
-@media (max-width: 480px) { .seal { width: 32px; height: 32px; } }
+.affiliation-logo.seal { width: 30px; height: 30px; }
+@media (max-width: 480px) {
+  .seal { width: 32px; height: 32px; }
+  .affiliation-logo.seal { width: 28px; height: 28px; flex-basis: 28px; }
+  .profile-affiliations { gap: 14px; }
+  .profile-affiliations .affiliation + .affiliation::before { display: none; }
+}
 
 /* ── Side menu ── */
 .menu {
@@ -1019,8 +1068,8 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
     gap: 18px;
   }
   header img {
-    width: 82px;
-    height: 82px;
+    width: 94px;
+    height: 94px;
   }
   h1 {
     font-size: 25px;

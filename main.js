@@ -93,6 +93,15 @@ function renderSeal(seal) {
   });
 }
 
+function renderAffiliation(seal) {
+  return renderExternalLink({
+    className: `affiliation ${seal.cls}`,
+    href: seal.href,
+    label: seal.label,
+    body: `<span class="affiliation-logo seal ${seal.cls}" aria-hidden="true"></span><span>${seal.label}</span>`,
+  });
+}
+
 function renderContact(profile, contact) {
   return renderExternalLink({
     className: 'icon',
@@ -110,12 +119,12 @@ function renderProfile() {
   setHTML('profile-info', `
     <div class="name-row">
       <h1>${PROFILE.name}</h1>
-      <div class="name-logos">${renderItems(PROFILE.seals, renderSeal)}</div>
     </div>
     <div class="subtitle">${PROFILE.title}</div>
     <div class="subtitle">${PROFILE.affil}</div>
     <div class="contact profile-contact">${renderItems(PROFILE_CONTACTS, contact => renderContact(PROFILE, contact))}</div>
     <div class="chips profile-chips">${renderItems(PROFILE.interests, renderChip)}</div>
+    <div class="profile-affiliations">${renderItems(PROFILE.seals, renderAffiliation)}</div>
   `);
   setHTML('bio', PROFILE.bio);
   setText('year', new Date().getFullYear());
