@@ -125,9 +125,10 @@ function renderEducationItem(item) {
   return `
     <li>
       <div class="left">
-        <b>${item.degree}</b> <span class="degree">${item.badge}</span>
+        <b>${item.degree}</b>
         <div class="school">${item.school}</div>
       </div>
+      <span class="degree">${item.badge}</span>
       <div class="when"><span class="mon">${item.mon}</span> <span class="yr">${item.yr}</span></div>
     </li>
   `;

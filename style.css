@@ -743,7 +743,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 }
 .edu-grid li {
   position: relative; padding: 10px 0 12px 26px; margin: 6px 0 10px;
-  display: grid; grid-template-columns: 1fr auto; gap: 10px; align-items: baseline; line-height: 1.5;
+  display: grid; grid-template-columns: minmax(0, 1fr) 64px auto; gap: 10px; align-items: baseline; line-height: 1.5;
 }
 .edu-grid li::before {
   content: ""; position: absolute; left: 2px; top: 17px; width: 11px; height: 11px; border-radius: 50%;
@@ -757,14 +757,11 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 }
 .degree:hover { color: var(--pdf-hover); border-color: var(--pdf-border); }
 .ed-grid .left {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 4px 10px;
-  align-items: baseline;
+  min-width: 0;
 }
-.ed-grid .degree { margin-left: 0; }
+.ed-grid .degree { justify-self: start; margin-left: 0; }
 .ed-grid b { color: var(--accent); }
-.ed-grid .school { color: var(--muted); grid-column: 1 / -1; }
+.ed-grid .school { color: var(--muted); }
 .ed-grid .when { color: var(--muted); white-space: nowrap; }
 .ed-grid .when {
   justify-self: end; text-align: right; white-space: nowrap; color: var(--muted);
@@ -778,10 +775,24 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 .when .yr { font-variant-numeric: tabular-nums; font-feature-settings: "tnum" 1; }
 @media (max-width: 560px) {
   .edu-grid li {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
     row-gap: 6px;
   }
+  .ed-grid .left {
+    display: contents;
+  }
+  .ed-grid b {
+    grid-column: 1;
+  }
+  .ed-grid .degree {
+    grid-column: 2;
+    justify-self: start;
+  }
+  .ed-grid .school {
+    grid-column: 1 / -1;
+  }
   .ed-grid .when {
+    grid-column: 1 / -1;
     justify-self: start;
     text-align: left;
     grid-template-columns: auto auto;
