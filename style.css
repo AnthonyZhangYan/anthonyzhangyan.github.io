@@ -743,7 +743,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 }
 .edu-grid li {
   position: relative; padding: 10px 0 12px 26px; margin: 6px 0 10px;
-  display: grid; grid-template-columns: minmax(0, 1fr) 64px auto; gap: 10px; align-items: baseline; line-height: 1.5;
+  display: grid; grid-template-columns: minmax(0, 1fr) 72px 118px; gap: 10px; align-items: baseline; line-height: 1.5;
 }
 .edu-grid li::before {
   content: ""; position: absolute; left: 2px; top: 17px; width: 11px; height: 11px; border-radius: 50%;
@@ -764,7 +764,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 .ed-grid .school { color: var(--muted); }
 .ed-grid .when { color: var(--muted); white-space: nowrap; }
 .ed-grid .when {
-  justify-self: end; text-align: right; white-space: nowrap; color: var(--muted);
+  justify-self: end; width: 118px; text-align: right; white-space: nowrap; color: var(--muted);
   display: inline-grid; grid-auto-flow: column; grid-template-columns: 3.2ch auto;
   column-gap: 6px; align-items: baseline;
 }
@@ -794,6 +794,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
   .ed-grid .when {
     grid-column: 1 / -1;
     justify-self: start;
+    width: auto;
     text-align: left;
     grid-template-columns: auto auto;
     margin-top: 2px;
