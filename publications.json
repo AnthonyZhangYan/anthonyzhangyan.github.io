@@ -5,6 +5,7 @@
     "badge": "Accepted",
     "image": "assets/publications/inr-flowchart.svg",
     "imageLayout": "banner",
+    "logo": "assets/publications/eccv-navbar-logo.svg",
     "authors": "Sipeng Chen, Yan Zhang, Shibo Li",
     "links": [
       {"name": "arXiv", "url": "https://arxiv.org/abs/2509.23139"},
