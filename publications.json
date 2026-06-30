@@ -8,7 +8,8 @@
     "authors": "Sipeng Chen, Yan Zhang, Shibo Li",
     "links": [
       {"name": "arXiv", "url": "https://arxiv.org/abs/2509.23139"},
-      {"name": "PDF", "url": "assets/papers/2509.23139v1.pdf"}
+      {"name": "PDF", "url": "assets/papers/2509.23139v1.pdf"},
+      {"name": "Code", "url": "https://github.com/AnthonyZhangYan"}
     ],
     "year": 2026
   },
@@ -22,7 +23,8 @@
     "authors": "Yan Zhang, Xuefeng Liu, Sipeng Chen, Sascha Ranftl, Chong Liu, Shibo Li",
     "links": [
       {"name": "arXiv", "url": "https://arxiv.org/abs/2601.20043"},
-      {"name": "PDF", "url": "assets/papers/2601.20043v1.pdf"}
+      {"name": "PDF", "url": "assets/papers/2601.20043v1.pdf"},
+      {"name": "Code", "url": "https://github.com/AnthonyZhangYan/RAMBO"}
     ],
     "year": 2026
   },
@@ -33,7 +35,8 @@
     "authors": "Junqi Qu, Yan Zhang, Shangqian Gao, Shibo Li",
     "links": [
       {"name": "arXiv", "url": "https://arxiv.org/abs/2601.00088"},
-      {"name": "PDF", "url": "assets/papers/2601.00088v1.pdf"}
+      {"name": "PDF", "url": "assets/papers/2601.00088v1.pdf"},
+      {"name": "Code", "url": "https://github.com/AnthonyZhangYan"}
     ],
     "year": 2026
   },
