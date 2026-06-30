@@ -916,9 +916,6 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
     padding-top: 26px;
     padding-bottom: 86px;
   }
-  html.side-nav-visible .container {
-    padding-top: calc(26px + var(--mobile-nav-clearance));
-  }
   html.side-nav-visible body::before {
     content: "";
     position: fixed;
