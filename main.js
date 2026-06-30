@@ -352,7 +352,9 @@ function initSideNav() {
   };
 
   const updateNavVisibility = () => {
-    root.classList.toggle('is-visible', sections[0].target.getBoundingClientRect().bottom <= 0);
+    const isVisible = sections[0].target.getBoundingClientRect().bottom <= 0;
+    root.classList.toggle('is-visible', isVisible);
+    document.documentElement.classList.toggle('side-nav-visible', isVisible);
   };
 
   const updateActiveLink = () => {
