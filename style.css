@@ -1006,7 +1006,7 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 /* ── Theme toggle (top-right) ── */
 .theme-toggle {
   position: fixed; top: 14px; right: 14px; z-index: 1000;
-  appearance: none; width: 36px; height: 36px;
+  appearance: none; -webkit-tap-highlight-color: transparent; width: 36px; height: 36px;
   border: 1px solid var(--border); border-radius: 999px;
   background: var(--card); color: var(--fg);
   box-shadow: var(--shadow-card); cursor: pointer;
@@ -1014,7 +1014,11 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
   padding: 0; transition: border-color .15s, background .15s;
 }
 .theme-toggle:hover { border-color: var(--muted); }
-.theme-toggle:focus-visible { outline: 2px solid color-mix(in srgb, var(--link) 60%, transparent); outline-offset: 2px; }
+.theme-toggle:focus,
+.theme-toggle:focus-visible,
+.theme-toggle:active {
+  outline: none;
+}
 .theme-toggle svg { width: 16px; height: 16px; stroke: var(--fg); fill: none; pointer-events: none; }
 
 @media (max-width: 980px) {
