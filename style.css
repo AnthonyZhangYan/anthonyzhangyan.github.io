@@ -706,56 +706,68 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
 .hr { height: 1px; background: var(--border); margin: 18px 0; }
 
 .misc ul {
-  list-style: none; margin: 0; padding-left: 0;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
 }
 .misc li {
-  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  min-width: 0;
+  min-height: 76px;
   margin: 0;
-  padding: 16px 16px 16px 58px;
-  line-height: 1.5;
-  min-height: 48px;
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--surface) 92%, var(--link) 6%), color-mix(in srgb, var(--surface) 96%, var(--fg) 2%));
+  padding: 18px 20px;
   border: 1px solid color-mix(in srgb, var(--border) 72%, var(--link) 24%);
   border-radius: 14px;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--surface) 92%, var(--link) 6%), color-mix(in srgb, var(--surface) 96%, var(--fg) 2%));
   box-shadow: inset 0 1px 0 color-mix(in srgb, #fff 10%, transparent), 0 8px 20px rgba(0, 0, 0, .08);
   overflow: hidden;
+  transition: background .2s ease, border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
-.misc li::before {
-  content: "";
-  position: absolute;
-  left: 14px;
-  top: 50%;
-  width: 30px;
-  height: 30px;
-  transform: translateY(-50%);
+.misc li:hover {
+  background: var(--surface-hover);
+  border-color: var(--surface-hover-border);
+  box-shadow: var(--chip-hover-shadow);
+  transform: translateY(-1px);
+}
+.misc-icon {
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 10px;
-  background:
-    radial-gradient(circle at 35% 28%, rgba(255, 255, 255, .34), transparent 34%),
-    color-mix(in srgb, var(--link) 78%, var(--surface));
-  box-shadow: 0 8px 18px color-mix(in srgb, var(--link) 18%, transparent);
+  color: #0f172a;
+  background: linear-gradient(135deg, #bfdbfe, var(--link));
+  box-shadow: 0 10px 24px color-mix(in srgb, var(--link) 24%, transparent);
 }
-.misc li::after {
+.misc-icon::before {
   content: "";
-  position: absolute;
-  left: 22px;
-  top: 50%;
-  width: 14px;
-  height: 14px;
-  transform: translateY(-50%);
-  background: var(--surface);
-  -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-  -webkit-mask-position: center; mask-position: center;
-  -webkit-mask-size: contain; mask-size: contain;
+  width: 17px;
+  height: 17px;
+  background: currentColor;
+  mask: var(--misc-icon) center / contain no-repeat;
+  -webkit-mask: var(--misc-icon) center / contain no-repeat;
 }
-.misc li:nth-child(1)::after {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M7%207h10a5%205%200%200%201%204.84%203.76l.9%203.5A3%203%200%200%201%2019%2017.82l-2.08-1.04A3%203%200%200%200%2015.58%2016H8.42a3%203%200%200%200-1.34.32L5%2017.82a3%203%200%200%201-3.74-3.56l.9-3.5A5%205%200%200%201%207%207Zm1%203v2H6v2h2v2h2v-2h2v-2h-2v-2H8Zm8%200a1%201%200%201%200%200%202%201%201%200%200%200%200-2Zm3%203a1%201%200%201%200%200%202%201%201%200%200%200%200-2Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M7%207h10a5%205%200%200%201%204.84%203.76l.9%203.5A3%203%200%200%201%2019%2017.82l-2.08-1.04A3%203%200%200%200%2015.58%2016H8.42a3%203%200%200%200-1.34.32L5%2017.82a3%203%200%200%201-3.74-3.56l.9-3.5A5%205%200%200%201%207%207Zm1%203v2H6v2h2v2h2v-2h2v-2h-2v-2H8Zm8%200a1%201%200%201%200%200%202%201%201%200%200%200%200-2Zm3%203a1%201%200%201%200%200%202%201%201%200%200%200%200-2Z'/%3E%3C/svg%3E");
+.misc-hobbies {
+  --misc-icon: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cline%20x1='6'%20y1='11'%20x2='10'%20y2='11'/%3E%3Cline%20x1='8'%20y1='9'%20x2='8'%20y2='13'/%3E%3Cline%20x1='15'%20y1='12'%20x2='15.01'%20y2='12'/%3E%3Cline%20x1='18'%20y1='10'%20x2='18.01'%20y2='10'/%3E%3Cpath%20d='M17.32%205H6.68a4%204%200%200%200-3.97%203.59c-.15%201.46-.24%202.45-.4%203.83-.19%201.67.52%203.32%201.91%204.17a3.41%203.41%200%200%200%204.43-.73l1.16-1.28a3%203%200%200%201%202.22-.98h.94a3%203%200%200%201%202.22.98l1.16%201.28a3.41%203.41%200%200%200%204.43.73c1.39-.85%202.1-2.5%201.91-4.17-.16-1.38-.25-2.37-.4-3.83A4%204%200%200%200%2017.32%205z'/%3E%3C/svg%3E");
 }
-.misc li:nth-child(2)::after {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M3%204h18a1%201%200%200%201%201%201v14a1%201%200%200%201-1%201H3a1%201%200%200%201-1-1V5a1%201%200%200%201%201-1Zm1.9%203.2v.1L12%2012.1l7.1-4.8v-.1H4.9Zm15.1%202.1-7.45%205.02a1%201%200%200%201-1.1%200L4%209.3V18h16V9.3Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M3%204h18a1%201%200%200%201%201%201v14a1%201%200%200%201-1%201H3a1%201%200%200%201-1-1V5a1%201%200%200%201%201-1Zm1.9%203.2v.1L12%2012.1l7.1-4.8v-.1H4.9Zm15.1%202.1-7.45%205.02a1%201%200%200%201-1.1%200L4%209.3V18h16V9.3Z'/%3E%3C/svg%3E");
+.misc-contact {
+  --misc-icon: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Crect%20x='2'%20y='4'%20width='20'%20height='16'%20rx='2'/%3E%3Cpath%20d='m22%207-8.97%205.7a2%202%200%200%201-2.06%200L2%207'/%3E%3C/svg%3E");
+}
+.misc-text {
+  min-width: 0;
+  color: var(--fg);
+  font-size: 15px;
+  font-weight: 650;
+  line-height: 1.45;
+  overflow-wrap: anywhere;
 }
 
 .kbd {
@@ -1086,6 +1098,23 @@ footer { margin-top: 56px; color: var(--muted); font-size: 13px; text-align: cen
   }
   select {
     width: 100%;
+  }
+  .misc ul {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .misc li {
+    min-height: 68px;
+    padding: 16px;
+    gap: 12px;
+  }
+  .misc-icon {
+    width: 32px;
+    height: 32px;
+    flex-basis: 32px;
+  }
+  .misc-text {
+    font-size: 14px;
   }
 }
 

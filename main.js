@@ -147,8 +147,14 @@ function renderNewsItem(item) {
   return `<li><span class="pill">${item.date}</span><span class="msg">${item.msg}</span></li>`;
 }
 
-function renderMiscItem(item) {
-  return `<li>${item}</li>`;
+function renderMiscItem(item, index) {
+  const iconClass = index === 0 ? 'misc-hobbies' : 'misc-contact';
+  return `
+    <li class="${iconClass}">
+      <span class="misc-icon" aria-hidden="true"></span>
+      <span class="misc-text">${item}</span>
+    </li>
+  `;
 }
 
 function renderStaticSections() {
