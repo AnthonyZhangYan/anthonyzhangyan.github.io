@@ -146,8 +146,8 @@ function renderEducationItem(item) {
 
 function renderNewsDate(item) {
   return `
-    <span class="news-date">
-      <span class="pill">${item.date}</span>
+    <span class="pill news-date">
+      <span>${item.date}</span>
       ${item.venue ? `<span class="venue">${item.venue}</span>` : ''}
     </span>
   `;
