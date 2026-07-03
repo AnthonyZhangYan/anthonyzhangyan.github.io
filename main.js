@@ -144,8 +144,17 @@ function renderEducationItem(item) {
   `;
 }
 
+function renderNewsDate(item) {
+  return `
+    <span class="news-date">
+      <span class="pill">${item.date}</span>
+      ${item.venue ? `<span class="venue">${item.venue}</span>` : ''}
+    </span>
+  `;
+}
+
 function renderNewsItem(item) {
-  return `<li><span class="pill">${item.date}</span><span class="msg">${item.msg}</span></li>`;
+  return `<li>${renderNewsDate(item)}<span class="msg">${item.msg}</span></li>`;
 }
 
 function renderMiscItem(item, index) {
