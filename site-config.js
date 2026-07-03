@@ -14,6 +14,10 @@ window.SITE_CONFIG = {
   primaryPublicationLinks: ['arXiv', 'DOI'],
   externalLinkAttrs: 'target="_blank" rel="noopener"',
   safeExternalLinkAttrs: 'target="_blank" rel="noopener noreferrer"',
+  visitorMap: {
+    id: 'FIE1ZJNnFOHZ_TAHdTaJy8tLfHnZGZblLz3wRd0-vhY',
+    statsUrl: 'https://mapmyvisitors.com/web/1c66t',
+  },
 
   profileContacts: [
     { key: 'email',    getHref: profile => `mailto:${profile.email}`, getText: profile => profile.email, label: 'Email' },

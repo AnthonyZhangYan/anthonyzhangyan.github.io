@@ -8,6 +8,7 @@ const PRIMARY_PUBLICATION_LINKS = SITE_CONFIG.primaryPublicationLinks || ['arXiv
 const EXTERNAL_LINK_ATTRS = SITE_CONFIG.externalLinkAttrs || 'target="_blank" rel="noopener"';
 const SAFE_EXTERNAL_LINK_ATTRS = SITE_CONFIG.safeExternalLinkAttrs || 'target="_blank" rel="noopener noreferrer"';
 const PROFILE_CONTACTS = SITE_CONFIG.profileContacts || [];
+const VISITOR_MAP = SITE_CONFIG.visitorMap || {};
 const PROFILE = SITE_DATA.profile || {};
 const NEWS = SITE_DATA.news || [];
 const EDUCATION = SITE_DATA.education || [];
@@ -452,6 +453,37 @@ function initTheme() {
 }
 
 /* ============================================================
+   VISITOR MAP
+   ============================================================ */
+
+function initVisitorMap() {
+  const host = byId('visitor-map');
+  if (!host) return;
+
+  const id = String(VISITOR_MAP.id || '').trim();
+  if (!id) {
+    host.classList.add('is-pending');
+    host.innerHTML = `
+      <div class="visitor-map-placeholder" aria-hidden="true">
+        <span></span>
+      </div>
+    `;
+    return;
+  }
+
+  host.classList.remove('is-pending');
+  if (VISITOR_MAP.statsUrl) {
+    host.dataset.statsUrl = VISITOR_MAP.statsUrl;
+  }
+
+  const script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.id = 'mmvst_globe';
+  script.src = `https://mapmyvisitors.com/globe.js?d=${encodeURIComponent(id)}`;
+  host.appendChild(script);
+}
+
+/* ============================================================
    BOOT
    ============================================================ */
 
@@ -462,6 +494,7 @@ function init() {
   initPublicationControls();
   loadPublications();
   initSideNav();
+  initVisitorMap();
 }
 
 init();
