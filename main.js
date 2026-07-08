@@ -11,6 +11,7 @@ const PROFILE_CONTACTS = SITE_CONFIG.profileContacts || [];
 const VISITOR_MAP = SITE_CONFIG.visitorMap || {};
 const PROFILE = SITE_DATA.profile || {};
 const NEWS = SITE_DATA.news || [];
+const CONFERENCES = SITE_DATA.conferences || [];
 const EDUCATION = SITE_DATA.education || [];
 const MISC = SITE_DATA.misc || [];
 
@@ -157,6 +158,30 @@ function renderNewsItem(item) {
   return `<li>${renderNewsDate(item)}<span class="msg">${item.msg}</span></li>`;
 }
 
+function renderConferenceItem(item) {
+  const title = item.url
+    ? renderExternalLink({
+        className: 'conference-title inline-link',
+        href: item.url,
+        body: item.title,
+      })
+    : `<span class="conference-title">${item.title}</span>`;
+
+  return `
+    <article class="conference-card">
+      <a class="conference-badge-link" href="${item.url || '#'}" ${item.url ? EXTERNAL_LINK_ATTRS : ''} aria-label="${item.title}">
+        <img class="conference-badge-img conference-badge-light" src="${item.imageLight}" alt="${item.title} attendance badge, light mode" loading="lazy">
+        <img class="conference-badge-img conference-badge-dark" src="${item.imageDark}" alt="${item.title} attendance badge, dark mode" loading="lazy">
+      </a>
+      <div class="conference-meta">
+        <span class="conference-role">${item.role}</span>
+        ${title}
+        <div class="conference-details">${item.date} · ${item.location}</div>
+      </div>
+    </article>
+  `;
+}
+
 function renderMiscItem(item, index) {
   const iconClass = index === 0 ? 'misc-hobbies' : 'misc-contact';
   return `
@@ -170,6 +195,7 @@ function renderMiscItem(item, index) {
 function renderStaticSections() {
   renderEducation();
   renderNews();
+  renderConferences();
   renderMisc();
 }
 
@@ -179,6 +205,10 @@ function renderEducation() {
 
 function renderNews() {
   renderList('news-list', NEWS, renderNewsItem);
+}
+
+function renderConferences() {
+  renderList('conference-list', CONFERENCES, renderConferenceItem);
 }
 
 function renderMisc() {

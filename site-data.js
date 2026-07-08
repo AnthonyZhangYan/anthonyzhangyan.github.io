@@ -23,6 +23,18 @@ window.SITE_DATA = {
     { date: '2025-06', msg: 'I am joining <a class="inline-link" href="https://pml4sc.github.io/" target="_blank" rel="noopener"><b>PML4SC</b></a> lab to conduct research under <a class="inline-link" href="https://imshibo.com/" target="_blank" rel="noopener"><b>Dr. Shibo Li</b></a>\'s mentorship.' },
   ],
 
+  conferences: [
+    {
+      title: '64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)',
+      role: 'Attendee',
+      date: 'Jul 02 - 07, 2026',
+      location: 'San Diego, CA',
+      imageLight: 'assets/acl-2026-attendance-badge-light.jpg',
+      imageDark: 'assets/acl-2026-attendance-badge-dark.jpg',
+      url: 'https://2026.aclweb.org/',
+    },
+  ],
+
   education: [
     { degree: 'Ph.D. in Computer Science',             badge: 'Ph.D.', school: 'Florida State University — Tallahassee, FL', mon: '',    yr: 'In\u00a0Progress' },
     { degree: 'Master of Science in Computer Science', badge: 'M.S.',  school: 'Florida State University — Tallahassee, FL', mon: 'May', yr: '2025' },
