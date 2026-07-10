@@ -78,6 +78,7 @@ function linkClass(name, url) {
   if (lowerName.includes('pdf')) return 'pdf-link';
   if (lowerName.includes('doi') || lowerUrl.includes('doi.org')) return 'doi-link';
   if (lowerName.includes('arxiv') || lowerUrl.includes('arxiv')) return 'arxiv-link';
+  if (lowerName.includes('openreview') || lowerUrl.includes('openreview.net')) return 'openreview-link';
   if (lowerName.includes('code') || lowerUrl.includes('github.com')) return 'code-link';
   return '';
 }

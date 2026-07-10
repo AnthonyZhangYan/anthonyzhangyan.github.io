@@ -25,6 +25,7 @@
     "links": [
       {"name": "arXiv", "url": "https://arxiv.org/abs/2601.20043"},
       {"name": "PDF", "url": "assets/papers/2601.20043v1.pdf"},
+      {"name": "Official OpenReview", "url": "https://openreview.net/forum?id=bSUMVAYoMq"},
       {"name": "Code", "url": "https://github.com/AnthonyZhangYan/RAMBO"}
     ],
     "year": 2026
