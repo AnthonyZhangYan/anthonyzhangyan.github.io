@@ -678,7 +678,8 @@ select:focus-visible {
 .links a.doi-link:hover { color: var(--doi-hover); background: rgba(5, 150, 105, .10); text-decoration: none; }
 .links a.arxiv-link:hover { color: var(--arxiv-hover); background: rgba(220, 38, 38, .10); text-decoration: none; }
 .links a.code-link:hover { color: var(--code-hover); background: rgba(17, 24, 39, .08); text-decoration: none; }
-.links a:focus { outline: 2px solid currentColor; outline-offset: 2px; text-decoration: none; }
+.links a:focus { outline: none; text-decoration: none; }
+.links a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 
 /* ── Conferences ── */
 .conference-list {
