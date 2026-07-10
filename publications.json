@@ -10,7 +10,7 @@
     "links": [
       {"name": "arXiv", "url": "https://arxiv.org/abs/2509.23139"},
       {"name": "PDF", "url": "assets/papers/2509.23139v1.pdf"},
-      {"name": "Code", "url": "https://github.com/AnthonyZhangYan"}
+      {"name": "Code", "url": "https://github.com/Sippengg/OptiINR"}
     ],
     "year": 2026
   },
