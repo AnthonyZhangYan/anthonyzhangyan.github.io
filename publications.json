@@ -24,7 +24,7 @@
     "authors": "Yan Zhang, Xuefeng Liu, Sipeng Chen, Sascha Ranftl, Chong Liu, Shibo Li",
     "links": [
       {"name": "arXiv", "url": "https://arxiv.org/abs/2601.20043"},
-      {"name": "PDF", "url": "assets/papers/2601.20043v1.pdf"},
+      {"name": "PDF", "url": "https://openreview.net/pdf?id=bSUMVAYoMq"},
       {"name": "Official ICML Page", "url": "https://icml.cc/virtual/2026/poster/62957"},
       {"name": "Official OpenReview", "url": "https://openreview.net/forum?id=bSUMVAYoMq"},
       {"name": "Code", "url": "https://github.com/AnthonyZhangYan/RAMBO"}
