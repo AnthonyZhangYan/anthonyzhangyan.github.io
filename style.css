@@ -698,8 +698,10 @@ select:focus-visible {
   border-radius: 3px;
 }
 .links a.openreview-link::before {
-  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M4%203h16a2%202%200%200%201%202%202v10a2%202%200%200%201-2%202H8.8L4%2021v-4a2%202%200%200%201-2-2V5a2%202%200%200%201%202-2Zm0%202v10h2v1.7L8.1%2015H20V5H4Zm3%203h10v1.7H7V8Zm0%203.2h7v1.7H7v-1.7Z'/%3E%3C/svg%3E");
-  mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M4%203h16a2%202%200%200%201%202%202v10a2%202%200%200%201-2%202H8.8L4%2021v-4a2%202%200%200%201-2-2V5a2%202%200%200%201%202-2Zm0%202v10h2v1.7L8.1%2015H20V5H4Zm3%203h10v1.7H7V8Zm0%203.2h7v1.7H7v-1.7Z'/%3E%3C/svg%3E");
+  width: 14px; height: 14px;
+  background: url("assets/publications/openreview-logo.png") center / contain no-repeat;
+  -webkit-mask-image: none;
+  mask-image: none;
 }
 .links a.code-link::before {
   -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M4%204h16a2%202%200%200%201%202%202v12a2%202%200%200%201-2%202H4a2%202%200%200%201-2-2V6a2%202%200%200%201%202-2Zm4.8%2010.7L6.1%2012l2.7-2.7-1.4-1.4L3.3%2012l4.1%204.1%201.4-1.4Zm6.4%200%201.4%201.4%204.1-4.1-4.1-4.1-1.4%201.4%202.7%202.7-2.7%202.7Zm-3.7%202.8%202-10-2-.4-2%2010%202%20.4Z'/%3E%3C/svg%3E");
