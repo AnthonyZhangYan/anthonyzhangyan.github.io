@@ -25,6 +25,15 @@ window.SITE_DATA = {
 
   conferences: [
     {
+      title: '43rd International Conference on Machine Learning (ICML 2026)',
+      role: 'Registered Author · Poster presented by a colleague',
+      date: 'Jul 06 - 11, 2026',
+      location: 'Seoul, South Korea',
+      imageLight: 'assets/publications/RAMBO.png',
+      imageDark: 'assets/publications/RAMBO.png',
+      url: 'https://icml.cc/Conferences/2026',
+    },
+    {
       title: '64th Annual Meeting of the Association for Computational Linguistics (ACL 2026)',
       role: 'Attendee',
       date: 'Jul 02 - 07, 2026',
