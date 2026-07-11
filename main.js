@@ -182,6 +182,7 @@ function renderConferenceItem(item) {
       <span class="conference-role">${item.role}</span>
       ${title}
       <div class="conference-details">${item.date} · ${item.location}</div>
+      ${item.note ? `<div class="conference-note">${item.note}</div>` : ''}
     </div>
   `;
 

@@ -800,6 +800,12 @@ select:focus-visible {
   font-size: 14px;
   line-height: 1.45;
 }
+.conference-note {
+  color: var(--muted);
+  font-size: 13px;
+  font-style: italic;
+  line-height: 1.4;
+}
 .conference-content {
   display: grid;
   gap: 14px;

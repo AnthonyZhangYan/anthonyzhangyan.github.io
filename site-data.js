@@ -26,7 +26,8 @@ window.SITE_DATA = {
   conferences: [
     {
       title: '43rd International Conference on Machine Learning (ICML 2026)',
-      role: 'Registered Author · Poster presented by a colleague',
+      role: 'Registered Author',
+      note: 'Poster presented by a colleague',
       date: 'Jul 06 - 11, 2026',
       location: 'Seoul, South Korea',
       imageLight: 'assets/icml-2026-registration-profile.png',
