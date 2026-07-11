@@ -29,8 +29,9 @@ window.SITE_DATA = {
       role: 'Registered Author · Poster presented by a colleague',
       date: 'Jul 06 - 11, 2026',
       location: 'Seoul, South Korea',
-      imageLight: 'assets/publications/RAMBO.png',
-      imageDark: 'assets/publications/RAMBO.png',
+      imageLight: 'assets/icml-2026-registration-profile.png',
+      imageDark: 'assets/icml-2026-registration-profile.png',
+      imageFit: 'contain',
       url: 'https://icml.cc/Conferences/2026',
     },
     {

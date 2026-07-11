@@ -161,6 +161,7 @@ function renderNewsItem(item) {
 }
 
 function renderConferenceItem(item) {
+  const imageClass = item.imageFit === 'contain' ? ' conference-badge-img-contain' : '';
   const title = item.url
     ? renderExternalLink({
         className: 'conference-title inline-link',
@@ -172,8 +173,8 @@ function renderConferenceItem(item) {
   return `
     <article class="conference-card">
       <a class="conference-badge-link" href="${item.url || '#'}" ${item.url ? EXTERNAL_LINK_ATTRS : ''} aria-label="${item.title}">
-        <img class="conference-badge-img conference-badge-light" src="${item.imageLight}" alt="${item.title} conference image, light mode" loading="lazy">
-        <img class="conference-badge-img conference-badge-dark" src="${item.imageDark}" alt="${item.title} conference image, dark mode" loading="lazy">
+        <img class="conference-badge-img conference-badge-light${imageClass}" src="${item.imageLight}" alt="${item.title} conference image, light mode" loading="lazy">
+        <img class="conference-badge-img conference-badge-dark${imageClass}" src="${item.imageDark}" alt="${item.title} conference image, dark mode" loading="lazy">
       </a>
       <div class="conference-meta">
         <span class="conference-role">${item.role}</span>
