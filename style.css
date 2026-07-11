@@ -807,7 +807,7 @@ select:focus-visible {
   align-content: center;
 }
 .conference-card-with-poster {
-  grid-template-columns: minmax(320px, 1fr) minmax(360px, 1fr);
+  grid-template-columns: minmax(320px, 1.05fr) minmax(260px, .95fr);
   align-items: center;
 }
 .conference-poster {
