@@ -795,8 +795,8 @@ select:focus-visible {
   font-size: 18px;
   font-weight: 750;
   line-height: 1.35;
-  text-align: justify;
-  text-align-last: left;
+  text-align: left;
+  text-wrap: balance;
   overflow-wrap: anywhere;
 }
 .conference-details {
