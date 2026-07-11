@@ -32,6 +32,8 @@ window.SITE_DATA = {
       imageLight: 'assets/icml-2026-registration-profile.png',
       imageDark: 'assets/icml-2026-registration-profile.png',
       imageFit: 'contain',
+      posterImage: 'assets/icml-2026-poster-62957.png',
+      posterUrl: 'https://icml.cc/media/PosterPDFs/ICML%202026/62957.png?t=1780266981.5286565',
       url: 'https://icml.cc/Conferences/2026',
     },
     {

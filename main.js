@@ -180,6 +180,12 @@ function renderConferenceItem(item) {
         <span class="conference-role">${item.role}</span>
         ${title}
         <div class="conference-details">${item.date} · ${item.location}</div>
+        ${item.posterImage ? `
+          <a class="conference-poster" href="${item.posterUrl || item.posterImage}" ${EXTERNAL_LINK_ATTRS} aria-label="View ${item.title} poster">
+            <span class="conference-poster-label">Poster</span>
+            <img src="${item.posterImage}" alt="Poster presented at ${item.title}" loading="lazy">
+          </a>
+        ` : ''}
       </div>
     </article>
   `;
