@@ -789,10 +789,14 @@ select:focus-visible {
   text-transform: uppercase;
 }
 .conference-title {
+  display: block;
+  width: 100%;
   color: var(--fg);
   font-size: 18px;
   font-weight: 750;
   line-height: 1.35;
+  text-align: justify;
+  text-align-last: left;
   overflow-wrap: anywhere;
 }
 .conference-details {
