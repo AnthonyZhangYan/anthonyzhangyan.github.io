@@ -170,19 +170,29 @@ function renderConferenceItem(item) {
       })
     : `<span class="conference-title">${item.title}</span>`;
 
+  const badge = `
+    <a class="conference-badge-link" href="${item.url || '#'}" ${item.url ? EXTERNAL_LINK_ATTRS : ''} aria-label="${item.title}">
+      <img class="conference-badge-img conference-badge-light${imageClass}" src="${item.imageLight}" alt="${item.title} conference image, light mode" loading="lazy">
+      <img class="conference-badge-img conference-badge-dark${imageClass}" src="${item.imageDark}" alt="${item.title} conference image, dark mode" loading="lazy">
+    </a>
+  `;
+
+  const meta = `
+    <div class="conference-meta">
+      <span class="conference-role">${item.role}</span>
+      ${title}
+      <div class="conference-details">${item.date} · ${item.location}</div>
+    </div>
+  `;
+
   return `
-    <article class="conference-card">
-      <a class="conference-badge-link" href="${item.url || '#'}" ${item.url ? EXTERNAL_LINK_ATTRS : ''} aria-label="${item.title}">
-        <img class="conference-badge-img conference-badge-light${imageClass}" src="${item.imageLight}" alt="${item.title} conference image, light mode" loading="lazy">
-        <img class="conference-badge-img conference-badge-dark${imageClass}" src="${item.imageDark}" alt="${item.title} conference image, dark mode" loading="lazy">
-      </a>
-      <div class="conference-meta">
-        <span class="conference-role">${item.role}</span>
-        ${title}
-        <div class="conference-details">${item.date} · ${item.location}</div>
+    <article class="conference-card${item.posterImage ? ' conference-card-with-poster' : ''}">
+      ${badge}
+      <div class="conference-content">
+        ${meta}
         ${item.posterImage ? `
           <a class="conference-poster" href="${item.posterUrl || item.posterImage}" ${EXTERNAL_LINK_ATTRS} aria-label="View ${item.title} poster">
-            <span class="conference-poster-label">Poster</span>
+            <span class="conference-poster-label">View Poster</span>
             <img src="${item.posterImage}" alt="Poster presented at ${item.title}" loading="lazy">
           </a>
         ` : ''}
