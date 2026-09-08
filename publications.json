@@ -1,20 +1,5 @@
 [
   {
-    "title": "Closing the Capacity-Convergence Gap: Globally Optimal Configuration of Implicit Neural Representations",
-    "venue": "European Conference on Computer Vision (ECCV 2026)",
-    "badge": "Accepted",
-    "image": "assets/publications/inr-flowchart.svg",
-    "imageLayout": "banner",
-    "logo": "assets/publications/eccv-navbar-logo.svg",
-    "authors": "Sipeng Chen, Yan Zhang, Shibo Li",
-    "links": [
-      {"name": "arXiv", "url": "https://arxiv.org/abs/2509.23139"},
-      {"name": "PDF", "url": "assets/papers/2509.23139v1.pdf"},
-      {"name": "Code", "url": "https://github.com/Sippengg/OptiINR"}
-    ],
-    "year": 2026
-  },
-  {
     "title": "Regime-Adaptive Bayesian Optimization via Dirichlet Process Mixtures of Gaussian Processes",
     "venue": "Proceedings of the 43rd International Conference on Machine Learning (ICML 2026)",
     "badge": "Accepted",
@@ -28,6 +13,21 @@
       {"name": "Official ICML Page", "url": "https://icml.cc/virtual/2026/poster/62957"},
       {"name": "Official OpenReview", "url": "https://openreview.net/forum?id=bSUMVAYoMq"},
       {"name": "Code", "url": "https://github.com/AnthonyZhangYan/RAMBO"}
+    ],
+    "year": 2026
+  },
+  {
+    "title": "Closing the Capacity-Convergence Gap: Globally Optimal Configuration of Implicit Neural Representations",
+    "venue": "European Conference on Computer Vision (ECCV 2026)",
+    "badge": "Accepted",
+    "image": "assets/publications/inr-flowchart.svg",
+    "imageLayout": "banner",
+    "logo": "assets/publications/eccv-navbar-logo.svg",
+    "authors": "Sipeng Chen, Yan Zhang, Shibo Li",
+    "links": [
+      {"name": "arXiv", "url": "https://arxiv.org/abs/2509.23139"},
+      {"name": "PDF", "url": "assets/papers/2509.23139v1.pdf"},
+      {"name": "Code", "url": "https://github.com/Sippengg/OptiINR"}
     ],
     "year": 2026
   },
