@@ -30,6 +30,28 @@
     "year": 2026
   },
   {
+    "title": "ConsistencyGate: Preventing Memory Contamination in LLM Agents via Self-Consistency Admission Control",
+    "venue": "arXiv",
+    "image": "assets/publications/arxiv-logo.svg",
+    "authors": "Yan Zhang, Shibo Li",
+    "links": [
+      {"name": "arXiv", "url": "https://arxiv.org/abs/2607.22962"},
+      {"name": "PDF", "url": "https://arxiv.org/pdf/2607.22962"}
+    ],
+    "year": 2026
+  },
+  {
+    "title": "Verbalized Particle Posterior: Bayesian Inference over Natural Language Hypotheses",
+    "venue": "arXiv",
+    "image": "assets/publications/arxiv-logo.svg",
+    "authors": "Yan Zhang, Shikan Lian, Shibo Li",
+    "links": [
+      {"name": "arXiv", "url": "https://arxiv.org/abs/2607.22961"},
+      {"name": "PDF", "url": "https://arxiv.org/pdf/2607.22961"}
+    ],
+    "year": 2026
+  },
+  {
     "title": "Dynamic Bayesian Optimization Framework for Instruction Tuning in Partial Differential Equation Discovery",
     "venue": "arXiv",
     "image": "assets/publications/arxiv-logo.svg",
