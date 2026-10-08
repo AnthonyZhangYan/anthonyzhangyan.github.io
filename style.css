@@ -762,16 +762,33 @@ select:focus-visible {
   border: 0; background: none; color: var(--muted); font-size: 22px; line-height: 1; cursor: pointer; padding: 0 4px;
 }
 .cite-dialog-close:hover { color: var(--fg); }
+.cite-dialog-body { position: relative; }
 .cite-dialog-code {
-  margin: 0; padding: 14px 16px; max-height: 60vh; overflow: auto;
+  margin: 0; padding: 14px 56px 14px 16px; max-height: 60vh; overflow: auto;
   background: var(--card); font-size: 12.5px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere;
+  border-radius: 0 0 13px 13px;
 }
-.cite-dialog-actions { display: flex; justify-content: flex-end; padding: 10px 16px; border-top: 1px solid var(--border); }
 .cite-dialog-copy {
-  font: inherit; font-weight: 600; padding: 4px 14px; border-radius: 8px; cursor: pointer;
-  color: var(--cite); background: var(--label-bg); border: 1px solid var(--cite-border);
+  position: absolute; top: 10px; right: 10px;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0; border: 0; border-radius: 8px; cursor: pointer;
+  color: var(--muted); background: color-mix(in srgb, var(--fg) 8%, var(--card));
+  transition: color .15s ease, background .15s ease;
 }
-.cite-dialog-copy:hover { color: var(--cite-hover); background: rgba(217, 119, 6, .10); }
+.cite-dialog-copy::before {
+  content: ""; width: 16px; height: 16px;
+  background: currentColor;
+  -webkit-mask: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M6%202h8a2%202%200%200%201%202%202v2h-6a4%204%200%200%200-4%204v8a2%202%200%200%201-2-2V4a2%202%200%200%201%202-2Z'/%3E%3Crect%20x='8'%20y='8'%20width='14'%20height='14'%20rx='2'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%3E%3Cpath%20d='M6%202h8a2%202%200%200%201%202%202v2h-6a4%204%200%200%200-4%204v8a2%202%200%200%201-2-2V4a2%202%200%200%201%202-2Z'/%3E%3Crect%20x='8'%20y='8'%20width='14'%20height='14'%20rx='2'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.cite-dialog-copy:hover { color: var(--fg); background: color-mix(in srgb, var(--fg) 14%, var(--card)); }
+.cite-dialog-copy:focus { outline: none; }
+.cite-dialog-copy:focus-visible { outline: 2px solid var(--link); outline-offset: 2px; }
+.cite-dialog-copy.is-copied { color: var(--doi); }
+.cite-dialog-copy.is-copied::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20stroke='black'%20stroke-width='2.6'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M4.5%2012.5l5%205L19.5%207'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20stroke='black'%20stroke-width='2.6'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Cpath%20d='M4.5%2012.5l5%205L19.5%207'/%3E%3C/svg%3E");
+}
 .links a:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 
 /* ── Conferences ── */

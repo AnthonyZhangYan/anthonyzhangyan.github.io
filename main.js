@@ -276,15 +276,21 @@ function getCiteDialog() {
         <span id="cite-dialog-title" class="cite-dialog-title">BibTeX</span>
         <button type="button" class="cite-dialog-close" aria-label="Close">×</button>
       </div>
-      <pre class="cite-dialog-code"><code id="cite-dialog-code"></code></pre>
-      <div class="cite-dialog-actions">
-        <button type="button" class="cite-dialog-copy">Copy</button>
+      <div class="cite-dialog-body">
+        <pre class="cite-dialog-code"><code id="cite-dialog-code"></code></pre>
+        <button type="button" class="cite-dialog-copy" aria-label="Copy BibTeX" title="Copy"></button>
       </div>
     </dialog>
   `);
 
   dialog = byId('cite-dialog');
   const copyButton = dialog.querySelector('.cite-dialog-copy');
+  let copyResetTimer;
+  const setCopyState = (state, label) => {
+    copyButton.classList.toggle('is-copied', state === 'copied');
+    copyButton.title = label;
+    copyButton.setAttribute('aria-label', label === 'Copy' ? 'Copy BibTeX' : label);
+  };
   dialog.querySelector('.cite-dialog-close').addEventListener('click', () => dialog.close());
   dialog.addEventListener('click', event => {
     if (event.target === dialog) dialog.close();
@@ -292,11 +298,12 @@ function getCiteDialog() {
   copyButton.addEventListener('click', async () => {
     try {
       await navigator.clipboard.writeText(byId('cite-dialog-code').textContent);
-      copyButton.textContent = 'Copied!';
+      setCopyState('copied', 'Copied!');
     } catch {
-      copyButton.textContent = 'Copy failed';
+      setCopyState('failed', 'Copy failed');
     }
-    setTimeout(() => { copyButton.textContent = 'Copy'; }, 1600);
+    clearTimeout(copyResetTimer);
+    copyResetTimer = setTimeout(() => setCopyState('idle', 'Copy'), 1600);
   });
   return dialog;
 }
