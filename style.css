@@ -16,6 +16,8 @@
   --arxiv-hover: #b91c1c;
   --icml: #0891b2;
   --icml-hover: #0e7490;
+  --eccv: #4f46e5;
+  --eccv-hover: #4338ca;
   --openreview: #2563eb;
   --openreview-hover: #1d4ed8;
   --cite: #d97706;
@@ -28,6 +30,7 @@
   --doi-border: #bbf7d0;
   --arxiv-border: #fecaca;
   --icml-border: #a5f3fc;
+  --eccv-border: #c7d2fe;
   --openreview-border: #bfdbfe;
   --cite-border: #fde68a;
   --code-border: #cbd5e1;
@@ -98,6 +101,8 @@
     --arxiv-hover: #fca5a5;
     --icml: #22d3ee;
     --icml-hover: #67e8f9;
+    --eccv: #818cf8;
+    --eccv-hover: #a5b4fc;
     --openreview: #60a5fa;
     --openreview-hover: #93c5fd;
     --cite: #fbbf24;
@@ -109,6 +114,7 @@
     --doi-border: rgba(52, 211, 153, .35);
     --arxiv-border: rgba(248, 113, 113, .35);
     --icml-border: rgba(34, 211, 238, .35);
+    --eccv-border: rgba(129, 140, 248, .35);
     --openreview-border: rgba(96, 165, 250, .35);
     --cite-border: rgba(251, 191, 36, .35);
     --code-border: rgba(229, 231, 235, .32);
@@ -169,6 +175,8 @@ html[data-theme="dark"] {
   --arxiv-hover: #fca5a5;
   --icml: #22d3ee;
   --icml-hover: #67e8f9;
+  --eccv: #818cf8;
+  --eccv-hover: #a5b4fc;
   --openreview: #60a5fa;
   --openreview-hover: #93c5fd;
   --cite: #fbbf24;
@@ -180,6 +188,7 @@ html[data-theme="dark"] {
   --doi-border: rgba(52, 211, 153, .35);
   --arxiv-border: rgba(248, 113, 113, .35);
   --icml-border: rgba(34, 211, 238, .35);
+  --eccv-border: rgba(129, 140, 248, .35);
   --openreview-border: rgba(96, 165, 250, .35);
   --cite-border: rgba(251, 191, 36, .35);
   --code-border: rgba(229, 231, 235, .32);
@@ -239,6 +248,8 @@ html[data-theme="light"] {
   --arxiv-hover: #b91c1c;
   --icml: #0891b2;
   --icml-hover: #0e7490;
+  --eccv: #4f46e5;
+  --eccv-hover: #4338ca;
   --openreview: #2563eb;
   --openreview-hover: #1d4ed8;
   --cite: #d97706;
@@ -250,6 +261,7 @@ html[data-theme="light"] {
   --doi-border: #bbf7d0;
   --arxiv-border: #fecaca;
   --icml-border: #a5f3fc;
+  --eccv-border: #c7d2fe;
   --openreview-border: #bfdbfe;
   --cite-border: #fde68a;
   --code-border: #cbd5e1;
@@ -677,11 +689,11 @@ select:focus-visible {
 
 .links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
 .links a { color: var(--link); text-decoration: none; }
-.links a.pdf-link, .links a.doi-link, .links a.arxiv-link, .links a.icml-link, .links a.openreview-link, .links a.code-link {
+.links a.pdf-link, .links a.doi-link, .links a.arxiv-link, .links a.icml-link, .links a.eccv-link, .links a.openreview-link, .links a.code-link {
   display: inline-flex; align-items: center; gap: 5px; padding: 1px 8px; border-radius: 10px;
   background: var(--label-bg); border: 1px solid transparent; line-height: 1.3; font-weight: 600;
 }
-.links a.pdf-link::before, .links a.doi-link::before, .links a.arxiv-link::before, .links a.icml-link::before, .links a.openreview-link::before, .links a.code-link::before {
+.links a.pdf-link::before, .links a.doi-link::before, .links a.arxiv-link::before, .links a.icml-link::before, .links a.eccv-link::before, .links a.openreview-link::before, .links a.code-link::before {
   content: ""; width: 13px; height: 13px; flex: 0 0 auto;
   background: currentColor;
   -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
@@ -709,6 +721,10 @@ select:focus-visible {
   mask-image: none;
   border-radius: 3px;
 }
+.links a.eccv-link::before {
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Crect%20x='3'%20y='3'%20width='18'%20height='13'%20rx='2'/%3E%3Cpath%20d='M12%2016v5M8%2021h8M7%208h6M7%2011.5h10'/%3E%3C/svg%3E");
+  mask-image: url("data:image/svg+xml,%3Csvg%20viewBox='0%200%2024%2024'%20xmlns='http://www.w3.org/2000/svg'%20fill='none'%20stroke='black'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%3E%3Crect%20x='3'%20y='3'%20width='18'%20height='13'%20rx='2'/%3E%3Cpath%20d='M12%2016v5M8%2021h8M7%208h6M7%2011.5h10'/%3E%3C/svg%3E");
+}
 .links a.openreview-link::before {
   width: 14px; height: 14px;
   background: url("assets/publications/openreview-logo.png") center / contain no-repeat;
@@ -723,12 +739,14 @@ select:focus-visible {
 .links a.doi-link { color: var(--doi); border-color: var(--doi-border); }
 .links a.arxiv-link { color: var(--arxiv); border-color: var(--arxiv-border); }
 .links a.icml-link { color: var(--icml); border-color: var(--icml-border); }
+.links a.eccv-link { color: var(--eccv); border-color: var(--eccv-border); }
 .links a.openreview-link { color: var(--openreview); border-color: var(--openreview-border); }
 .links a.code-link { color: var(--code); border-color: var(--code-border); }
 .links a.pdf-link:hover { color: var(--pdf-hover); background: rgba(124, 58, 237, .10); text-decoration: none; }
 .links a.doi-link:hover { color: var(--doi-hover); background: rgba(5, 150, 105, .10); text-decoration: none; }
 .links a.arxiv-link:hover { color: var(--arxiv-hover); background: rgba(220, 38, 38, .10); text-decoration: none; }
 .links a.icml-link:hover { color: var(--icml-hover); background: rgba(8, 145, 178, .10); text-decoration: none; }
+.links a.eccv-link:hover { color: var(--eccv-hover); background: rgba(79, 70, 229, .10); text-decoration: none; }
 .links a.openreview-link:hover { color: var(--openreview-hover); background: rgba(37, 99, 235, .10); text-decoration: none; }
 .links a.code-link:hover { color: var(--code-hover); background: rgba(17, 24, 39, .08); text-decoration: none; }
 .links a:focus { outline: none; text-decoration: none; }

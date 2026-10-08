@@ -19,7 +19,7 @@
   },
   {
     "title": "Closing the Capacity-Convergence Gap: Globally Optimal Configuration of Implicit Neural Representations",
-    "venue": "European Conference on Computer Vision (ECCV 2026)",
+    "venue": "Proceedings of the 19th European Conference on Computer Vision (ECCV 2026)",
     "badge": "Accepted",
     "image": "assets/publications/inr-flowchart.svg",
     "imageLayout": "banner",
@@ -27,8 +27,8 @@
     "authors": "Sipeng Chen, Yan Zhang, Shibo Li",
     "url": "https://doi.org/10.1007/978-3-032-36969-7_8",
     "links": [
-      {"name": "arXiv", "url": "https://arxiv.org/abs/2509.23139"},
-      {"name": "PDF", "url": "assets/papers/2509.23139v1.pdf"},
+      {"name": "PDF", "url": "assets/papers/ECCV-2026-OptiINR.pdf"},
+      {"name": "Official ECCV Page", "url": "https://eccv.ecva.net/virtual/2026/poster/4964"},
       {"name": "DOI", "url": "https://doi.org/10.1007/978-3-032-36969-7_8"},
       {"name": "Code", "url": "https://github.com/Sippengg/OptiINR"}
     ],
