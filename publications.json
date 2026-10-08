@@ -7,9 +7,9 @@
     "imageLayout": "banner",
     "logo": "assets/publications/icml-logo.svg",
     "authors": "Yan Zhang, Xuefeng Liu, Sipeng Chen, Sascha Ranftl, Chong Liu, Shibo Li",
+    "url": "https://proceedings.mlr.press/v306/zhang26dn.html",
     "links": [
-      {"name": "arXiv", "url": "https://arxiv.org/abs/2601.20043"},
-      {"name": "PDF", "url": "https://openreview.net/pdf?id=bSUMVAYoMq"},
+      {"name": "PDF", "url": "assets/papers/ICML-2026-RAMBO.pdf"},
       {"name": "Official ICML Page", "url": "https://icml.cc/virtual/2026/poster/62957"},
       {"name": "Official OpenReview", "url": "https://openreview.net/forum?id=bSUMVAYoMq"},
       {"name": "Code", "url": "https://github.com/AnthonyZhangYan/RAMBO"}

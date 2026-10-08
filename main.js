@@ -326,7 +326,9 @@ function renderPublicationAuthors(publication) {
 }
 
 function getPrimaryPublicationUrl(publication) {
-  return (publication.links || []).find(link => PRIMARY_PUBLICATION_LINKS.includes(link.name))?.url || '';
+  return publication.url
+    || (publication.links || []).find(link => PRIMARY_PUBLICATION_LINKS.includes(link.name))?.url
+    || '';
 }
 
 function renderPublicationTitle(publication) {
