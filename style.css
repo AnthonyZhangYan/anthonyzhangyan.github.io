@@ -1004,21 +1004,18 @@ footer {
   transform: translateY(-1px);
 }
 .misc-icon {
-  width: 34px;
-  height: 34px;
-  flex: 0 0 34px;
+  width: 22px;
+  height: 22px;
+  flex: 0 0 22px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  color: #0f172a;
-  background: linear-gradient(135deg, #bfdbfe, var(--link));
-  box-shadow: 0 10px 24px color-mix(in srgb, var(--link) 24%, transparent);
+  color: var(--fg);
 }
 .misc-icon::before {
   content: "";
-  width: 17px;
-  height: 17px;
+  width: 20px;
+  height: 20px;
   background: currentColor;
   mask: var(--misc-icon) center / contain no-repeat;
   -webkit-mask: var(--misc-icon) center / contain no-repeat;
@@ -1404,9 +1401,9 @@ footer {
     gap: 12px;
   }
   .misc-icon {
-    width: 32px;
-    height: 32px;
-    flex-basis: 32px;
+    width: 20px;
+    height: 20px;
+    flex-basis: 20px;
   }
   .misc-text {
     font-size: 14px;
