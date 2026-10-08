@@ -261,6 +261,52 @@ function renderPublicationLinks(links = []) {
   }));
 }
 
+function renderCiteButton(publication, index) {
+  if (!publication.bibtex) return '';
+  return `<button type="button" class="cite-link" data-pub-index="${index}" aria-haspopup="dialog">Cite</button>`;
+}
+
+function getCiteDialog() {
+  let dialog = byId('cite-dialog');
+  if (dialog) return dialog;
+
+  document.body.insertAdjacentHTML('beforeend', `
+    <dialog id="cite-dialog" class="cite-dialog" aria-labelledby="cite-dialog-title">
+      <div class="cite-dialog-head">
+        <span id="cite-dialog-title" class="cite-dialog-title">BibTeX</span>
+        <button type="button" class="cite-dialog-close" aria-label="Close">×</button>
+      </div>
+      <pre class="cite-dialog-code"><code id="cite-dialog-code"></code></pre>
+      <div class="cite-dialog-actions">
+        <button type="button" class="cite-dialog-copy">Copy</button>
+      </div>
+    </dialog>
+  `);
+
+  dialog = byId('cite-dialog');
+  const copyButton = dialog.querySelector('.cite-dialog-copy');
+  dialog.querySelector('.cite-dialog-close').addEventListener('click', () => dialog.close());
+  dialog.addEventListener('click', event => {
+    if (event.target === dialog) dialog.close();
+  });
+  copyButton.addEventListener('click', async () => {
+    try {
+      await navigator.clipboard.writeText(byId('cite-dialog-code').textContent);
+      copyButton.textContent = 'Copied!';
+    } catch {
+      copyButton.textContent = 'Copy failed';
+    }
+    setTimeout(() => { copyButton.textContent = 'Copy'; }, 1600);
+  });
+  return dialog;
+}
+
+function openCiteDialog(publication) {
+  const dialog = getCiteDialog();
+  byId('cite-dialog-code').textContent = publication.bibtex;
+  dialog.showModal();
+}
+
 function renderPublicationAuthors(publication) {
   if (!publication.moreAuthors) return highlightAuthors(publication.authors);
 
@@ -332,20 +378,20 @@ function getPublicationMedia(publication) {
   };
 }
 
-function renderPublicationMeta(publication) {
+function renderPublicationMeta(publication, index) {
   return `
     <div class="venue">${[publication.year, publication.venue].filter(Boolean).join(' — ')}${renderPublicationBadge(publication)}</div>
     <div class="authors">${renderPublicationAuthors(publication)}</div>
-    <div class="links">${renderPublicationLinks(publication.links)}</div>
+    <div class="links">${renderPublicationLinks(publication.links)}${renderCiteButton(publication, index)}</div>
   `;
 }
 
-function renderPublicationBody(publication) {
+function renderPublicationBody(publication, index) {
   const logoType = getPublicationImageType(publication.logo || '');
   const content = `
     <div class="pub-body">
       <div class="title">${renderPublicationTitle(publication)}</div>
-      ${renderPublicationMeta(publication)}
+      ${renderPublicationMeta(publication, index)}
     </div>
   `;
 
@@ -366,7 +412,7 @@ function renderPublicationBody(publication) {
 
 function renderPublicationCard(publication) {
   const media = getPublicationMedia(publication);
-  const body = renderPublicationBody(publication);
+  const body = renderPublicationBody(publication, publicationState.items.indexOf(publication));
   const cardClass = `pub${publication.badge ? ' pub-accepted' : ''}${media.extraClass}`;
   const content = media.hasBanner ? media.html + body : (media.html ? media.html + body : body);
 
@@ -401,6 +447,11 @@ async function loadPublications() {
 
 function initPublicationControls() {
   const sortSelect = byId('sort-by');
+  byId('pubs')?.addEventListener('click', event => {
+    const button = event.target.closest('.cite-link');
+    if (button) openCiteDialog(publicationState.items[Number(button.dataset.pubIndex)]);
+  });
+
   if (!sortSelect) return;
   sortSelect.addEventListener('change', renderPublications);
 }

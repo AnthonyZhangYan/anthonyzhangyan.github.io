@@ -14,6 +14,7 @@
       {"name": "Official OpenReview", "url": "https://openreview.net/forum?id=bSUMVAYoMq"},
       {"name": "Code", "url": "https://github.com/AnthonyZhangYan/RAMBO"}
     ],
+    "bibtex": "@InProceedings{pmlr-v306-zhang26dn,\n  title = {Regime-Adaptive {B}ayesian Optimization via {D}irichlet Process Mixtures of {G}aussian Processes},\n  author = {Zhang, Yan and Liu, Xuefeng and Chen, Sipeng and Ranftl, Sascha and Liu, Chong and Li, Shibo},\n  booktitle = {Proceedings of the 43rd International Conference on Machine Learning},\n  pages = {157148--157179},\n  year = {2026},\n  volume = {306},\n  series = {Proceedings of Machine Learning Research},\n  publisher = {PMLR}\n}",
     "year": 2026
   },
   {
